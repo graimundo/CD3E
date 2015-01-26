@@ -16,10 +16,11 @@
 define( [ 'common-ui/angular',
           'common-ui/angular-route',
           'common-ui/angular-ui-bootstrap',
-          'angular-translate'
+          'angular-translate',
+          'Base'
     ],
 
-    function ( angular, angularRoute, uiBootstrap ) {
+    function ( angular, angularRoute, uiBootstrap, Base ) {
 
       console.log("Required app.js ");
 

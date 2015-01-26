@@ -15,3 +15,6 @@ requireCfg['paths']['cd3e'] = CONTEXT_PATH + 'content/cd3e/cd3e/src/app';
 
 requireCfg['paths']['angular-translate'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/angular-translate/angular-translate';
 requireCfg['shim']['angular-translate'] = ['common-ui/angular'];
+
+requireCfg['paths']['Base'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/base/Base';
+
