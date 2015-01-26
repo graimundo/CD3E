@@ -35,7 +35,7 @@
   <property name="js.module.script.app.name" value="app"/>
 
   <!-- JS app source directory -->
-  <property name="js.source.dir" value="js"/>
+  <property name="js.source.dir" value="src"/>
 
   <!-- JS tests directory -->
   <property name="js.tests.dir" value="js-tests"/>

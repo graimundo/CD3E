@@ -11,7 +11,7 @@
  * the license for the specific language governing your rights and limitations.
  */
 
-requireCfg['paths']['cd3e'] = CONTEXT_PATH + 'content/cd3e/cd3e/js/app';
+requireCfg['paths']['cd3e'] = CONTEXT_PATH + 'content/cd3e/cd3e/src/app';
 
 requireCfg['paths']['angular-translate'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/angular-translate/angular-translate';
 requireCfg['shim']['angular-translate'] = ['common-ui/angular'];

@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Marketplace</title>
+        <title>Community Drag & Drop Dashboard Editor</title>
 
         <!-- this is important, it provides theming and the base url -->
-        <script type="text/javascript" src="webcontext.js?context=marketplace"></script>
+        <script type="text/javascript" src="webcontext.js?context=cd3e"></script>
 
-        <link rel="stylesheet" href="css/marketplace.css">
+        <link rel="stylesheet" href="style/css/cd3e.css">
 
     </head>
 
-    <body class="bootstrap admin-perspective" >
+    <body class="" >
+        <h1><span>All mighty CD</span><sup>3</sup>E</h1>
+
       <div class="wholeContainer">
-        <!--
-        <div class="pentaho-fieldgroup-major">Marketplace</div>
-        -->
         <div data-ng-view></div>
       </div>
 
     </body>
+
     <script src="main.js"></script>
 
 </html>

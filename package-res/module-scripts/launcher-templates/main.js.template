@@ -19,6 +19,7 @@ requirejs(
 
       './@js.source.dir@/@js.module.script.app.name@',
 
+      /*
       './@js.source.dir@/controllers/applicationController',
       './@js.source.dir@/models/plugin',
 
@@ -49,11 +50,13 @@ requirejs(
       './directives/stopEvent/stopEventDirective',
       './directives/indeterminate/indeterminateDirective',
       './directives/modalHeight/modalHeightDirective'
-
+      */
     ] ,
 
     function( angular ) {
-      angular.bootstrap( document, [ 'marketplace' ]);
+      angular.bootstrap( document, [ 'cd3e' ]);
+
+      console.log("Bootstrapped");
     }
 );
 
