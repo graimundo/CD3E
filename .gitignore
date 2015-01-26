@@ -1,2 +1,9 @@
 bin
 target
+js-lib
+dist
+build-res
+package-res/plugin.spring.xml
+package-res/plugin.xml
+package-res/module-scripts/main.html
+package-res/module-scripts/main.js
