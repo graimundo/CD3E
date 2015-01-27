@@ -37,6 +37,7 @@ define(['./Property','Base'], function(Property, Base){
      */
     setId: function (id){
       this._id = id;
+      return this;
     },
     
     /**

@@ -13,31 +13,23 @@
 
 'use strict';
 
-define(
-    [
-        'cd3e',
-        'common-ui/underscore'
-    ],
+define( [ 'cd3e' ],
+    function ( app ) {
 
-    function ( app, _ ) {
-        console.log("Required controllers/applicationController.js");
+      app.directive('propertyBox', function() {
+        return {
+          restrict: 'E', // 'A' must be used for IE8 compatibility
+          replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
+          templateUrl: 'src/directives/propertyBox/propertyBoxTemplate.html',
+          controller: 'propertyBoxController',
+          //isolate scope
+          scope: {
+            // define directive input / output here
+            element: "@"
+          }
+        };
+      });
 
-        app.controller( 'applicationController',
-            // dependencies
-            [ '$scope',
-            // controller
-            function ( $scope ) {
-
-                // region controller methods
-                // endregion
-
-                // region scope bindings
-                // endregion
-
-                // region controller init
-                // endregion
-            }]
-        );
     }
 );
 

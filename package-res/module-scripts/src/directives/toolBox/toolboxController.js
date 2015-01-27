@@ -16,22 +16,42 @@
 define(
     [
         'cd3e',
-        'common-ui/underscore'
+        'common-ui/underscore',
+        'Base'
     ],
 
-    function ( app, _ ) {
-        console.log("Required controllers/applicationController.js");
+    function ( app, _ , Base ) {
+        console.log("Required controllers/toolboxController.js");
 
-        app.controller( 'applicationController',
+        app.controller( 'toolBoxController',
             // dependencies
             [ '$scope',
             // controller
             function ( $scope ) {
 
+                // TODO: move dummy creation into service
+                var DummyFactory = Base.extend({
+                    constructor: function() {
+                        this._name = _.uniqueId("Factory");
+                    },
+
+                    _name: undefined,
+                    getName: function() {
+                        return this._name;
+                    }
+                });
+
                 // region controller methods
+                function createDummyFactories( numberOfFactories ) {
+                    return _.chain( _.range(numberOfFactories) )
+                        .map( function () { return new DummyFactory(); } )
+                        .value();
+                }
                 // endregion
 
                 // region scope bindings
+                $scope.factories = createDummyFactories(10);
+
                 // endregion
 
                 // region controller init

@@ -19,8 +19,18 @@ requirejs(
 
       './@js.source.dir@/@js.module.script.app.name@',
 
-      /*
       './@js.source.dir@/controllers/applicationController',
+
+      './@js.source.dir@/directives/toolBox/toolBoxController',
+      './@js.source.dir@/directives/toolBox/toolBoxDirective',
+
+      './@js.source.dir@/directives/layoutBox/layoutBoxController',
+      './@js.source.dir@/directives/layoutBox/layoutBoxDirective',
+
+      './@js.source.dir@/directives/propertyBox/propertyBoxController',
+      './@js.source.dir@/directives/propertyBox/propertyBoxDirective',
+
+      /*
       './@js.source.dir@/models/plugin',
 
       './@js.source.dir@/services/appService',

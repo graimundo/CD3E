@@ -15,6 +15,19 @@
    General Styles
    ========================================================================== */
 
+.toolBox {
+  border: 1px solid #006080;
+}
+
+.layoutBox {
+  border: 1px solid #006080;
+}
+
+.propertyBox {
+  border: 1px solid #006080;
+}
+
+
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;

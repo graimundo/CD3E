@@ -1,0 +1,16 @@
+<div class="propertyBox">
+
+  <div>Property Box</div>
+  <span>Properties Length:{{element.properties.length}}</span>
+
+  <ul>
+    <li data-ng-repeat="property in element.properties">
+      <div>{{ property.getName() }}</div>
+      <!--
+        Maybe create a directive for properties?
+        How shall we automatically choose the view according to the property type?
+      -->
+    </li>
+  </ul>
+
+</div>

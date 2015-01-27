@@ -1,0 +1,15 @@
+<div class="toolBox">
+  <div>Tool Box</div>
+
+  <span>Factories Length:{{factories.length}}</span>
+
+  <ul>
+    <li data-ng-repeat="factory in factories">
+      <div>{{ factory.getName() }} </div>
+      <!-- maybe create a directive for factories? Something like the following line
+        <factory data-factory="factory"></factory>
+      -->
+    </li>
+  </ul>
+
+</div>

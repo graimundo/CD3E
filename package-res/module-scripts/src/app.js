@@ -31,7 +31,7 @@ define( [ 'common-ui/angular',
 
         $routeProvider.when('/',
             {
-              templateUrl: 'partials/plugin-list.html',
+              templateUrl: 'src/partials/cd3e.html',
               controller: 'applicationController'
             });
 

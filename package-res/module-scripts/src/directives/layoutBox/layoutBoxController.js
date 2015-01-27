@@ -20,9 +20,8 @@ define(
     ],
 
     function ( app, _ ) {
-        console.log("Required controllers/applicationController.js");
 
-        app.controller( 'applicationController',
+        app.controller( 'layoutBoxController',
             // dependencies
             [ '$scope',
             // controller
