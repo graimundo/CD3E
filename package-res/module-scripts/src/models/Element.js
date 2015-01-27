@@ -17,10 +17,24 @@ define(['./Property','Base'], function(Property, Base){
      */
     _properties: [],
 
-    constructor: function (id, name, properties){
-      this._id = id;
+    /**
+     * Type of the element
+     * */
+    _type: undefined,
+
+    constructor: function (id, name, properties, type){
+      this._id = !id ? generateGUID() : id;
       this._name = name;
       this._properties = properties;
+      this._type = type;
+
+      function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+      };
+
+      function generateGUID() {
+        return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+      };
     },
 
     /**
@@ -70,6 +84,19 @@ define(['./Property','Base'], function(Property, Base){
      */
     setProperties: function(property){
       this._properties = property;
+    },
+
+    /**
+     * * 
+     * @returns {*}
+     */
+    getType: function() {
+      return this.getType();
+    },
+    
+    setType: function(type){
+      this._type = type;
+      return this;
     }
   });
   
