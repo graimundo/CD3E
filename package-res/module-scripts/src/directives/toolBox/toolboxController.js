@@ -25,9 +25,9 @@ define(
 
         app.controller( 'toolBoxController',
             // dependencies
-            [ '$scope',
+            [ '$scope', 'definitionsProvider',
             // controller
-            function ( $scope ) {
+            function ( $scope, definitionsProvider ) {
 
                 // TODO: move dummy creation into service
                 var DummyFactory = Base.extend({
@@ -50,11 +50,19 @@ define(
                 // endregion
 
                 // region scope bindings
-                $scope.factories = createDummyFactories(10);
+                //$scope.factories = createDummyFactories(10);
 
                 // endregion
 
                 // region controller init
+                definitionsProvider.getLayoutDefinitions().then( function( layoutDefinitions ) {
+                    $scope.layoutDefinitions = layoutDefinitions;
+                });
+
+                definitionsProvider.getComponentDefinitions().then( function( componentDefinitions ) {
+                    $scope.componentDefinitions = componentDefinitions;
+                })
+
                 // endregion
             }]
         );

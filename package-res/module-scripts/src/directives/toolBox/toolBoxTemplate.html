@@ -1,15 +1,30 @@
 <div class="toolBox">
   <div>Tool Box</div>
 
-  <span>Factories Length:{{factories.length}}</span>
 
-  <ul>
-    <li data-ng-repeat="factory in factories">
-      <div>{{ factory.getName() }} </div>
-      <!-- maybe create a directive for factories? Something like the following line
-        <factory data-factory="factory"></factory>
-      -->
-    </li>
-  </ul>
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="Layout">
+      <ul>
+        <li data-ng-repeat="layoutDefinition in layoutDefinitions ">
+          <div>{{ layoutDefinition.getTypeDescription() }} </div>
+          <!-- maybe create a directive for factories? Something like the following line
+            <factory data-factory="factory"></factory>
+          -->
+        </li>
+      </ul>
+    </accordion-group>
+    <accordion-group heading="Component">
+      <ul>
+        <li data-ng-repeat="componentDefinition in componentDefinitions ">
+          <div>{{ componentDefinition.getTypeDescription() }} </div>
+          <!-- maybe create a directive for factories? Something like the following line
+            <factory data-factory="factory"></factory>
+          -->
+        </li>
+      </ul>
+    </accordion-group>
+
+  </accordion>
+
 
 </div>
