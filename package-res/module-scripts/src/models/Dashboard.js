@@ -1,53 +1,64 @@
-define(['Base'], function(){
+define(['Base', 'underscore'], function(Base, _){
   var Dashboard;
   
   Dashboard = Base.extend({
     /**
-     * The components of the Dashboard
+     * The root elements of the Dashboard
      */
-    _componentElements: [],
+    _rootElements: [],
     
-    /**
-     * The layout elements of the dashboard
-     */
-    _layoutElements: [],
-    
-    constructor: function(componentElements, layoutElements){
-      this._componentElements = componentElements;
-      this._layoutElements = layoutElements;
+    constructor: function(rootElements){
+      this._rootElements = rootElements;
     },
 
     /**
      * * 
      * @returns {*}
      */
-    getComponents: function(){
-      return this._componentElements;
-    },
-
-    /**
-     * * 
-     * @param componentElements
-     */
-    setComponents: function(componentElements) {
-      this._componentElements = componentElements;
-    },
-
-    /**
-     * * 
-     * @returns {*}
-     */
-    getLayoutElements: function(){
-      return this._layoutElements;
+    getRootElements: function(){
+      return this._rootElements.clone();
     },
 
     /**
      * * 
      * @param layoutElements
      */
-    setLayoutElements: function(layoutElements){
+    setRootElements: function(layoutElements){
       this._layoutElements = layoutElements;
-    }
+      return this;
+    },
+
+    /**
+     * *
+     * @param RowLayoutElement rootElement
+     */
+    addRootElement: function( /*RowLayoutElement*/rootElement ) {
+      this._rootElements.add( rootElement );
+      return this;
+    },
+
+    /**
+     * *
+     * @param RowLayoutElement rootElement
+     * @returns {Dashboard}
+     */
+    removeRootElement: function( /*RowLayoutElement*/rootElement ) {
+      var elementToRemoveIndex = -1;
+      
+      var rootElements = this.getRootElements();
+      _.each( rootElements, function( element, index ){
+        if( rootElement.getId() ==  element.getId() ) {
+          elementToRemoveIndex = index;
+          return;
+        }
+      });
+      
+      if( elementToRemoveIndex >= 0 ) {
+        this.setRootElements( rootElements.splice(elementToRemoveIndex, 1) );
+      }
+      return this;
+    } 
+    
   });
   
   return Dashboard;
