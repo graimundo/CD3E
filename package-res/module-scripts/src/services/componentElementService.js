@@ -6,7 +6,6 @@ define(
       'common-ui/underscore'
     ],
     function (app, _) {
-      console.log("Required services/layoutElementService.js");
 
       var service = app.factory('componentElementService',
           [

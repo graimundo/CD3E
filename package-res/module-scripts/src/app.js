@@ -25,11 +25,13 @@ define(['common-ui/angular',
         ,'src/models/Property'
         ,'src/models/element/layout/ColumnLayoutElement'
         ,'src/models/element/layout/RowLayoutElement'
+        ,'src/models/elementDefinition/PropertyDefinition'
+        ,'src/models/elementDefinition/ComponentDefinition'
     ],
 
     function (angular, angularRoute, uiBootstrap, Base
               // Models
-              , Dashboard, Component, Property, Column, Row
+              , Dashboard, Component, Property, Column, Row, PropertyDefinition, ComponentDefinition
     ) {
 
         console.log("Required app.js ");
@@ -90,6 +92,9 @@ define(['common-ui/angular',
         app.factory( 'Property', Property );
         app.factory( 'Row', Row );
         app.factory( 'Column', Column );
+
+        app.factory( 'PropertyDefinition', PropertyDefinition );
+        app.factory( 'ComponentDefinition', ComponentDefinition );
 
         // endregion
 
