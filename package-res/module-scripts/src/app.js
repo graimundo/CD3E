@@ -20,13 +20,13 @@ define(['common-ui/angular',
         'Base'
 
         // Models
-        ,'src/models/Dashboard'
-        ,'src/models/element/ComponentElement'
-        ,'src/models/Property'
-        ,'src/models/element/layout/ColumnLayoutElement'
-        ,'src/models/element/layout/RowLayoutElement'
-        ,'src/models/elementDefinition/PropertyDefinition'
-        ,'src/models/elementDefinition/ComponentDefinition'
+        ,'src/models/model/Dashboard'
+        ,'src/models/model/element/ComponentElement'
+        ,'src/models/model/Property'
+        ,'src/models/model/element/layout/ColumnLayoutElement'
+        ,'src/models/model/element/layout/RowLayoutElement'
+        ,'src/models/definition/elementDefinition/PropertyDefinition'
+        ,'src/models/definition/elementDefinition/ComponentDefinition'
     ],
 
        function (angular, angularRoute, uiBootstrap, translate, Base
