@@ -44,7 +44,7 @@ define(['../Element'], function(Element){
       if( !this.canAddChild(child) ) {
         return false;
       }
-      this._children.add(child);
+      this._children.push(child);
       
       return true;
     },

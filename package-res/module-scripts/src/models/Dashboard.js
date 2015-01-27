@@ -33,7 +33,7 @@ define(['Base', 'common-ui/underscore'], function(Base, _){
      * @param RowLayoutElement rootElement
      */
     addRootElement: function( /*RowLayoutElement*/rootElement ) {
-      this._rootElements.add( rootElement );
+      this._rootElements.push( rootElement );
       return this;
     },
 
