@@ -13,7 +13,6 @@
 
 
 'use strict';
-//var window;
 
 define(
     [
@@ -28,15 +27,18 @@ define(
             'componentTemplateProvider',
             ['$http', '$q', 'dtoDefinitionsMapperService', 'ComponentDefinition', 'PropertyDefinition',
              function ( $http, $q, dtoMapper, ComponentDefinition, PropertyDefinition) {
-                 var componentDefinitions = {}, // store all components here
-                     propertyDefinitions = {}; // store all properties here
 
                  var cdeDefinitionsUrl = CONTEXT_PATH + 'plugin/pentaho-cdf-dd/api/renderer/getComponentDefinitions';
-                 var definitionsPromise = null;
 
-                function isResponseError( response ) {
-                    return response.status != 200; //data.statusMessage.code.substring(0,5).toLowerCase() == 'error';
-                }
+                 var definitionsPromise = null;
+                 var componentDefinitionsPromise = null;
+                 var propertyDefinitionsPromise = null;
+                 var layoutDefinitionsPromise = null;
+
+                 function isResponseError( response ) {
+                     return response.status != 200; //data.statusMessage.code.substring(0,5).toLowerCase() == 'error';
+                 }
+
 
                  /***
                   * Fetch data, parse it and create intermediate objects
@@ -50,107 +52,107 @@ define(
                                      return $q.reject( response.data.statusMessage );
                                  }
 
-                                 //return response.data;
-                                 return dtoMapper.toTemplates( response.data );
+                                 var definitions = dtoMapper.toDefinitionBlocks( response.data );
+                                 return definitions;
                              }
                          );
                      }
-
                      return definitionsPromise;
                  }
 
                  function getLayoutDefinitions(){
-                     return getDefinitions().then(function (definitions){
+                     if (layoutDefinitionsPromise === null) {
+                         return getPropertyDefinitions().then(function (propertyDef){
+                             var rowProps = [
+                                 'name', 'cssClass'
+                             ];
+                             var colProps = rowProps;
 
-                     });
-                 }
-
-                 function processProperty( propertyName, propertyList, componentName){
-                     var p = propertyName,
-                         property = []; //key, value
-
-                     if (_.isString(p)){
-                         property = [p,  propertyList[p][0].stub];
-                     } else {
-                         if (p.owned){
-                             property = [p.name, propertyList[componentName + '_' + p.name][0].stub];
-                         } else {
-                             property = [p.alias, propertyList[p.name].stub];
-                         }
+                             return {
+                                 // TODO: Change ComponentDefinition to LayoutDefinition
+                                 LayoutRow: new ComponentDefinition(
+                                     'LayoutRow', 'Row',
+                                     _.object( rowProps, _.map(rowProps, function(prop){
+                                         return propertyDef[prop];
+                                     }))
+                                 ),
+                                 LayoutColumn: new ComponentDefinition(
+                                     'LayoutRow', 'Row',
+                                     _.object( colProps, _.map(colProps, function(prop){
+                                         return propertyDef[prop];
+                                     }))
+                                 )
+                             };
+                         });
                      }
-                     return new PropertyDefinition(property[0], property[1].description, property[1].type, property[0].value );
-
+                     return layoutDefinitionsPromise;
                  }
 
-                 /*
-                 {
-                    preExecution: preExecutionPropDefinition,
-                 }
-                  */
+
                  function getPropertyDefinitions(){
-                     return getDefinitions().then(function (definitions){
-                         propertyDefinitions = _.object(
-                             _.keys(definitions.properties),
-                             _.map(definitions.properties, function(propertyDef){
-                                 return new PropertyDefinition( propertyDef[0].type, propertyDef[0].description )
-                                     .setValueType( propertyDef[0].stub.type )
-                                     .setDefaultValue( propertyDef[0].stub.value )
-                                 ;
-                             })
-                         );
-                         return _.clone(propertyDefinitions);
-                     });
+                     if (propertyDefinitionsPromise === null){
+                         return getDefinitions().then(function (definitions){
+                             var propertyDefinitions = _.object(
+                                 _.keys(definitions.properties),
+                                 _.map(definitions.properties, function(propertyDef){
+                                     return new PropertyDefinition( propertyDef[0].type, propertyDef[0].description )
+                                         .setValueType( propertyDef[0].stub.type )
+                                         .setDefaultValue( propertyDef[0].stub.value )
+                                     ;
+                                 })
+                             );
+                             return propertyDefinitions;
+                         });
+                     }
+                     return propertyDefinitionsPromise;
                  }
+
 
                  function getComponentDefinitions(){
-                     return $q.all(getDefinitions(), getPropertyDefinitions()).then(function (definitions){
-                         //window.definitions = definitions;
-                         _.each( definitions.components, function( definitionArray, key){
-                             var definition = definitionArray[0];
-                             var componentDefinitionRaw =  _.omit(definition, 'properties');
-                             componentDefinitionRaw.properties = {};
-                             _.each(definition.properties, function(p){
-                                 var propName;
-
-                                 if (_.isString(p)){
-                                     propName = p;
-                                 } else {
-                                     if (p.owned){
-                                         propName = p.name;
+                     if ( componentDefinitionsPromise === null ) {
+                         componentDefinitionsPromise = $q.all( [getDefinitions(), getPropertyDefinitions()]).then(function (result){
+                             var definitions = result[0];
+                             var propDef = result[1];
+                             var componentDefinitions = {};
+                             _.each( definitions.components, function( definitionArray, key){
+                                 var definition = definitionArray[0];
+                                 var componentDefinitionRaw =  _.omit(definition, 'properties');
+                                 componentDefinitionRaw.properties = {};
+                                 _.each(definition.properties, function(p){
+                                     var propName;
+                                     if (_.isString(p)){
+                                         propName = p;
                                      } else {
-                                         propName = p.alias;
+                                         if (p.owned){
+                                             propName = p.name;
+                                         } else {
+                                             propName = p.alias;
+                                         }
                                      }
-                                 }
-
-                                 componentDefinitionRaw.properties[propName] = propertyDefinitions[propName];
+                                     componentDefinitionRaw.properties[propName] = propDef[propName];
+                                 });
+                                 componentDefinitions[key] = new ComponentDefinition(key, key,  componentDefinitionRaw.properties);
                              });
-                             componentDefinitions[key] = new ComponentDefinition(key, key,  componentDefinitionRaw.properties);
+                             return componentDefinitions;
                          });
-                         return componentDefinitions;
-                     });
+                     }
+                     return componentDefinitionsPromise;
                  }
+
 
                  var ComponentTemplateProvider = Base.extend(
                      {
                          /// Specify service here
-                         getComponentTemplates: undefined,
-                         getLayoutTemplates: undefined,
-                         getDefinitions: getDefinitions
+                         getComponentDefinitions: getComponentDefinitions,
+                         getPropertyDefinitions: getPropertyDefinitions,
+                         getLayoutDefinitions: getLayoutDefinitions
 
                      },
                      {
                          /// Specify static stuff here
                      }
                  );
-
-                 //return new ComponentTemplateProvider();
-
-                 return {
-                     /// Specify service here
-                     getPropertyDefinitions: getPropertyDefinitions,
-                     getComponentDefinitions: getComponentDefinitions,
-                     getLayoutDefinitions: undefined
-                 };
+                 return new ComponentTemplateProvider();
              }
             ]);
 

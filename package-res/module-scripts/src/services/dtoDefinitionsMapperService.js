@@ -87,8 +87,7 @@ define(
                         return _.map(properties, blockToJson);
                     }
 
-                    function toTemplates( definitionsDTO ) {
-                        var templates = {};
+                    function toDefinitionBlocks( definitionsDTO ) {
                         var blocks = definitionsDTO
                                 .replace(/\t/g, ' ')
                                 .split('\n\n');
@@ -107,13 +106,14 @@ define(
                         var properties = _.groupBy( parseProperties( blockGroups.properties ), 'type');
 
                         return {
+                            unprocessed: _.omit(blockGroups, 'components', 'properties'),
                             components: components,
                             properties: properties
                         };
                     };
 
                     return {
-                        toTemplates: toTemplates
+                        toDefinitionBlocks:  toDefinitionBlocks
                     };
                 }
             ]);
