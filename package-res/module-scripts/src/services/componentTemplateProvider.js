@@ -92,8 +92,7 @@ define(
                          propertyDefinitions = _.object(
                              _.keys(definitions.properties),
                              _.map(definitions.properties, function(propertyDef){
-                                 return new PropertyDefinition()
-                                     .setType( propertyDef[0].type )
+                                 return new PropertyDefinition( propertyDef[0].type, propertyDef[0].description )
                                      .setValueType( propertyDef[0].stub.type )
                                      .setDefaultValue( propertyDef[0].stub.value )
                                  ;
@@ -104,35 +103,30 @@ define(
                  }
 
                  function getComponentDefinitions(){
-                     return getDefinitions().then(function (definitions){
+                     return $q.all(getDefinitions(), getPropertyDefinitions()).then(function (definitions){
                          //window.definitions = definitions;
-                         var components = {};
                          _.each( definitions.components, function( definitionArray, key){
                              var definition = definitionArray[0];
-                             var c =  _.omit(definition, 'properties');
-                             var properties = {};
+                             var componentDefinitionRaw =  _.omit(definition, 'properties');
+                             componentDefinitionRaw.properties = {};
                              _.each(definition.properties, function(p){
-                                 //var prop = processProperty(p, definitions.properties, key);
-                                 //propertyDefinitions[prop.getName()] = prop;
-                                 //return;
-
+                                 var propName;
 
                                  if (_.isString(p)){
-                                     properties[p] =  definitions.properties[p][0].stub;
+                                     propName = p;
                                  } else {
                                      if (p.owned){
-                                         //console.log('component '+ key + ' :' + JSON.stringify(p));
-                                         //console.log('property def =' + JSON.stringify(definitions.properties[key + '_' + p.name]));
-                                         properties[p.name] = definitions.properties[key + '_' + p.name][0].stub;
+                                         propName = p.name;
                                      } else {
-                                         properties[p.alias] = definitions.properties[p.name].stub;
+                                         propName = p.alias;
                                      }
                                  }
+
+                                 componentDefinitionRaw.properties[propName] = propertyDefinitions[propName];
                              });
-                             c.properties = properties;
-                             components[key] = c;
+                             componentDefinitions[key] = new ComponentDefinition(key, key,  componentDefinitionRaw.properties);
                          });
-                         return components;
+                         return componentDefinitions;
                      });
                  }
 

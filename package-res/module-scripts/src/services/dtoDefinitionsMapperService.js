@@ -19,8 +19,9 @@ define(
         'cd3e',
         'common-ui/underscore',
         'Base'
+
     ],
-    function ( app, _ ) {
+    function ( app, _) {
         console.log("Required services/dtoDefinitionsMapperService.js");
 
         var service = app.factory(
