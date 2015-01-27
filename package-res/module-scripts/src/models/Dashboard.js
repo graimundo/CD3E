@@ -1,4 +1,4 @@
-define(['Base', 'underscore'], function(Base, _){
+define(['Base', 'common-ui/underscore'], function(Base, _){
   var Dashboard;
   
   Dashboard = Base.extend({

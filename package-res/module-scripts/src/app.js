@@ -13,68 +13,87 @@
 
 'use strict';
 
-define( [ 'common-ui/angular',
-          'common-ui/angular-route',
-          'common-ui/angular-ui-bootstrap',
-          'angular-translate',
-          'Base'
+define(['common-ui/angular',
+        'common-ui/angular-route',
+        'common-ui/angular-ui-bootstrap',
+        'angular-translate',
+        'Base'
+
+        // Models
+        ,'src/models/Dashboard'
+        ,'src/models/element/ComponentElement'
+        ,'src/models/Property'
+        ,'src/models/element/layout/ColumnLayoutElement'
+        ,'src/models/element/layout/RowLayoutElement'
     ],
 
-    function ( angular, angularRoute, uiBootstrap, Base ) {
+    function (angular, angularRoute, uiBootstrap, Base
+              // Models
+              , Dashboard, Component, Property, Column, Row
+    ) {
 
-      console.log("Required app.js ");
+        console.log("Required app.js ");
 
-      // define application module
-      var app = angular.module( 'cd3e', [ 'ngRoute', 'ui.bootstrap', 'ngSanitize', 'pascalprecht.translate' ] );
+        // define application module
+        var app = angular.module('cd3e', ['ngRoute', 'ui.bootstrap', 'ngSanitize', 'pascalprecht.translate']);
 
-      app.config(['$routeProvider', function( $routeProvider ) {
+        app.config(['$routeProvider', function ($routeProvider) {
 
-        $routeProvider.when('/',
-            {
-              templateUrl: 'src/partials/cd3e.html',
-              controller: 'applicationController'
-            });
+            $routeProvider.when('/',
+                {
+                    templateUrl: 'src/partials/cd3e.html',
+                    controller: 'applicationController'
+                });
 
-        $routeProvider.otherwise(
-            {
-              redirectTo: '/'
-            });
+            $routeProvider.otherwise(
+                {
+                    redirectTo: '/'
+                });
 
-      }]);
-
-      app.config(['$translateProvider', function ($translateProvider) {
-
-        $translateProvider.useStaticFilesLoader({
-          prefix: 'lang/messages_',
-          suffix: '.properties',
-          fileFormat: 'properties'
-
-        });
-        // TODO: SESSION_LOCALE AS INJECTED VARIABLE INSTEAD OF GLOBAL
-        $translateProvider.preferredLanguage(SESSION_LOCALE)
-            .fallbackLanguage('en');
-
-      }]);
-
-      // Disabling history in order to work with Firefox. See [MARKET-184] for more info.
-      app.config( ['$provide', function ($provide){
-        $provide.decorator('$sniffer', ['$delegate', function ($delegate) {
-          $delegate.history = false;
-          return $delegate;
         }]);
-      }]);
 
-      //enable CORS in Angular http requests
-      /*app.config(['$httpProvider', function($httpProvider) {
-       $httpProvider.defaults.useXDomain = true;
-       delete $httpProvider.defaults.headers.common['X-Requested-With'];
-       }]);*/
+        app.config(['$translateProvider', function ($translateProvider) {
 
-      app.filter('encodeURI', function() {
-        return encodeURI;
-      } );
+            $translateProvider.useStaticFilesLoader({
+                prefix: 'lang/messages_',
+                suffix: '.properties',
+                fileFormat: 'properties'
 
-      return app;
+            });
+            // TODO: SESSION_LOCALE AS INJECTED VARIABLE INSTEAD OF GLOBAL
+            $translateProvider.preferredLanguage(SESSION_LOCALE)
+                .fallbackLanguage('en');
+
+        }]);
+
+        // Disabling history in order to work with Firefox. See [MARKET-184] for more info.
+        app.config(['$provide', function ($provide) {
+            $provide.decorator('$sniffer', ['$delegate', function ($delegate) {
+                $delegate.history = false;
+                return $delegate;
+            }]);
+        }]);
+
+        //enable CORS in Angular http requests
+        /*app.config(['$httpProvider', function($httpProvider) {
+         $httpProvider.defaults.useXDomain = true;
+         delete $httpProvider.defaults.headers.common['X-Requested-With'];
+         }]);*/
+
+        app.filter('encodeURI', function () {
+            return encodeURI;
+        });
+
+        // region Models
+        app.factory( 'Dashboard', Dashboard );
+        app.factory( 'Component', Component );
+        app.factory( 'Property', Property );
+        app.factory( 'Row', Row );
+        app.factory( 'Column', Column );
+
+        // endregion
+
+        return app;
     }
 );
 
