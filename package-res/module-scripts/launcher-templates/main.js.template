@@ -30,6 +30,10 @@ requirejs(
       './@js.source.dir@/directives/propertyBox/propertyBoxController',
       './@js.source.dir@/directives/propertyBox/propertyBoxDirective',
 
+
+      './@js.source.dir@/services/dtoDefinitionsMapperService',
+      './@js.source.dir@/services/componentTemplateProvider',
+
       /*
       './@js.source.dir@/models/plugin',
 

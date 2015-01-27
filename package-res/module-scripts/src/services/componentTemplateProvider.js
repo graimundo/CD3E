@@ -16,32 +16,67 @@
 
 define(
     [
-        'marketplace',
+        'cd3e',
         'common-ui/underscore',
         'Base'
     ],
     function ( app, _, Base ) {
-      console.log( "Required services/componentTemplateProvider.js" );
+        console.log( "Required services/componentTemplateProvider.js" );
 
-      var service = app.factory( 'componentTemplateProvider',
-          [ '$translate',
-            function ( $translate ) {
+        var service = app.factory(
+            'componentTemplateProvider',
+            ['$http', '$q', 'dtoDefinitionsMapperService',
+             function ( $http, $q, dtoMapper) {
+                 var componentTemplates = {}; // store component definitions here
 
-                var componentTemplateProvider = Base.extend(
-                    {
-                        /// Specify service here
-                        getComponentTemplates: undefined
-                    },
-                    {
-                        /// Specify static stuff here
-                    }
-                );
+                 var cdeDefinitionsUrl = CONTEXT_PATH + '/api/pentaho-cdf-dd/renderer/getComponentDefinitions';
+                 var definitionsPromise = null;
 
-                return componentTemplateProvider;
-            }
-          ]);
+                 /***
+                  * Fetch data, parse it and create objects
+                  */
+                 var getDefinitions = function() {
+                     if ( definitionsPromise === null ) {
+                         definitionsPromise = $http.get( cdeDefinitionsUrl ).then(
+                             function ( response ) {
+                                 if ( isResponseError( response ) ) {
+                                     console.log( "Failed getting CDE component definitions from server." );
+                                     return $q.reject( response.data.statusMessage );
+                                 }
 
-      return service;
+                                 //return response.data;
+                                 return dtoMapper.toTemplates( response.data );
+                             }
+                         );
+                     }
+
+                     return definitionsPromise;
+                 };
+
+
+                 var ComponentTemplateProvider = Base.extend(
+                     {
+                         /// Specify service here
+                         getComponentTemplates: undefined,
+                         getLayoutTemplates: undefined,
+                         getDefinitions: getDefinitions
+                     },
+                     {
+                         /// Specify static stuff here
+                     }
+                 );
+
+                 //return new ComponentTemplateProvider();
+
+                 return {
+                     /// Specify service here
+                     getComponentTemplates: undefined,
+                     getLayoutTemplates: undefined,
+                     getDefinitions: getDefinitions
+                 };
+             }
+            ]);
+
+        return service;
     }
 );
-
