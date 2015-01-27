@@ -3,35 +3,19 @@ define(['../Element'], function(Element){
 
   LayoutElement = Element.extend({
     /**
-     * Layout element
-     */
-    _parent: null,
-    
-    /**
      * A list of layout elements
      */
     _children: [],
+
+    /**
+     * The component* 
+     */
+    _component: undefined,
     
-    constructor: function(id, name, properties, parent, children){
-      this.base(id, name, properties);  
-      this._parent = parent;
+    constructor: function(id, name, properties, children, component){
+      this.base(id, name, properties);
       this._children = children;
-    },
-
-    /**
-     * * 
-     * @returns {null}
-     */
-    getParent: function(){
-      return this._parent;
-    },
-
-    /**
-     * * 
-     * @param parent
-     */
-    setParent: function(parent){
-      this._parent = parent;
+      this._component = component;
     },
 
     /**
@@ -39,7 +23,7 @@ define(['../Element'], function(Element){
      * @returns {*}
      */
     getChildren: function(){
-      return this._children;
+      return this._children.clone();
     },
 
     /**
@@ -48,6 +32,84 @@ define(['../Element'], function(Element){
      */
     setChildren: function(children){
       this._children = children;
+      this;
+    },
+
+    /**
+     * * 
+     * @param child
+     * @returns {boolean}
+     */
+    addChild: function(child){
+      if( !this.canAddChild(child) ) {
+        return false;
+      }
+      this._children.add(child);
+      
+      return true;
+    },
+    
+    /**
+     * *
+     * @private
+     */
+    _clearChildren: function(){
+      this.setChildren( [] );
+      return this;
+    },
+
+    /**
+     * *
+     * @returns {boolean}
+     * @private
+     */
+    _canAddChild: function() {
+      return this.getComponent() != undefined;
+    },
+
+    /**
+     * *
+     * @param layoutElement
+     * @returns {boolean}
+     */
+    canAddChild: function(layoutElement){},
+
+    /**
+     * * 
+     * @returns {null}
+     */
+    getComponent: function() {
+      return this._component;
+    },
+
+    /**
+     * * 
+     * @param component
+     * @returns {boolean}
+     */
+    setComponent: function(component) {
+      if ( !this.canAddComponent() ) {
+        return false;
+      }
+      this._component = component;
+      return true;
+    },
+
+    /**
+     * *
+     * @private
+     */
+    _clearComponent: function(){
+      this.setComponent( undefined );
+      return this;
+    },
+
+    /**
+     * * 
+     * @returns {boolean}
+     */
+    canAddComponent: function() {
+      return this.getChildren().length == 0;
     }
   });
   

@@ -26,7 +26,20 @@ define(['../LayoutElement'], function(LayoutElement){
      */
     setWidth: function(width){
       this._width = width;
-    }
+    },
+
+    /**
+     * *
+     * @param layoutElement
+     * @returns {boolean}
+     */
+    canAddChild: function(/*LayoutElement*/ layoutElement) {
+      if( layoutElement instanceof ColumnLayoutElement || !this._canAddChild() ) {
+        return false;
+      } else {
+        return true;
+      }
+    } 
   });
   
   return ColumnLayoutElement;

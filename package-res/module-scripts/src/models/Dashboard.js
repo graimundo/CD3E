@@ -23,8 +23,8 @@ define(['Base', 'underscore'], function(Base, _){
      * * 
      * @param layoutElements
      */
-    setRootElements: function(layoutElements){
-      this._layoutElements = layoutElements;
+    setRootElements: function(rootElements){
+      this._rootElements = rootElements;
       return this;
     },
 
