@@ -13,6 +13,7 @@
 
 
 'use strict';
+//var window;
 
 define(
     [
@@ -27,15 +28,20 @@ define(
             'componentTemplateProvider',
             ['$http', '$q', 'dtoDefinitionsMapperService',
              function ( $http, $q, dtoMapper) {
-                 var componentTemplates = {}; // store component definitions here
+                 var componentDefinitions = {}, // store all components here
+                     propertyDefinitions = {}; // store all properties here
 
-                 var cdeDefinitionsUrl = CONTEXT_PATH + '/api/pentaho-cdf-dd/renderer/getComponentDefinitions';
+                 var cdeDefinitionsUrl = CONTEXT_PATH + 'plugin/pentaho-cdf-dd/api/renderer/getComponentDefinitions';
                  var definitionsPromise = null;
+
+                function isResponseError( response ) {
+                    return response.status != 200; //data.statusMessage.code.substring(0,5).toLowerCase() == 'error';
+                }
 
                  /***
                   * Fetch data, parse it and create objects
                   */
-                 var getDefinitions = function() {
+                 function getDefinitions() {
                      if ( definitionsPromise === null ) {
                          definitionsPromise = $http.get( cdeDefinitionsUrl ).then(
                              function ( response ) {
@@ -51,8 +57,41 @@ define(
                      }
 
                      return definitionsPromise;
-                 };
+                 }
 
+                 function getLayoutDefinitions(){
+                     return getDefinitions().then(function (definitions){
+
+                     });
+                 }
+
+                 function getComponentDefinitions(){
+                     return getDefinitions().then(function (definitions){
+                         //window.definitions = definitions;
+                         var components = {};
+                         _.each( definitions.components, function( definitionArray, key){
+                             var definition = definitionArray[0];
+                             var c =  _.omit(definition, 'properties');
+                             var properties = {};
+                             _.each(definition.properties, function(p){
+                                 if (_.isString(p)){
+                                     properties[p] =  definitions.properties[p][0].stub;
+                                 } else {
+                                     if (p.owned){
+                                         //console.log('component '+ key + ' :' + JSON.stringify(p));
+                                         //console.log('property def =' + JSON.stringify(definitions.properties[key + '_' + p.name]));
+                                         properties[p.name] = definitions.properties[key + '_' + p.name][0].stub;
+                                     } else {
+                                         properties[p.alias] = definitions.properties[p.name].stub;
+                                     }
+                                 }
+                             });
+                             c.properties = properties;
+                             components[key] = c;
+                         });
+                         return components;
+                     });
+                 }
 
                  var ComponentTemplateProvider = Base.extend(
                      {
@@ -70,9 +109,8 @@ define(
 
                  return {
                      /// Specify service here
-                     getComponentTemplates: undefined,
-                     getLayoutTemplates: undefined,
-                     getDefinitions: getDefinitions
+                     getComponentDefinitions: getComponentDefinitions,
+                     getLayoutDefinitions: undefined
                  };
              }
             ]);

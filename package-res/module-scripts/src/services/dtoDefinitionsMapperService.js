@@ -32,7 +32,7 @@ define(
                         try {
                             return JSON.parse(block);
                         } catch (e){
-                            console.log('Error parsing block ' + idx + " = " + block);
+                            console.log('##### Error parsing block ' + idx + " = " + block);
                             return block;
                         }
                     }
@@ -62,7 +62,7 @@ define(
 
                             }).join('\n');
                         });
-                        return blockToJson(components);
+                        return _.map(components, blockToJson);
                     }
 
                     function parseProperties (propertyBlocks){
@@ -83,7 +83,7 @@ define(
 
                             }).join('');
                         });
-                        return blockToJson(properties);
+                        return _.map(properties, blockToJson);
                     }
 
                     function toTemplates( definitionsDTO ) {
