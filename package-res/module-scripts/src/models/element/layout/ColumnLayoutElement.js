@@ -1,4 +1,4 @@
-define(['../LayoutElement'], function(LayoutElement){
+define(['../LayoutElement'], function (LayoutElement) {
   var ColumnLayoutElement;
 
   ColumnLayoutElement = LayoutElement.extend({
@@ -6,17 +6,17 @@ define(['../LayoutElement'], function(LayoutElement){
      * Column width
      */
     _width: 12,
-    
-    constructor: function(id, name, properties, parent, children, width){
+
+    constructor: function (id, name, properties, parent, children, width) {
       this.base(id, name, properties, parent, children);
       this._width = width;
     },
 
     /**
-     * * 
+     * *
      * @returns {number}
      */
-    getWidth: function(){
+    getWidth: function () {
       return this._width;
     },
 
@@ -24,7 +24,7 @@ define(['../LayoutElement'], function(LayoutElement){
      * *
      * @param width
      */
-    setWidth: function(width){
+    setWidth: function (width) {
       this._width = width;
     },
 
@@ -33,14 +33,14 @@ define(['../LayoutElement'], function(LayoutElement){
      * @param layoutElement
      * @returns {boolean}
      */
-    canAddChild: function(/*LayoutElement*/ layoutElement) {
-      if( layoutElement instanceof ColumnLayoutElement || !this._canAddChild() ) {
+    canAddChild: function (/*LayoutElement*/ layoutElement) {
+      if (layoutElement instanceof ColumnLayoutElement || !this._canAddChild()) {
         return false;
       } else {
         return true;
       }
-    } 
+    }
   });
-  
+
   return ColumnLayoutElement;
 });
