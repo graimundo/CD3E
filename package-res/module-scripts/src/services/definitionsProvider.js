@@ -21,10 +21,9 @@ define(
         'Base'
     ],
     function ( app, _, Base) {
-        console.log( "Required services/componentTemplateProvider.js" );
 
         var service = app.factory(
-            'componentTemplateProvider',
+            'definitionsProvider',
             ['$http', '$q', 'dtoDefinitionsMapperService', 'ComponentDefinition', 'PropertyDefinition',
              function ( $http, $q, dtoMapper, ComponentDefinition, PropertyDefinition) {
 
@@ -106,7 +105,6 @@ define(
                      }
                      return propertyDefinitionsPromise;
                  }
-
 
                  function getComponentDefinitions(){
                      if ( componentDefinitionsPromise === null ) {

@@ -32,7 +32,7 @@ requirejs(
 
 
       './@js.source.dir@/services/dtoDefinitionsMapperService',
-      './@js.source.dir@/services/componentTemplateProvider',
+      './@js.source.dir@/services/definitionsProvider',
 
       /*
       './@js.source.dir@/models/plugin',
