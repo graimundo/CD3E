@@ -21,13 +21,13 @@ define(
         'common-ui/underscore',
         'Base'
     ],
-    function ( app, _, Base ) {
+    function ( app, _, Base) {
         console.log( "Required services/componentTemplateProvider.js" );
 
         var service = app.factory(
             'componentTemplateProvider',
-            ['$http', '$q', 'dtoDefinitionsMapperService',
-             function ( $http, $q, dtoMapper) {
+            ['$http', '$q', 'dtoDefinitionsMapperService', 'ComponentDefinition', 'PropertyDefinition',
+             function ( $http, $q, dtoMapper, ComponentDefinition, PropertyDefinition) {
                  var componentDefinitions = {}, // store all components here
                      propertyDefinitions = {}; // store all properties here
 
@@ -39,7 +39,7 @@ define(
                 }
 
                  /***
-                  * Fetch data, parse it and create objects
+                  * Fetch data, parse it and create intermediate objects
                   */
                  function getDefinitions() {
                      if ( definitionsPromise === null ) {
@@ -65,6 +65,44 @@ define(
                      });
                  }
 
+                 function processProperty( propertyName, propertyList, componentName){
+                     var p = propertyName,
+                         property = []; //key, value
+
+                     if (_.isString(p)){
+                         property = [p,  propertyList[p][0].stub];
+                     } else {
+                         if (p.owned){
+                             property = [p.name, propertyList[componentName + '_' + p.name][0].stub];
+                         } else {
+                             property = [p.alias, propertyList[p.name].stub];
+                         }
+                     }
+                     return new PropertyDefinition(property[0], property[1].description, property[1].type, property[0].value );
+
+                 }
+
+                 /*
+                 {
+                    preExecution: preExecutionPropDefinition,
+                 }
+                  */
+                 function getPropertyDefinitions(){
+                     return getDefinitions().then(function (definitions){
+                         propertyDefinitions = _.object(
+                             _.keys(definitions.properties),
+                             _.map(definitions.properties, function(propertyDef){
+                                 return new PropertyDefinition()
+                                     .setType( propertyDef[0].type )
+                                     .setValueType( propertyDef[0].stub.type )
+                                     .setDefaultValue( propertyDef[0].stub.value )
+                                 ;
+                             })
+                         );
+                         return _.clone(propertyDefinitions);
+                     });
+                 }
+
                  function getComponentDefinitions(){
                      return getDefinitions().then(function (definitions){
                          //window.definitions = definitions;
@@ -74,6 +112,11 @@ define(
                              var c =  _.omit(definition, 'properties');
                              var properties = {};
                              _.each(definition.properties, function(p){
+                                 //var prop = processProperty(p, definitions.properties, key);
+                                 //propertyDefinitions[prop.getName()] = prop;
+                                 //return;
+
+
                                  if (_.isString(p)){
                                      properties[p] =  definitions.properties[p][0].stub;
                                  } else {
@@ -99,6 +142,7 @@ define(
                          getComponentTemplates: undefined,
                          getLayoutTemplates: undefined,
                          getDefinitions: getDefinitions
+
                      },
                      {
                          /// Specify static stuff here
@@ -109,6 +153,7 @@ define(
 
                  return {
                      /// Specify service here
+                     getPropertyDefinitions: getPropertyDefinitions,
                      getComponentDefinitions: getComponentDefinitions,
                      getLayoutDefinitions: undefined
                  };

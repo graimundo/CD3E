@@ -29,7 +29,7 @@ define(['common-ui/angular',
         ,'src/models/elementDefinition/ComponentDefinition'
     ],
 
-    function (angular, angularRoute, uiBootstrap, Base
+       function (angular, angularRoute, uiBootstrap, translate, Base
               // Models
               , Dashboard, Component, Property, Column, Row, PropertyDefinition, ComponentDefinition
     ) {
@@ -87,18 +87,17 @@ define(['common-ui/angular',
         });
 
         // region Models
-        app.factory( 'Dashboard', Dashboard );
-        app.factory( 'Component', Component );
-        app.factory( 'Property', Property );
-        app.factory( 'Row', Row );
-        app.factory( 'Column', Column );
+        app.factory( 'Dashboard',function() { return  Dashboard; } );
+        app.factory( 'Component', function() { return Component;} );
+        app.factory( 'Property', function() { return Property;} );
+        app.factory( 'Row', function() { return Row;} );
+        app.factory( 'Column', function() { return Column;} );
 
-        app.factory( 'PropertyDefinition', PropertyDefinition );
-        app.factory( 'ComponentDefinition', ComponentDefinition );
+        app.factory( 'PropertyDefinition', function() { return PropertyDefinition; } );
+        app.factory( 'ComponentDefinition', function() { return ComponentDefinition; } );
 
         // endregion
 
         return app;
     }
 );
-
