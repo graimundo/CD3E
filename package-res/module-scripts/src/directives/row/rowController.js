@@ -13,23 +13,31 @@
 
 'use strict';
 
-define( [ 'cd3e' ],
-    function ( app ) {
+define(
+    [
+        'cd3e',
+        'common-ui/underscore'
+    ],
 
-      app.directive('row', function() {
-        return {
-          restrict: 'E', // 'A' must be used for IE8 compatibility
-          replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
-          templateUrl: 'src/directives/layoutBox/Dashboard/Row/RowTemplate.html',
-          controller: 'RowController',
-          //isolate scope
-          scope: {
-            // define directive input / output here
-            row: "="
-          }
-        };
-      });
+    function ( app, _ ) {
 
+        app.controller( 'rowController',
+            // dependencies
+            [ '$scope',
+            // controller
+            function ( $scope ) {
+
+                // region controller methods
+                var x = $scope.row.getId();
+                // endregion
+
+                // region scope bindings
+                // endregion
+
+                // region controller init
+                // endregion
+            }]
+        );
     }
 );
 

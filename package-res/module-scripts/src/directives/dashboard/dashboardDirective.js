@@ -13,25 +13,23 @@
 
 'use strict';
 
-define( [ 'marketplace' ],
+define( [ 'cd3e' ],
     function ( app ) {
 
-      console.log("Required installUpdateButton/installUpdateButtonDirective.js");
-
-      app.directive('installUpdateButton', function() {
+      app.directive('dashboard', function() {
         return {
-          restrict: 'A', // 'A' must be used for IE8 compatibility
+          restrict: 'E', // 'A' must be used for IE8 compatibility
           replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
-          templateUrl: 'directives/installUpdateButton/installUpdateButtonTemplate.html',
-          controller: 'installUpdateButtonController',
+          templateUrl: 'src/directives/dashboard/dashboardTemplate.html',
+          controller: 'dashboardController',
           //isolate scope
           scope: {
-            selectedVersion: "=",
-            plugin: "=",
-            allowReinstall: "="
+            // define directive input / output here
+            dashboard: "="
           }
         };
       });
 
     }
 );
+

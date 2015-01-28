@@ -13,20 +13,19 @@
 
 'use strict';
 
-define( [ 'marketplace' ],
+define( [ 'cd3e' ],
     function ( app ) {
 
-      console.log("Required pluginDetail/pluginDetailDirective.js");
-
-      app.directive('pluginDetail', function() {
+      app.directive('row', function() {
         return {
-          restrict: 'A', // 'A' must be used for IE8 compatibility
+          restrict: 'E', // 'A' must be used for IE8 compatibility
           replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
-          templateUrl: 'directives/pluginDetail/pluginDetailTemplate.html',
-          controller: 'pluginDetailController',
+          templateUrl: 'src/directives/row/rowTemplate.html',
+          controller: 'rowController',
           //isolate scope
           scope: {
-            plugin: "="
+            // define directive input / output here
+            row: "="
           }
         };
       });

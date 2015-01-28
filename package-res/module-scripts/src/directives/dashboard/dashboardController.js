@@ -13,17 +13,32 @@
 
 'use strict';
 
-define( [ 'marketplace',
-      'common-ui/underscore'
+define(
+    [
+        'cd3e',
+        'common-ui/underscore'
     ],
-    function ( app, _ ) {
-      console.log("Required stagesInfo/stagesInfoController.js");
 
-      app.controller('stagesInfoController',
-          ['$scope', 'developmentStageService',
-            function ( $scope, devStageService ) {
-              $scope.lanes = devStageService.getLanes();
-            }
-          ]);
+    function ( app, _ ) {
+
+        app.controller( 'dashboardController',
+            // dependencies
+            [ '$scope', 'dashboardService',
+            // controller
+            function ( $scope, dashboardService ) {
+ 
+                // region controller methods
+                // endregion
+
+                // region scope bindings
+                // endregion
+
+                // region controller init
+                // region controller init
+                //$scope.dashboard = dashboardService.create();
+                // endregion
+            }]
+        );
     }
 );
+
