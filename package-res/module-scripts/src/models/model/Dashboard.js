@@ -1,4 +1,4 @@
-define(['Base', 'common-ui/underscore'], function(Base, _){
+define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement'], function(Base, _, RowLayoutElement){
   var Dashboard;
   
   Dashboard = Base.extend({
