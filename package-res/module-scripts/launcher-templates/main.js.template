@@ -38,6 +38,9 @@ requirejs(
       './@js.source.dir@/directives/row/rowController',
       './@js.source.dir@/directives/row/rowDirective',
 
+      './@js.source.dir@/directives/column/columnController',
+      './@js.source.dir@/directives/column/columnDirective',
+
       // endregion
 
 

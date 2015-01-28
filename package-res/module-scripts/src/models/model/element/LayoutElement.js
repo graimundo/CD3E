@@ -14,7 +14,7 @@ define(['../Element'], function(Element){
     
     constructor: function(id, name, properties, children, component){
       this.base(id, name, properties);
-      this._children = children;
+      this._children = children ? children : [];
       this._component = component;
     },
 

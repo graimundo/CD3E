@@ -13,34 +13,23 @@
 
 'use strict';
 
-define(
-    [
-        'cd3e',
-        'common-ui/underscore'
-    ],
+define( [ 'cd3e' ],
+    function ( app ) {
 
-    function ( app, _ ) {
+      app.directive('column', function() {
+        return {
+          restrict: 'E', // 'A' must be used for IE8 compatibility
+          replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
+          templateUrl: 'src/directives/column/columnTemplate.html',
+          controller: 'columnController',
+          //isolate scope
+          scope: {
+            // define directive input / output here
+            column: "="
+          }
+        };
+      });
 
-        app.controller( 'rowController',
-            // dependencies
-            [ '$scope',
-            // controller
-            function ( $scope ) {
-
-                // region controller methods
-                $scope.$watch( 'row', function ( dashboard ) {
-                    var x = 42;
-                });
-
-                // endregion
-
-                // region scope bindings
-                // endregion
-
-                // region controller init
-                // endregion
-            }]
-        );
     }
 );
 

@@ -107,7 +107,7 @@ define(
                 // endregion
 
                 // region scope bindings
-                $scope.dashboard = createDummyDashboard( 4, 5, 20 );
+                $scope.dashboard = createDummyDashboard( 5, 3, 20 );
                 // endregion
 
                 // region controller init

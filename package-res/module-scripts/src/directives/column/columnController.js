@@ -21,24 +21,23 @@ define(
 
     function ( app, _ ) {
 
-        app.controller( 'dashboardController',
+        app.controller( 'columnController',
             // dependencies
-            [ '$scope', 'dashboardService',
+            [ '$scope',
             // controller
-            function ( $scope, dashboardService ) {
- 
+            function ( $scope ) {
+
                 // region controller methods
-                $scope.$watch( 'dashboard', function ( dashboard ) {
+                $scope.$watch( 'column', function ( dashboard ) {
                     var x = 42;
                 });
+
                 // endregion
 
                 // region scope bindings
                 // endregion
 
                 // region controller init
-                // region controller init
-                //$scope.dashboard = dashboardService.create();
                 // endregion
             }]
         );

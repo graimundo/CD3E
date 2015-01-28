@@ -23,11 +23,12 @@ define(
                     .setType( componentType )
                     .setName( _.uniqueId( componentType ) );
 
-                var properties = _.map( componentDefinition.getPropertyDefinitions(),
-                    function ( propertyDefinition ) {
+                var properties = _.chain( componentDefinition.getPropertyDefinitions() )
+                    .filter ( function ( propertyDefinition ) { return propertyDefinition != null && propertyDefinition != undefined; })
+                    .map( function ( propertyDefinition ) {
                       return propertyFactory.create( propertyDefinition );
-                    }
-                );
+                    })
+                    .value();
                 component.setProperties( properties );
 
                 return component;
