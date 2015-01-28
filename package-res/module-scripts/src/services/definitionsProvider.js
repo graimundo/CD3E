@@ -141,9 +141,10 @@ define(
                  var ComponentTemplateProvider = Base.extend(
                      {
                          /// Specify service here
-                         getComponentDefinitions: getComponentDefinitions,
-                         getPropertyDefinitions: getPropertyDefinitions,
-                         getLayoutDefinitions: getLayoutDefinitions
+                         // The following methods return promises that yield maps:
+                         getComponentDefinitions: getComponentDefinitions, // map { componentType: ComponentDefinition }
+                         getPropertyDefinitions: getPropertyDefinitions, // map { propertyType: propertyDefinition }
+                         getLayoutDefinitions: getLayoutDefinitions // map { layoutType: ComponentDefinition }
 
                      },
                      {
