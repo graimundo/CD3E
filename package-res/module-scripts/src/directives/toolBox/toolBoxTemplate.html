@@ -1,12 +1,12 @@
 <div class="toolBox">
-  <div>Tool Box</div>
+  <div class="cd3e-box">Tool Box</div>
 
   <label for="toolBoxFilterTextInput">Filter:</label>
   <input id="toolBoxFilterTextInput" data-ng-model="filterText">
 
   <accordion close-others="oneAtATime">
     <accordion-group heading="Layout">
-      <ul>
+      <ul class="cd3e-list">
         <li data-ng-repeat="layoutDefinition in layoutDefinitions | filter:{_type:filterText} ">
           <div>{{ layoutDefinition.getTypeDescription() }} </div>
           <!-- maybe create a directive for factories? Something like the following line
@@ -16,7 +16,7 @@
       </ul>
     </accordion-group>
     <accordion-group heading="Component">
-      <ul>
+      <ul class="cd3e-list">
         <li data-ng-repeat="componentDefinition in componentDefinitions  | filter:{_type:filterText}">
           <div>{{ componentDefinition.getTypeDescription() }} </div>
           <!-- maybe create a directive for factories? Something like the following line

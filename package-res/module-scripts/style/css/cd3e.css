@@ -31,6 +31,20 @@ cd3e {
   display: flex;
 }
 
+.cd3e-box {
+  float: right;
+  font-size: 10px;
+  color: #aaa;
+  padding-right: 10px;
+}
+
+.cd3e-list li{
+  list-style-type: none;
+  padding: 5px 10px;
+  margin: 2px 0;
+  border: 1px solid black;
+  border-radius: 8px;
+}
 
 @font-face {
   font-family: 'Open Sans';
@@ -111,7 +125,7 @@ html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-	font-size: 13px;  
+	font-size: 13px;
   border: 1px solid #cbdde8;
   height: 30px;
   margin: 0;
@@ -124,8 +138,8 @@ html {
   background-position: right center;
 }
 
-body.bootstrap .btn-group > .btn, 
-body.bootstrap .btn-group > .dropdown-menu, 
+body.bootstrap .btn-group > .btn,
+body.bootstrap .btn-group > .dropdown-menu,
 body.bootstrap .btn-group > .popover {
 	font-size: 13px;
 }
@@ -414,7 +428,7 @@ button {
 }
 
 .admin-perspective .pentaho-tabWidget {
-  padding: 6px 20px;  
+  padding: 6px 20px;
   border: 1px solid transparent;
   border-top: 4px solid transparent;
   border-bottom: none;
@@ -511,7 +525,7 @@ button.refreshButton {
   box-shadow:         inset 0px 0px 2px 0px rgba(243, 247, 250, 1);
   text-align: left;
   z-index: 1001;
-  padding: 4px 24px 4px 12px;  
+  padding: 4px 24px 4px 12px;
   filter: none;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -522,7 +536,7 @@ button.refreshButton {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: block;
-	max-width: 135px;	
+	max-width: 135px;
 }
 
 .filterBar .filterContainer .multiselect button.btn.btn-primary.dropdown-toggle:active .multiselectButtonText,
@@ -586,7 +600,7 @@ button.refreshButton {
 }
 
 .bootstrap .filterBar .filterContainer .multiselect .dropdown-menu > li:first-child > a,
-.bootstrap .filterBar .filterContainer .multiselect .dropdown-menu > li.divider + li > a {  
+.bootstrap .filterBar .filterContainer .multiselect .dropdown-menu > li.divider + li > a {
   padding: 3px 15px 3px 15px;
 }
 
@@ -622,11 +636,11 @@ button.refreshButton {
   line-height: 18px;
 }
 
-.bootstrap .multiselect .open .popover {  
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */  
-  filter: alpha(opacity=0); /* IE 5-7 */  
-  -moz-opacity: 0; /* Netscape */  
-  -khtml-opacity: 0; /* Safari 1.x */  
+.bootstrap .multiselect .open .popover {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+  filter: alpha(opacity=0); /* IE 5-7 */
+  -moz-opacity: 0; /* Netscape */
+  -khtml-opacity: 0; /* Safari 1.x */
   opacity: 0; /* Good browsers */
 }
 
@@ -952,7 +966,7 @@ button.refreshButton {
 .infoBar .infoBarFooter {
   float: right;
   line-height: 35px;
-  font-size: 16px; 
+  font-size: 16px;
   position: relative;
   padding-right: 15px;
 }
@@ -1387,7 +1401,7 @@ body.bootstrap .modal.pluginDetailDialog .pluginDetail .pluginHeaderInfo .plugin
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  width: 95%;  
+  width: 95%;
 }
 
 body.bootstrap .modal.pluginDetailDialog .pluginDetail .pluginHeaderInfo .pluginAuthor {
@@ -1474,7 +1488,7 @@ body.bootstrap .modal.pluginDetailDialog .pluginDescriptionContent h5,
 body.bootstrap .modal.pluginDetailDialog .pluginDescriptionContent h6 {
 	font-size: 13px;
 	line-height: 18px;
-  font-weight: 300;	
+  font-weight: 300;
 	color: #26363d;
 	margin: 0 0 10px;
 }
@@ -1483,7 +1497,7 @@ body.bootstrap .modal.pluginDetailDialog .pluginDescriptionContent blockquote,
 body.bootstrap .modal.pluginDetailDialog .pluginDescriptionContent blockquote p {
 	font-size: 12px;
 	line-height: 18px;
-  font-weight: 300;	
+  font-weight: 300;
 	color: #26363d;
 	margin: 0 0 10px;
 	border: 0;
@@ -1526,7 +1540,7 @@ body.bootstrap .modal.pluginDetailDialog .pluginDetail .pluginDetailTop .pluginD
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: block;
-	max-width: 165px;	
+	max-width: 165px;
 }
 
 body.bootstrap .modal.pluginDetailDialog .pluginDetail .pluginDetailTop .pluginDetailLeft .versionSelectDropdown button.btn.btn-primary.dropdown-toggle:active .multiselectButtonText,
@@ -1749,5 +1763,5 @@ body.bootstrap .modal.pluginDetailDialog .pluginScreenshots  .carousel-control {
 }
 
 .bootstrap .modal.stagesInfoDialog .lane:last-child {
-	padding-bottom: 10px;	
+	padding-bottom: 10px;
 }
