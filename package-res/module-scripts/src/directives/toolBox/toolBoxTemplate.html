@@ -4,11 +4,19 @@
     <span class="input-group-addon">Filter</span>
     <input type="text" class="toolbox-filter" placeholder="Search..." id="toolBoxFilterTextInput" data-ng-model="filterText">
   </div>
-  
+
   <accordion close-others="oneAtATime">
     <accordion-group heading="Layout">
       <ul class="cd3e-list">
-        <li class="btn0" data-ng-repeat="layoutDefinition in layoutDefinitions | filter:{_type:filterText}" data-drag="true" jqyoui-draggable="{placeholder:false}" data-jqyoui-options="{helper:'clone',cursor:'pointer', appendTo:'body'}">
+          <li class="btn0"
+              data-ng-repeat="layoutDefinition in layoutDefinitions | filter:{_type:filterText}"
+              data-ng-model="layoutDefinition"
+              data-drag="true"
+              data-jqyoui-draggable="{onStart:'onStartDragItem(layoutDefinition)', placeholder:'keep'}"
+              data-jqyoui-options="{helper:'clone',cursor:'pointer', appendTo:'body'}"
+              data-element="layout"
+              data-element-type="{{layoutDefinition.getType()}}"
+              >
           <div>{{ layoutDefinition.getTypeDescription() }} </div>
           <!-- maybe create a directive for factories? Something like the following line
             <factory data-factory="factory"></factory>
@@ -17,8 +25,15 @@
       </ul>
     </accordion-group>
     <accordion-group heading="Component">
-      <ul class="cd3e-list">
-        <li class="btn0" data-ng-repeat="componentDefinition in componentDefinitions  | filter:{_type:filterText}" data-drag="true" jqyoui-draggable data-jqyoui-options="{helper:'clone', cursor:'pointer'}" >
+        <ul class="cd3e-list">
+          <li class="btn0"
+              data-ng-repeat="componentDefinition in componentDefinitions  | filter:{_type:filterText}"
+              data-drag="true"
+              data-jqyoui-draggable="{onStart:'onStartDragItem(componentDefinition)', placeholder:'keep'}"
+              data-jqyoui-options="{helper:'clone', cursor:'pointer'}"
+              data-element="component"
+              data-element-type="{{layoutDefinition.getType()}}"
+              >
           <div>{{ componentDefinition.getTypeDescription() }} </div>
           <!-- maybe create a directive for factories? Something like the following line
             <factory data-factory="factory"></factory>

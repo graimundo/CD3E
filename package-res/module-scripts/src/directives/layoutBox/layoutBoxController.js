@@ -22,21 +22,21 @@ define(
     function ( app, _ ) {
 
         app.controller( 'layoutBoxController',
-            // dependencies
-            [ '$scope',
-            // controller
-            function ( $scope ) {
+                        // dependencies
+                        [ '$scope', 'definitionsProvider', 'layoutElementFactory',
+                          // controller
+                          function ( $scope, definitionsProvider, layoutElementFactory) {
 
-                // region controller methods
-                // endregion
 
-                // region scope bindings
-                // endregion
+                              // region controller methods
+                              // endregion
 
-                // region controller init
-                // endregion
-            }]
-        );
+                              // region scope bindings
+                              // endregion
+
+                              // region controller init
+                              // endregion
+                          }]
+                      );
     }
 );
-

@@ -1,4 +1,4 @@
-define(['Base', 'common-ui/underscore'], function(Base, _){
+define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement'], function(Base, _, RowLayoutElement){
   var Dashboard;
   
   Dashboard = Base.extend({
@@ -34,7 +34,12 @@ define(['Base', 'common-ui/underscore'], function(Base, _){
      * @param RowLayoutElement rootElement
      */
     addRootElement: function( /*RowLayoutElement*/rootElement ) {
-      this._rootElements.push( rootElement );
+      if( rootElement instanceof RowLayoutElement ) {
+        this._rootElements.push( rootElement );
+      } else {
+        console.log( "Adding element different than RowLayoutElement. Blocking");
+      }
+      
       return this;
     },
 
