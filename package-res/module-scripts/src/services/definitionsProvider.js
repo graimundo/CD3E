@@ -117,17 +117,23 @@ define(
                                  var componentDefinitionRaw =  _.omit(definition, 'properties');
                                  componentDefinitionRaw.properties = {};
                                  _.each(definition.properties, function(p){
-                                     var propName;
+                                     var propName, propType;
                                      if (_.isString(p)){
+                                         // Global property
                                          propName = p;
+                                         propType = p;
                                      } else {
                                          if (p.owned){
+                                             // Custom property
                                              propName = p.name;
+                                             propType = componentDefinitionRaw.name + '_' + p.name;
                                          } else {
+                                             // Renamed global property
                                              propName = p.alias;
+                                             propType = p.name;
                                          }
                                      }
-                                     componentDefinitionRaw.properties[propName] = propDef[propName];
+                                     componentDefinitionRaw.properties[propName] = propDef[propType];
                                  });
                                  componentDefinitions[key] = new ComponentDefinition(key, componentDefinitionRaw.description,  componentDefinitionRaw.properties);
                              });
