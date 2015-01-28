@@ -31,23 +31,13 @@ define(
                 // region controller methods
                 function createDummyDashboard( depth, numChildren, probabilityOfComponent ) {
                     var dashboard = new Dashboard();
-                    /*
                     for( var i = 0; i < numChildren; i++ ) {
                         createDummyRow( depth - 1, numChildren, probabilityOfComponent )
                             .then ( function ( row ) {
                                 dashboard.addRootElement( row );
                         });
                     }
-                     */
 
-                    /*
-                    definitionsProvider.getLayoutDefinitions().then(function(layoutDefinitions){
-                        var layoutsArray = _.toArray(layoutDefinitions);
-                        var row = layoutFactory.create(layoutsArray.LayoutRow);
-                        dashboard.addRootElement(row);
-                    });
-
-                    */
                     return dashboard;
                 }
 
@@ -56,8 +46,9 @@ define(
                         .then( function ( layoutDefinitions ) {
                             var rowDefinition = layoutDefinitions.LayoutRow;
                             var row = layoutFactory.create( rowDefinition );
+                            console.log( "Row: " + depth );
                             var insertedComponent = insertComponent( row, probabilityOfComponent );
-                            if ( depth != -1 && !insertedComponent ) {
+                            if ( depth != 0 && !insertedComponent ) {
                                 for( var i = 0; i < numChildren; i++ ) {
                                     createDummyColumn( depth - 1, numChildren, probabilityOfComponent )
                                         .then( function ( column )  {
@@ -74,8 +65,9 @@ define(
                         .then( function ( layoutDefinitions ) {
                             var columnDefinition = layoutDefinitions.LayoutColumn;
                             var column = layoutFactory.create( columnDefinition );
+                            console.log( "Column: " + depth );
                             var insertedComponent = insertComponent( column, probabilityOfComponent );
-                            if ( depth != -1 && !insertedComponent ) {
+                            if ( depth != 0 && !insertedComponent ) {
                                 for( var i = 0; i < numChildren; i++ ) {
                                     createDummyRow( depth - 1, numChildren, probabilityOfComponent )
                                         .then( function ( row )  {
@@ -108,7 +100,7 @@ define(
                 // endregion
 
                 // region scope bindings
-                $scope.dashboard = createDummyDashboard( 2, 2, -1 );
+                $scope.dashboard = createDummyDashboard( 4, 2, -1 );
                 //$scope.dashboard = "MyDashboardText";
                 // endregion
 

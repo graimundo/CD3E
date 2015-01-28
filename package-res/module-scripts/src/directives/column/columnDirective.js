@@ -16,7 +16,7 @@
 define( [ 'cd3e' ],
     function ( app ) {
 
-      app.directive('column', function() {
+      app.directive('column', [ '$compile', function( $compile ) {
         return {
           restrict: 'E', // 'A' must be used for IE8 compatibility
           replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
@@ -26,10 +26,15 @@ define( [ 'cd3e' ],
           scope: {
             // define directive input / output here
             column: "="
+          },
+          link: function ( scope, element, attrs) {
+            if ( scope.column.getChildren().length > 0 ) {
+              var compiled = $compile('<row data-ng-repeat="row in column.getChildren()" data-row="row"></row>')(scope);
+              element.append( compiled );
+            }
           }
         };
-      });
-
+      }]);
     }
 );
 
