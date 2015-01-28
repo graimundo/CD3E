@@ -1,9 +1,10 @@
 <div class="toolBox">
   <div class="cd3e-box">Tool Box</div>
-
-  <label for="toolBoxFilterTextInput">Filter:</label>
-  <input id="toolBoxFilterTextInput" data-ng-model="filterText">
-
+  <div class="input-group">
+    <span class="input-group-addon">Filter</span>
+    <input type="text" class="toolbox-filter" placeholder="Search..." id="toolBoxFilterTextInput" data-ng-model="filterText">
+  </div>
+  
   <accordion close-others="oneAtATime">
     <accordion-group heading="Layout">
       <ul class="cd3e-list">

@@ -19,7 +19,7 @@ define( [ 'cd3e' ],
       app.directive('toolBox', function() {
         return {
           restrict: 'E', // 'A' must be used for IE8 compatibility
-          //replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
+          replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
           templateUrl: 'src/directives/toolBox/toolBoxTemplate.html',
           controller: 'toolBoxController',
           //isolate scope
