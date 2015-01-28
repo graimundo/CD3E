@@ -129,7 +129,7 @@ define(
                                      }
                                      componentDefinitionRaw.properties[propName] = propDef[propName];
                                  });
-                                 componentDefinitions[key] = new ComponentDefinition(key, key,  componentDefinitionRaw.properties);
+                                 componentDefinitions[key] = new ComponentDefinition(key, componentDefinitionRaw.description,  componentDefinitionRaw.properties);
                              });
                              return componentDefinitions;
                          });
