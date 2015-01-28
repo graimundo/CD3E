@@ -7,9 +7,15 @@ define(['../LayoutElement'], function (LayoutElement) {
      */
     _width: 12,
 
-    constructor: function (id, name, properties, parent, children, width) {
+    /**
+     * The component*
+     */
+    _component: undefined,
+
+    constructor: function (id, name, properties, parent, children, width, component) {
       this.base(id, name, properties, parent, children);
       this._width = width;
+      this._component = component;
     },
 
     /**
@@ -34,9 +40,47 @@ define(['../LayoutElement'], function (LayoutElement) {
      * @returns {boolean}
      */
     canAddChild: function (/*LayoutElement*/ layoutElement) {
-      var canAdd = this.base( layoutElement )
+      var canAdd = this.canAddComponent()
           && !(layoutElement instanceof ColumnLayoutElement);
       return canAdd;
+    },
+
+    /**
+     * *
+     * @returns {null}
+     */
+    getComponent: function() {
+      return this._component;
+    },
+
+    /**
+     * *
+     * @param component
+     * @returns {boolean}
+     */
+    setComponent: function(component) {
+      if ( !this.canAddComponent() ) {
+        return false;
+      }
+      this._component = component;
+      return true;
+    },
+
+    /**
+     * *
+     * @private
+     */
+    _clearComponent: function(){
+      this.setComponent( undefined );
+      return this;
+    },
+
+    /**
+     * *
+     * @returns {boolean}
+     */
+    canAddComponent: function() {
+      return this.getChildren().length == 0;
     }
   });
 

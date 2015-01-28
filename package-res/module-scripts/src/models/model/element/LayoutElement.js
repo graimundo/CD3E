@@ -6,16 +6,10 @@ define(['../Element'], function(Element){
      * A list of layout elements
      */
     _children: [],
-
-    /**
-     * The component* 
-     */
-    _component: undefined,
     
-    constructor: function(id, name, properties, children, component){
+    constructor: function(id, name, properties, children){
       this.base(id, name, properties);
       this._children = children ? children : [];
-      this._component = component;
     },
 
     /**
@@ -64,49 +58,14 @@ define(['../Element'], function(Element){
      * @param layoutElement
      * @returns {boolean}
      */
-    canAddChild: function(layoutElement){
-      return this.getComponent() == undefined;
-    },
-
-    /**
-     * * 
-     * @returns {null}
-     */
-    getComponent: function() {
-      return this._component;
-    },
-
-    /**
-     * * 
-     * @param component
-     * @returns {boolean}
-     */
-    setComponent: function(component) {
-      if ( !this.canAddComponent() ) {
-        return false;
-      }
-      this._component = component;
-      return true;
-    },
-
-    /**
-     * *
-     * @private
-     */
-    _clearComponent: function(){
-      this.setComponent( undefined );
-      return this;
-    },
+    canAddChild: function(layoutElement) {},
 
     /**
      * * 
      * @returns {boolean}
      */
-    canAddComponent: function() {
-      return this.getChildren().length == 0;
-    }
+    canAddComponent: function() {}
   });
-  
   
   return LayoutElement;
 });

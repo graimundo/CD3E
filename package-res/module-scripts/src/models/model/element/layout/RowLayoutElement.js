@@ -15,6 +15,14 @@ define(['../LayoutElement'], function(LayoutElement){
       var canAdd = this.base( layoutElement )
           && !(layoutElement instanceof RowLayoutElement);
       return canAdd;
+    },
+
+    /**
+     * *
+     * @returns {boolean}
+     */
+    canAddComponent: function() {
+      return false;
     }
   });
 
