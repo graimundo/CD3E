@@ -40,7 +40,8 @@ define(['../LayoutElement'], function (LayoutElement) {
      * @returns {boolean}
      */
     canAddChild: function (/*LayoutElement*/ layoutElement) {
-      var canAdd = this.canAddComponent()
+      var canAdd = this.base( layoutElement )
+          && !this.getComponent()
           && !(layoutElement instanceof ColumnLayoutElement);
       return canAdd;
     },

@@ -58,7 +58,9 @@ define(['../Element'], function(Element){
      * @param layoutElement
      * @returns {boolean}
      */
-    canAddChild: function(layoutElement) {},
+    canAddChild: function( layoutElement ) {
+      return true;
+    },
 
     /**
      * * 

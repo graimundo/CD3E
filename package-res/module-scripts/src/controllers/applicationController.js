@@ -71,7 +71,7 @@ define(
                                 for( var i = 0; i < numChildren; i++ ) {
                                     createDummyRow( depth - 1, numChildren, probabilityOfComponent )
                                         .then( function ( row )  {
-                                            row.addChild( column );
+                                            column.addChild( row );
                                         });
                                 }
                             }
