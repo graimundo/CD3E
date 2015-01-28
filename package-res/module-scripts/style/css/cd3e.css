@@ -109,3 +109,8 @@ cd3e {
     width: 80%;
     margin-bottom: 0px;
 }
+
+.row {
+  border: 1px solid black;
+  
+}

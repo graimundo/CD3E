@@ -22,5 +22,8 @@ requireCfg['shim']['Base'] = { exports: 'Base' };
 requireCfg['paths']['angular-dragdrop'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/angular-dragdrop/angular-dragdrop';
 requireCfg['shim']['angular-dragdrop'] = ['common-ui/angular', 'jquery-ui'];
 
+requireCfg['paths']['angular-ui-bootstrap'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/angular-ui/ui-bootstrap-tpls-0.12.0.min';
+requireCfg['shim']['angular-ui-bootstrap'] = ['common-ui/angular'];
+
 requireCfg['paths']['jquery-ui'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/jquery-ui/jquery-ui';
 requireCfg['shim']['jquery-ui'] = ['common-ui/jquery'];

@@ -15,7 +15,7 @@
 
 define(['common-ui/angular',
         'common-ui/angular-route',
-        'common-ui/angular-ui-bootstrap',
+        'angular-ui-bootstrap',
         'angular-translate',
         'angular-dragdrop',
         'Base'
