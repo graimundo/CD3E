@@ -76,7 +76,7 @@ define(
                                      }))
                                  ),
                                  LayoutColumn: new ComponentDefinition(
-                                     'LayoutRow', 'Row',
+                                     'LayoutColumn', 'Column',
                                      _.object( colProps, _.map(colProps, function(prop){
                                          return propertyDef[prop];
                                      }))
