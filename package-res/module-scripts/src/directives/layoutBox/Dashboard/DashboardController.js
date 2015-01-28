@@ -13,23 +13,32 @@
 
 'use strict';
 
-define( [ 'cd3e' ],
-    function ( app ) {
+define(
+    [
+        'cd3e',
+        'common-ui/underscore'
+    ],
 
-      app.directive('layoutBox', function() {
-        return {
-          restrict: 'E', // 'A' must be used for IE8 compatibility
-          replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
-          templateUrl: 'src/directives/layoutBox/layoutBoxTemplate.html',
-          controller: 'layoutBoxController',
-          //isolate scope
-          scope: {
-            // define directive input / output here
-            //dashboard: "@"
-          }
-        };
-      });
+    function ( app, _ ) {
 
+        app.controller( 'DashboardController',
+            // dependencies
+            [ '$scope', 'dashboardService',
+            // controller
+            function ( $scope, dashboardService ) {
+ 
+                // region controller methods
+                // endregion
+
+                // region scope bindings
+                // endregion
+
+                // region controller init
+                // region controller init
+                $scope.dashboard = dashboardService.create();
+                // endregion
+            }]
+        );
     }
 );
 

@@ -37,6 +37,7 @@ define(['Base'], function(Base){
      */
     setName: function(name) {
       this._name = name;
+      return this;
     },
 
     /**
@@ -53,6 +54,7 @@ define(['Base'], function(Base){
      */
     setValue: function(value){
       this._value = value;
+      return this;
     },
 
     /**
@@ -69,6 +71,7 @@ define(['Base'], function(Base){
      */
     setType: function(type) {
       this._type = type;
+      return this;
     }
   });
  

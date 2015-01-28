@@ -8,7 +8,7 @@ define(['Base', 'common-ui/underscore'], function(Base, _){
     _rootElements: [],
     
     constructor: function(rootElements){
-      this._rootElements = rootElements;
+      this._rootElements = rootElements ? rootElements : [];
     },
 
     /**

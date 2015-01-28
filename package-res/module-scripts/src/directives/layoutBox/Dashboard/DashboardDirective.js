@@ -16,16 +16,16 @@
 define( [ 'cd3e' ],
     function ( app ) {
 
-      app.directive('layoutBox', function() {
+      app.directive('dashboard', function() {
         return {
           restrict: 'E', // 'A' must be used for IE8 compatibility
           replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
-          templateUrl: 'src/directives/layoutBox/layoutBoxTemplate.html',
-          controller: 'layoutBoxController',
+          templateUrl: 'src/directives/layoutBox/Dashboard/DashboardTemplate.html',
+          controller: 'DashboardController',
           //isolate scope
           scope: {
             // define directive input / output here
-            //dashboard: "@"
+            dashboard: "@"
           }
         };
       });

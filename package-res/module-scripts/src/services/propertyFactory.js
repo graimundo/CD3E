@@ -20,7 +20,6 @@ define(
               function createProperty( propertyDefinition ) {
                 var property = new Property()
                     .setType( propertyDefinition.getType() )
-                    .setName( propertyDefinition.getName() )
                     .setValue( propertyDefinition.getDefaultValue() );
 
                 return property;

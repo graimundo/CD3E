@@ -26,6 +26,9 @@ requirejs(
 
       './@js.source.dir@/directives/layoutBox/layoutBoxController',
       './@js.source.dir@/directives/layoutBox/layoutBoxDirective',
+      
+      './@js.source.dir@/directives/layoutBox/Dashboard/DashboardController',
+      './@js.source.dir@/directives/layoutBox/Dashboard/DashboardDirective',
 
       './@js.source.dir@/directives/propertyBox/propertyBoxController',
       './@js.source.dir@/directives/propertyBox/propertyBoxDirective',
@@ -33,6 +36,10 @@ requirejs(
 
       './@js.source.dir@/services/dtoDefinitionsMapperService',
       './@js.source.dir@/services/definitionsProvider',
+      './@js.source.dir@/services/dashboardService',
+      './@js.source.dir@/services/componentElementFactory',
+      './@js.source.dir@/services/layoutElementFactory',
+      './@js.source.dir@/services/propertyFactory',
 
       /*
       './@js.source.dir@/models/plugin',

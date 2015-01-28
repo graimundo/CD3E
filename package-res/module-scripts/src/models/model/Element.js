@@ -68,6 +68,7 @@ define(['./Property','Base'], function(Property, Base){
      */
     setName: function(name){
       this._name = name;
+      return this;
     },
 
     /**
@@ -84,6 +85,7 @@ define(['./Property','Base'], function(Property, Base){
      */
     setProperties: function(property){
       this._properties = property;
+      return this;
     },
 
     /**

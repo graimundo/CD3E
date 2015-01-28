@@ -9,8 +9,8 @@ define(
 
       var componentFactory = app.factory('componentElementFactory',
           [
-            'ComponentElement', 'propertyFactory',
-            function ( ComponentElement, propertyFactory ) {
+            'Component', 'propertyFactory',
+            function ( Component, propertyFactory ) {
               
               /**
                * *
@@ -19,7 +19,7 @@ define(
                */
               function createComponentElement( componentDefinition ) {
                 var componentType = componentDefinition.getType();
-                var component = new ComponentElement()
+                var component = new Component()
                     .setType( componentType )
                     .setName( _.uniqueId( componentType ) );
 
