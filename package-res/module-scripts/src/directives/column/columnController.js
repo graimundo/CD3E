@@ -21,26 +21,45 @@ define(
 
     function ( app, _ ) {
 
-        app.controller( 'columnController',
+        app.controller(
+            'columnController',
             // dependencies
-            [ '$scope',
-            // controller
-            function ( $scope ) {
+            [ '$scope', 'definitionsProvider', 'layoutElementFactory', 'componentElementFactory',
+              // controller
+              function ( $scope, definitionsProvider, layoutElementFactory, componentElementFactory ) {
 
-                // region controller methods
-                $scope.$watch( 'column', function ( dashboard ) {
-                    var x = 42;
-                });
+                  // region controller methods
+                  $scope.$watch( 'column', function ( dashboard ) {
+                      var x = 42;
+                  });
 
-                // endregion
+                  $scope.onDropCallback = function(event, ui){
+                      var droppedElement =  ui.helper.attr('data-element');
+                      var droppedElementType =  ui.helper.attr('data-element-type');
+                      console.log("Dropped: " + droppedElementType);
 
-                // region scope bindings
-                // endregion
+                      if (droppedElement === 'layout'){
+                          definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
+                              var element = layoutElementFactory.create( layoutDef[droppedElementType] );
+                              $scope.column.addChild( element );
+                          });
+                      } else if (droppedElement === 'component'){
+                          definitionsProvider.getComponentDefinitions().then(function(componentDef){
+                              var component = componentElementFactory.create( componentDef[droppedElementType] );
+                              $scope.column.setComponent( component );
+                          });
+                      }
+                  };
 
-                // region controller init
-                // endregion
-            }]
+
+                  // endregion
+
+                  // region scope bindings
+                  // endregion
+
+                  // region controller init
+                  // endregion
+              }]
         );
     }
 );
-

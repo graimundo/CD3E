@@ -21,25 +21,42 @@ define(
 
     function ( app, _ ) {
 
-        app.controller( 'rowController',
+        app.controller(
+            'rowController',
             // dependencies
-            [ '$scope',
-            // controller
-            function ( $scope ) {
+            [ '$scope', 'layoutElementFactory', 'definitionsProvider',
+              // controller
+              function ( $scope, layoutElementFactory, definitionsProvider ) {
 
-                // region controller methods
-                $scope.$watch( 'row', function ( dashboard ) {
-                    var x = 42;
-                });
+                  // region controller methods
+                  $scope.$watch( 'row', function ( dashboard ) {
+                      var x = 42;
+                  });
 
-                // endregion
+                  $scope.onDropCallback = function(event, ui){
+                      var droppedElement =  ui.helper.attr('data-element');
+                      var droppedElementType =  ui.helper.attr('data-element-type');
+                      console.log("Dropped: " + droppedElementType);
 
-                // region scope bindings
-                // endregion
+                      if (droppedElement === "layout") {
+                          definitionsProvider.getLayoutDefinitions().then(
+                              function(layoutDef){
+                                  //console.log( JSON.stringify( layoutDef[droppedElementType] ));
+                                  var element = layoutElementFactory.create( layoutDef[droppedElementType] );
+                                  $scope.row.addChild( element );
+                              }
+                          );
+                      }
+                  };
 
-                // region controller init
-                // endregion
-            }]
+                  // endregion
+
+                  // region scope bindings
+                  // endregion
+
+                  // region controller init
+                  // endregion
+              }]
         );
     }
 );

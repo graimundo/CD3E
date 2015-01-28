@@ -24,9 +24,9 @@ define(
         app.controller(
             'dashboardController',
             // dependencies
-            [ '$scope', 'dashboardService','definitionsProvider', 'layoutElementFactory',
+            [ '$scope', 'dashboardService', 'layoutElementFactory', 'definitionsProvider',
               // controller
-              function ( $scope, dashboardService, definitionsProvider, layoutElementFactory ) {
+              function ( $scope, dashboardService, layoutElementFactory, definitionsProvider ) {
 
                   // region controller methods
                   $scope.$watch( 'dashboard', function ( dashboard ) {
@@ -41,7 +41,7 @@ define(
                       if (droppedElement === "layout") {
                           definitionsProvider.getLayoutDefinitions().then(
                               function(layoutDef){
-                                  console.log( JSON.stringify( layoutDef[droppedElementType] ));
+                                  //console.log( JSON.stringify( layoutDef[droppedElementType] ));
                                   var element = layoutElementFactory.create( layoutDef[droppedElementType] );
                                   $scope.dashboard.addRootElement( element );
                               }
