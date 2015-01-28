@@ -1,4 +1,7 @@
-<div class="container-fluid show-grid">
+<div class="container-fluid show-grid"
+     data-drop="true"
+     data-jqyoui-droppable="{onDrop:'onDropCallback'}"
+     >
   Drop Rows here...
   <row ng-repeat="row in dashboard.getRootElements()" data-row="row"/>
 </div>

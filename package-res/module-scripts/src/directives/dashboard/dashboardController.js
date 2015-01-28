@@ -21,27 +21,45 @@ define(
 
     function ( app, _ ) {
 
-        app.controller( 'dashboardController',
+        app.controller(
+            'dashboardController',
             // dependencies
-            [ '$scope', 'dashboardService',
-            // controller
-            function ( $scope, dashboardService ) {
- 
-                // region controller methods
-                $scope.$watch( 'dashboard', function ( dashboard ) {
-                    var x = 42;
-                });
-                // endregion
+            [ '$scope', 'dashboardService','definitionsProvider', 'layoutElementFactory',
+              // controller
+              function ( $scope, dashboardService, definitionsProvider, layoutElementFactory ) {
 
-                // region scope bindings
-                // endregion
+                  // region controller methods
+                  $scope.$watch( 'dashboard', function ( dashboard ) {
+                      var x = 42;
+                  });
 
-                // region controller init
-                // region controller init
-                //$scope.dashboard = dashboardService.create();
-                // endregion
-            }]
+                  $scope.onDropCallback = function(event, ui){
+                      var droppedElement =  ui.helper.attr('data-element');
+                      var droppedElementType =  ui.helper.attr('data-element-type');
+                      console.log("Dropped: " + droppedElementType);
+
+                      if (droppedElement === "layout") {
+                          definitionsProvider.getLayoutDefinitions().then(
+                              function(layoutDef){
+                                  console.log( JSON.stringify( layoutDef[droppedElementType] ));
+                                  var element = layoutElementFactory.create( layoutDef[droppedElementType] );
+                                  $scope.dashboard.addRootElement( element );
+                              }
+                          );
+                      }
+                  };
+
+
+                  // endregion
+
+                  // region scope bindings
+                  // endregion
+
+                  // region controller init
+                  // region controller init
+                  //$scope.dashboard = dashboardService.create();
+                  // endregion
+              }]
         );
     }
 );
-

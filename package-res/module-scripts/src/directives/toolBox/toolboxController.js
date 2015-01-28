@@ -47,6 +47,12 @@ define(
                         .map( function () { return new DummyFactory(); } )
                         .value();
                 }
+
+                $scope.onStartDragItem = function(event, ui, data){
+                    //console.log("Started dragging item #" + JSON.stringify(data));
+                };
+
+
                 // endregion
 
                 // region scope bindings
@@ -68,4 +74,3 @@ define(
         );
     }
 );
-

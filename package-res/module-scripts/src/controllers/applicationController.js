@@ -31,6 +31,7 @@ define(
                 // region controller methods
                 function createDummyDashboard( depth, numChildren, probabilityOfComponent ) {
                     var dashboard = new Dashboard();
+                    //return dashboard;
                     for( var i = 0; i < numChildren; i++ ) {
                         createDummyRow( depth - 1, numChildren, probabilityOfComponent )
                             .then ( function ( row ) {
@@ -110,4 +111,3 @@ define(
         );
     }
 );
-
