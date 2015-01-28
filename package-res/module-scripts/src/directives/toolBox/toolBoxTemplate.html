@@ -7,7 +7,7 @@
   <accordion close-others="oneAtATime">
     <accordion-group heading="Layout">
       <ul class="cd3e-list">
-        <li data-ng-repeat="layoutDefinition in layoutDefinitions | filter:{_type:filterText} ">
+        <li data-ng-repeat="layoutDefinition in layoutDefinitions | filter:{_type:filterText} " data-drag="true" jqyoui-draggable>
           <div>{{ layoutDefinition.getTypeDescription() }} </div>
           <!-- maybe create a directive for factories? Something like the following line
             <factory data-factory="factory"></factory>

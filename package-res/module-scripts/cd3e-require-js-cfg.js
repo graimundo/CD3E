@@ -19,3 +19,8 @@ requireCfg['shim']['angular-translate'] = ['common-ui/angular'];
 requireCfg['paths']['Base'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/base/Base';
 requireCfg['shim']['Base'] = { exports: 'Base' };
 
+requireCfg['paths']['angular-dragdrop'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/angular-dragdrop/angular-dragdrop';
+requireCfg['shim']['angular-dragdrop'] = ['common-ui/angular', 'jquery-ui'];
+
+requireCfg['paths']['jquery-ui'] = CONTEXT_PATH + 'content/cd3e/cd3e/lib/jquery-ui/jquery-ui';
+requireCfg['shim']['jquery-ui'] = ['common-ui/jquery'];
