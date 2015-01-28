@@ -56,11 +56,11 @@ define(
 
                 // region controller init
                 definitionsProvider.getLayoutDefinitions().then( function( layoutDefinitions ) {
-                    $scope.layoutDefinitions = layoutDefinitions;
+                    $scope.layoutDefinitions = _.toArray( layoutDefinitions );
                 });
 
                 definitionsProvider.getComponentDefinitions().then( function( componentDefinitions ) {
-                    $scope.componentDefinitions = componentDefinitions;
+                    $scope.componentDefinitions = _.toArray( componentDefinitions ) ;
                 })
 
                 // endregion

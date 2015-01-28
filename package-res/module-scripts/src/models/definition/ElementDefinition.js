@@ -5,7 +5,7 @@ define(['Base'], function (Base) {
     // region Properties
 
     getType: function () {
-      return this._valueType;
+      return this._type;
     },
     setType: function (type) {
       this._type = type;

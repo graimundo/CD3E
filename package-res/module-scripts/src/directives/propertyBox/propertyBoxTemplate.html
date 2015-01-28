@@ -1,10 +1,12 @@
 <div class="propertyBox">
 
   <div>Property Box</div>
-  <span>Properties Length:{{element.properties.length}}</span>
+
+  <label for="propertyBoxFilterTextInput">Filter:</label>
+  <input id="propertyBoxFilterTextInput" data-ng-model="filterText">
 
   <ul>
-    <li data-ng-repeat="property in element.properties">
+    <li data-ng-repeat="property in element.properties | filter:{ _name: filterText }">
       <div>{{ property.getName() }}</div>
       <!--
         Maybe create a directive for properties?

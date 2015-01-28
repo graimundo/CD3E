@@ -1,12 +1,14 @@
 <div class="toolBox">
   <div>Tool Box</div>
 
+  <label for="toolBoxFilterTextInput">Filter:</label>
+  <input id="toolBoxFilterTextInput" data-ng-model="filterText">
 
   <accordion close-others="oneAtATime">
     <accordion-group heading="Layout">
       <ul>
-        <li data-ng-repeat="layoutDefinition in layoutDefinitions ">
-          <div>{{ layoutDefinition.getTypeDescription() }} </div>
+        <li data-ng-repeat="layoutDefinition in layoutDefinitions | filter:{_type:filterText} ">
+          <div>{{ layoutDefinition.getType() }} </div>
           <!-- maybe create a directive for factories? Something like the following line
             <factory data-factory="factory"></factory>
           -->
@@ -15,8 +17,8 @@
     </accordion-group>
     <accordion-group heading="Component">
       <ul>
-        <li data-ng-repeat="componentDefinition in componentDefinitions ">
-          <div>{{ componentDefinition.getTypeDescription() }} </div>
+        <li data-ng-repeat="componentDefinition in componentDefinitions  | filter:{_type:filterText}">
+          <div>{{ componentDefinition.getType() }} </div>
           <!-- maybe create a directive for factories? Something like the following line
             <factory data-factory="factory"></factory>
           -->
