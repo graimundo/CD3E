@@ -17,6 +17,7 @@ define(['common-ui/angular',
         'common-ui/angular-route',
         'common-ui/angular-ui-bootstrap',
         'angular-translate',
+        'angular-dragdrop',
         'Base'
 
         // Models
@@ -29,7 +30,7 @@ define(['common-ui/angular',
         ,'src/models/definition/elementDefinition/ComponentDefinition'
     ],
 
-       function (angular, angularRoute, uiBootstrap, translate, Base
+       function (angular, angularRoute, uiBootstrap, translate, angularDragDrop, Base
               // Models
               , Dashboard, Component, Property, Column, Row, PropertyDefinition, ComponentDefinition
     ) {
@@ -37,7 +38,7 @@ define(['common-ui/angular',
         console.log("Required app.js ");
 
         // define application module
-        var app = angular.module('cd3e', ['ngRoute', 'ui.bootstrap', 'ngSanitize', 'pascalprecht.translate']);
+        var app = angular.module('cd3e', ['ngRoute', 'ui.bootstrap', 'ngSanitize', 'pascalprecht.translate', 'ngDragDrop']);
 
         app.config(['$routeProvider', function ($routeProvider) {
 
@@ -96,6 +97,7 @@ define(['common-ui/angular',
         app.factory( 'PropertyDefinition', function() { return PropertyDefinition; } );
         app.factory( 'ComponentDefinition', function() { return ComponentDefinition; } );
 
+        app.factory( 'ComponentDefinition', function() { return ComponentDefinition; } );
         // endregion
 
         return app;

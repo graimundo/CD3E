@@ -16,6 +16,7 @@ requirejs(
       'common-ui/angular',
       'common-ui/angular-sanitize',
       'common-ui/underscore',
+      'angular-dragdrop',
 
       './@js.source.dir@/@js.module.script.app.name@',
 
