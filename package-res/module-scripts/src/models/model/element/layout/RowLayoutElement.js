@@ -12,11 +12,9 @@ define(['../LayoutElement'], function(LayoutElement){
      * @returns {boolean}
      */
     canAddChild: function(/*LayoutElement*/ layoutElement) {
-      if( layoutElement instanceof RowLayoutElement || !this._canAddChild() ) {
-        return false;
-      } else {
-        return true;
-      }
+      var canAdd = this.base( layoutElement )
+          && !(layoutElement instanceof RowLayoutElement);
+      return canAdd;
     }
   });
 

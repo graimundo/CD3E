@@ -61,19 +61,12 @@ define(['../Element'], function(Element){
 
     /**
      * *
-     * @returns {boolean}
-     * @private
-     */
-    _canAddChild: function() {
-      return this.getComponent() != undefined;
-    },
-
-    /**
-     * *
      * @param layoutElement
      * @returns {boolean}
      */
-    canAddChild: function(layoutElement){},
+    canAddChild: function(layoutElement){
+      return this.getComponent() == undefined;
+    },
 
     /**
      * * 

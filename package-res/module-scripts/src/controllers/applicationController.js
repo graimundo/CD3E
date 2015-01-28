@@ -31,12 +31,14 @@ define(
                 // region controller methods
                 function createDummyDashboard( depth, numChildren, probabilityOfComponent ) {
                     var dashboard = new Dashboard();
+                    /*
                     for( var i = 0; i < numChildren; i++ ) {
                         createDummyRow( depth - 1, numChildren, probabilityOfComponent )
                             .then ( function ( row ) {
                                 dashboard.addRootElement( row );
                         });
                     }
+                     */
 
                     /*
                     definitionsProvider.getLayoutDefinitions().then(function(layoutDefinitions){
@@ -44,8 +46,8 @@ define(
                         var row = layoutFactory.create(layoutsArray.LayoutRow);
                         dashboard.addRootElement(row);
                     });
-                     */
 
+                    */
                     return dashboard;
                 }
 
@@ -103,11 +105,11 @@ define(
                     }
                     return false;
                 }
-
                 // endregion
 
                 // region scope bindings
-                $scope.dashboard = createDummyDashboard( 5, 3, 20 );
+                $scope.dashboard = createDummyDashboard( 2, 2, -1 );
+                //$scope.dashboard = "MyDashboardText";
                 // endregion
 
                 // region controller init
