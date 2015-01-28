@@ -6,8 +6,8 @@
   </div>
 
   <accordion close-others="oneAtATime">
-    <accordion-group heading="Layout">
-      <ul class="cd3e-list">
+    <accordion-group heading="Layout"  ng-show="(layoutDefinitions | filter:{_type:filterText} ).length > 0" >
+      <ul class="cd3e-list" >
           <li class="btn0"
               data-ng-repeat="layoutDefinition in layoutDefinitions | filter:{_type:filterText}"
               data-ng-model="layoutDefinition"
@@ -24,7 +24,7 @@
         </li>
       </ul>
     </accordion-group>
-    <accordion-group heading="Component">
+    <accordion-group heading="Component"  ng-show="(componentDefinitions | filter:{_type:filterText} ).length > 0" >
         <ul class="cd3e-list">
           <li class="btn0"
               data-ng-repeat="componentDefinition in componentDefinitions  | filter:{_type:filterText}"
