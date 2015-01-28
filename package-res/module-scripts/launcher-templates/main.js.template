@@ -21,6 +21,7 @@ requirejs(
 
       './@js.source.dir@/controllers/applicationController',
 
+       // region Directives
       './@js.source.dir@/directives/toolBox/toolBoxController',
       './@js.source.dir@/directives/toolBox/toolBoxDirective',
 
@@ -32,6 +33,11 @@ requirejs(
 
       './@js.source.dir@/directives/propertyBox/propertyBoxController',
       './@js.source.dir@/directives/propertyBox/propertyBoxDirective',
+
+      './@js.source.dir@/directives/layoutBox/Dashboard/Row/RowController',
+      './@js.source.dir@/directives/layoutBox/Dashboard/Row/RowDirective',
+
+      // endregion
 
 
       './@js.source.dir@/services/dtoDefinitionsMapperService',

@@ -23,7 +23,8 @@ define(['../Element'], function(Element){
      * @returns {*}
      */
     getChildren: function(){
-      return this._children.clone();
+      return this._children;
+      //return this._children.clone();
     },
 
     /**

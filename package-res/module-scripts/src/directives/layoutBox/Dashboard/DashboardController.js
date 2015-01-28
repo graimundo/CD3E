@@ -35,7 +35,7 @@ define(
 
                 // region controller init
                 // region controller init
-                $scope.dashboard = dashboardService.create();
+                //$scope.dashboard = dashboardService.create();
                 // endregion
             }]
         );

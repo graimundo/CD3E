@@ -28,6 +28,7 @@ define(
             function ( $scope ) {
 
                 // region controller methods
+                var x = $scope.row.getId();
                 // endregion
 
                 // region scope bindings

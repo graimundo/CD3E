@@ -16,7 +16,8 @@ define(['Base', 'common-ui/underscore'], function(Base, _){
      * @returns {*}
      */
     getRootElements: function(){
-      return this._rootElements.clone();
+      return this._rootElements;
+      //return this._rootElements.slice();
     },
 
     /**
