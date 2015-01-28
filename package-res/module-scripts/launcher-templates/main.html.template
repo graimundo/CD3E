@@ -4,14 +4,14 @@
         <title>Community Drag & Drop Dashboard Editor</title>
 
         <!-- this is important, it provides theming and the base url -->
-        <script type="text/javascript" src="webcontext.js?context=cd3e"></script>
+        <script type="text/javascript" src="webcontext.js?context=cd3e&requireJsOnly=true"></script>
 
         <link rel="stylesheet" href="style/css/cd3e.css">
         <link rel="stylesheet" href="style/css/bootstrap.css">
 
     </head>
 
-    <body class="" >
+    <body class="pentaho-page-background" >
         <h1><span>All mighty CD</span><sup>3</sup>E</h1>
 
       <div class="wholeContainer">
