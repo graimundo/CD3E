@@ -230,6 +230,14 @@ cd3e {
 
 .row-header, .column-header{
   position: relative;
+  height: 25px;
+}
+
+.row-header-name {
+    top: 4px;
+  
+  
+    position: relative;
 }
 
 .column-header{
@@ -275,6 +283,44 @@ button.remove.btn {
 button.remove.btn .glyphicon-remove:before {
     color: #1973bc;
 }
+
+.toolBox-body .input-group-addon,
+.propertyBox-body .input-group-addon {
+  background-color: #1973bc;
+  border-color: #bfdce5;
+  color: white;
+}
+
+.toolBox-body .panel-default > .panel-heading {
+  color: white;
+  background-color: #1973bc;
+  border-color: #bfdce5;
+}
+
+.toolBox-body  a:hover, a:focus {
+  color: white;
+  text-decoration: none;
+}
+
+.toolBox-body .form-control,
+.propertyBox-body .form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: rgb(25, 115, 188);
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #bfdce5;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
 
 
 
