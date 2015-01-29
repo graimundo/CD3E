@@ -1,6 +1,7 @@
 <div class="col-md-6"
      data-drop="true"
-     data-jqyoui-droppable="{onDrop:'onDropCallback'}"
+     data-jqyoui-droppable="{onDrop:'onDropCallback', stack: false}"
+     data-stop-event="drop"
      >
- Column: {{column.getId()}}
+ Column: {{column.getName()}}
 </div>

@@ -1,7 +1,8 @@
 <div class="row"
      data-drop="true"
-     data-jqyoui-droppable="{onDrop:'onDropCallback'}"
+     data-jqyoui-droppable="{onDrop:'onDropCallback', stack: false}"
+     data-stop-event="drop"
      >
- <div style="text-align: left">Row</div>
+ <div style="text-align: left">Row:{{row.getName()}}</div>
   <!-- <column data-ng-repeat="column in row.getChildren()" data-column="column"></column> -->
 </div>

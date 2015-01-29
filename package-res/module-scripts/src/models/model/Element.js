@@ -25,7 +25,7 @@ define(['./Property','Base'], function(Property, Base){
     constructor: function (id, name, properties, type){
       this._id = !id ? generateGUID() : id;
       this._name = name;
-      this._properties = properties;
+      this._properties = properties ? properties : [];
       this._type = type;
 
       function S4() {
