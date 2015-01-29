@@ -6,12 +6,15 @@
     <!--<input id="propertyBoxFilterTextInput" data-ng-model="filterText" class="col-xs-12 form-control"> -->
     <div class="input-group">
         <span class="input-group-addon">Filter</span>
-        <input type="text" class="toolbox-filter form-control col-xs-12" placeholder="Search..." id="propertyBoxFilterTextInput" data-ng-model="filterText">
+        <input class="toolbox-filter form-control col-xs-12"
+               type="text"
+               placeholder="Search..."
+               data-ng-model="filterText">
     </div>
 
 
 
-    <div data-ng-show="element">
+    <div data-ng-show="element.getName()">
         <div class="component-properties">{{element.getName()}}</div>
         <table>
             <thead>
@@ -21,9 +24,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr data-ng-repeat="property in element.getProperties() | filter:{ _name: filterText }">
+                <tr data-ng-repeat="property in element.getProperties() | filter:{ _type: filterText }">
                     <td class="property-label">{{ property.getType() }}</td>
-                    <td class="property-value col-xs-12"><input data-ng-model="property._value" class="col-xs-12"></td>
+                    <td class="property-value col-xs-12">
+                        <input data-ng-model="property._value" class="col-xs-12">
+                    </td>
                     <!--
         Maybe create a directive for properties?
         How shall we automatically choose the view according to the property type?
