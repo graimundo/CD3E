@@ -51,6 +51,12 @@ html, body {
   font-size: 13px;
   background: transparent;
   color: rgb(25, 115, 188);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .pentaho-page-background {
