@@ -1,22 +1,30 @@
 <div class="propertyBox">
 
-  <div class="cd3e-box">Property Box</div>
+    <div class="cd3e-box">Property Box</div>
 
-  <label for="propertyBoxFilterTextInput">Filter:</label>
-  <input id="propertyBoxFilterTextInput" data-ng-model="filterText">
+    <label for="propertyBoxFilterTextInput">Filter:</label>
+    <input id="propertyBoxFilterTextInput" data-ng-model="filterText">
 
-  <div>
-      <div>{{element.getName()}}</div>
-    <div data-ng-repeat="property in element.getProperties() | filter:{ _name: filterText }">
-        <span>
-            <label>{{ property.getType() }}</label>
-            <input data-ng-model="property._value">
-        </span>
-      <!--
+    <div>
+        <div class="component-properties">{{element.getName()}}</div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="property-label">Property</th>
+                    <th class="property-value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="property in element.getProperties() | filter:{ _name: filterText }">
+                    <td class="property-label">{{ property.getType() }}</td>
+                    <td class="property-value"><input data-ng-model="property._value"></td>
+                    <!--
         Maybe create a directive for properties?
         How shall we automatically choose the view according to the property type?
       -->
+                </tr>
+            </tbody>
+        </table>
     </div>
-  </div>
 
 </div>

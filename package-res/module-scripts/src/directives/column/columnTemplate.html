@@ -3,9 +3,11 @@
      data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
      data-jqyoui-options="{greedy: true}"
      data-stop-event="drop"
-     data-ng-click="onElementSelection(column)"
      >
-  <div class="inner-column">
+    <div class="inner-column"
+         data-ng-click="onElementSelection(column)"
+         data-stop-event="click"
+         >
     Column: {{column.getName()}}
   </div>
 </div>

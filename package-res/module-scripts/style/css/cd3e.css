@@ -46,6 +46,14 @@ html, body {
   width: 20%;
 }
 
+.property-value {
+  padding-left: 20px;
+}
+.component-properties {
+  padding: 10px 0;
+}
+
+
 cd3e {
   display: flex;
   height: 100%;
@@ -121,5 +129,5 @@ cd3e {
 
 .column {
     /* margin-bottom: 5px; */
-  
+
 }
