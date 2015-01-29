@@ -29,12 +29,19 @@ define(
               function ( $scope, $rootScope ) {
 
                   // region controller methods
+                  function selectElement( element ) {
+                      $rootScope.selectedElement = element;
+                  }
+
+                  function isSelected() {
+                      return $scope.component == $rootScope.selectedElement;
+                  }
                   // endregion
 
                   // region scope bindings
-                  $scope.onElementSelection = function( element ){
-                      $rootScope.selectedElement = element;
-                  };
+                  $scope.onElementSelection = selectElement;
+
+                  $scope.isSelected = isSelected;
                   // endregion
 
                   // region controller init

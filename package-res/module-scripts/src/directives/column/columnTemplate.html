@@ -3,6 +3,7 @@
      data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
      data-jqyoui-options="{greedy: true}"
      data-stop-event="drop"
+     data-is-selected={{isSelected()}}
      >
     <div class="inner-column"
          data-ng-click="onElementSelection(column)"
@@ -11,7 +12,7 @@
 
       Column: {{column.getName()}}
       <component data-ng-if="column.getComponent()"
-                data-component="column.getComponent()">
+                 data-component="column.getComponent()">
       </component>
   </div>
 </div>

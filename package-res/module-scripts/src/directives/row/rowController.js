@@ -29,9 +29,13 @@ define(
               function ( $scope, timer, dropService, $rootScope) {
 
                   // region controller methods
-                  $scope.$watch( 'row', function ( dashboard ) {
-                      var x = 42;
-                  });
+                  function selectElement( element ) {
+                      $rootScope.selectedElement = element;
+                  }
+
+                  function isSelected() {
+                      return $scope.row == $rootScope.selectedElement;
+                  }
 
                   var onDropCallback = dropService.getDropHandler(
                       function(element, category, droppedElementType){
@@ -41,14 +45,14 @@ define(
                       }
                   );
 
-                  $scope.onElementSelection = function(element){
-                      console.log('clicked on row' + element.getName() );
-                      $rootScope.selectedElement = element;
-                  };
                   // endregion
 
                   // region scope bindings
+                  $scope.onElementSelection = selectElement;
+
                   $scope.onDropCallback = onDropCallback;
+
+                  $scope.isSelected = isSelected;
                   // endregion
 
                   // region controller init

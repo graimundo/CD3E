@@ -29,11 +29,13 @@ define(
               function ( $scope, timer, dropService, $rootScope ) {
 
                   // region controller methods
-                  $scope.$watch( 'column', function ( dashboard ) {
-                      var x = 42;
-                  });
+                  function selectElement( element ) {
+                      $rootScope.selectedElement = element;
+                  }
 
-
+                  function isSelected() {
+                      return $scope.column == $rootScope.selectedElement;
+                  }
                   // endregion
 
                   // region scope bindings
@@ -46,10 +48,10 @@ define(
                           }
                       }
                   );
-                  $scope.onElementSelection = function(element){
-                      console.log('clicked on column' + element.getName() );
-                      $rootScope.selectedElement = element;
-                  };
+
+                  $scope.onElementSelection = selectElement;
+
+                  $scope.isSelected = isSelected;
                   // endregion
 
                   // region controller init

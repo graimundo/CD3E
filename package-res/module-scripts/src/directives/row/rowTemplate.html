@@ -3,7 +3,8 @@
      data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
      data-jqyoui-options="{greedy: true}"
      data-stop-event="drop"
-     >
+    data-is-selected={{isSelected()}}
+    >
     <div class="row-delimiter col-xs-12"
          ng-click="onElementSelection(row)"
          data-stop-event="click"
