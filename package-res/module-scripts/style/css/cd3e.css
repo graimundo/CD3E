@@ -16,13 +16,41 @@
    General Styles
    ========================================================================== */
 
+
+@font-face {
+  font-family: 'OpenSansRegular';
+  src: url('../fonts/opensans-regular.eot');
+  src: url('../fonts/opensans-regular.eot') format('embedded-opentype'),
+  url('../fonts/opensans-regular.woff') format('woff'),
+  url('../fonts/opensans-regular.ttf') format('truetype'),
+  url('../fonts/opensans-regular.svg#OpenSansRegular') format('svg');
+}
+
+@font-face {
+  font-family: 'OpenSansItalic';
+  src: url('../fonts/opensans-italic.eot');
+  src: url('../fonts/opensans-italic.eot') format('embedded-opentype'),
+  url('../fonts/opensans-italic.woff') format('woff'),
+  url('../fonts/opensans-italic.ttf') format('truetype'),
+  url('../fonts/opensans-italic.svg#OpenSansItalic') format('svg');
+}
+@font-face {
+  font-family: 'OpenSansBold';
+  src: url('../fonts/opensans-bold.eot');
+  src: url('../fonts/opensans-bold.eot') format('embedded-opentype'),
+  url('../fonts/opensans-bold.woff') format('woff'),
+  url('../fonts/opensans-bold.ttf') format('truetype'),
+  url('../fonts/opensans-bold.svg#OpenSansBold') format('svg');
+}
+
+
 html, body {
   margin: 0px;
   padding: 0px;
-  font-family: OpenSansRegular, sans-serif;
-  font-size: 14px;
+  font-family: OpenSansRegular;
+  font-size: 13px;
   background: transparent;
-  color: #26363d;
+  color: rgb(25, 115, 188);
 }
 
 .pentaho-page-background {
@@ -30,20 +58,67 @@ html, body {
   background-color: #FFF;
 }
 
+.header {
+  padding: 8px 20px;
+  display: block;
+  height: 60px;
+  background: #d8e4ed; /* Old browsers */
+  background: -moz-linear-gradient(top,  #d8e4ed 0%, #c3d5e4 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d8e4ed), color-stop(100%,#c3d5e4)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #d8e4ed 0%,#c3d5e4 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #d8e4ed 0%,#c3d5e4 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #d8e4ed 0%,#c3d5e4 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #d8e4ed 0%,#c3d5e4 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8e4ed', endColorstr='#c3d5e4',GradientType=0 ); /* IE6-9 */
+  -webkit-box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.4);
+  -moz-box-shadow:    0px 2px 3px rgba(50, 50, 50, 0.4);
+  box-shadow:         0px 2px 3px rgba(50, 50, 50, 0.4);
+  color: rgb(38, 53, 61);
+  font-size: 28px
+  
+}
+
+.body {
+    margin-top: 8px;
+  
+  
+}
+
 .toolBox {
-  border: 1px solid #006080;
+  /* border: 1px solid #006080; */
   width: 20%;
 }
 
+.toolBox .toolBox-header {
+  
+  
+}
+
+.toolBox .toolBox-body {
+  border-top: 4PX solid #f2ce17;
+  padding: 16px 0 0 0;
+}
+
 .layoutBox {
-  border-top: 1px solid #006080;
-  border-bottom: 1px solid #006080;
+  /* border-top: 1px solid #006080; */
+  /* border-bottom: 1px solid #006080; */
   /* width: 60%; */
 }
 
+.layoutBox .layoutBox-body {
+  border-top: 4PX solid #f2ce17;
+  padding: 16px 0 0 0;
+}
+
 .propertyBox {
-  border: 1px solid #006080;
-  /* width: 20%; */
+  /* border: 1px solid #006080; */
+  width: 30%;
+}
+
+.propertyBox .propertyBox-body {
+  border-top: 4PX solid #f2ce17;
+  padding: 16px 0 0 0;
+  font-size: 13px;
 }
 
 .property-value {
@@ -61,10 +136,10 @@ cd3e {
 
 .cd3e-box {
   font-size: 18px;
-  color: #FFF;
+  color: #1973bc;
   padding: 10px 0;
-  text-align: center;
-  font-weight: bold;
+  text-align: left;
+  font-weight: normal;
 }
 
 /* positioning */
@@ -90,14 +165,13 @@ cd3e {
   /* padding-top: 10px; */
   /* padding-bottom: 10px; */
   background-color: #eee;
-  background-color: rgba(86,61,124,.15);
+  background-color: rgba(242,206,23,.15);
   /* border: 1px solid #ddd; */
   /* border: 1px solid rgba(86,61,124,.2); */
 }
 
 
 .layoutBox .container-fluid {
-  margin: 10px;
   text-align: center;
   background-color: rgba(221, 228, 230, 0.2);
   background: rgba(221, 228, 230, 0.2);
@@ -117,8 +191,8 @@ cd3e {
 }
 
 .row {
-  background-color: rgb(61,124,66);
-  background-color: rgba(61,124,66,0.25);
+  background-color: rgb(191,220,229);
+  background-color: rgba(191,220,229,0.25);
   margin-bottom: 5px;
 
   padding: 1px;
@@ -155,13 +229,22 @@ cd3e {
 /* } */
 
 [data-is-selected="true"]{
-  border: 1px solid red;
+  border: 1px solid #f2ce17;
 }
 [data-is-selected="false"]{
-  border: 1px solid gray;
+  border: 1px solid #bfdce5;
 }
 
 button.remove.btn {
     padding: 0px;
     line-height: 1;
+    background: none;
+    border: none;
 }
+
+button.remove.btn .glyphicon-remove:before {
+    color: #1973bc;
+}
+
+
+

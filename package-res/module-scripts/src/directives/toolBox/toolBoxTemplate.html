@@ -1,35 +1,41 @@
 <div class="toolBox col-md-2 col-xs-6">
-  <div class="cd3e-box">Tool Box</div>
-  <div class="input-group">
-    <span class="input-group-addon">Filter</span>
-    <input type="text"
-           class="toolbox-filter form-control col-xs-12"
-           placeholder="Search..."
-           id="toolBoxFilterTextInput"
-           data-ng-model="filterText">
+  
+  <div class="toolBox-header">
+    <div class="cd3e-box">Tool Box</div>
+  </div>
+  <div class="toolBox-body">
+    <div class="input-group">
+      <span class="input-group-addon">Filter</span>
+      <input type="text"
+          class="toolbox-filter form-control col-xs-12"
+          placeholder="Search..."
+          id="toolBoxFilterTextInput"
+          data-ng-model="filterText">
+    </div>
+
+    <accordion close-others="oneAtATime">
+      <accordion-group heading="Layout"  ng-show="(layoutDefinitions | filter:{_type:filterText} ).length > 0" >
+        <div>
+          <element-definition data-ng-repeat="elementDefinition in layoutDefinitions | filter:{_type:filterText}"
+              data-element-definition="elementDefinition"
+              data-category="layout"
+              >
+            ugh {{elementDefinition.getType()}} ugh
+          </element-definition>
+        </div>
+      </accordion-group>
+      <accordion-group heading="Component"  ng-show="(componentDefinitions | filter:{_type:filterText} ).length > 0" >
+        <element-definition ng-repeat="elementDefinition in componentDefinitions | filter:{_type:filterText}"
+            data-element-definition="elementDefinition"
+            data-category="component"
+            >
+          <!-- data-definition-type="{{elementDefinition.getType()}}" -->
+        </element-definition>
+      </accordion-group>
+
+    </accordion>
   </div>
 
-  <accordion close-others="oneAtATime">
-      <accordion-group heading="Layout"  ng-show="(layoutDefinitions | filter:{_type:filterText} ).length > 0" >
-          <div>
-          <element-definition data-ng-repeat="elementDefinition in layoutDefinitions | filter:{_type:filterText}"
-                              data-element-definition="elementDefinition"
-                              data-category="layout"
-                              >
-               ugh {{elementDefinition.getType()}} ugh
-          </element-definition>
-          </div>
-    </accordion-group>
-    <accordion-group heading="Component"  ng-show="(componentDefinitions | filter:{_type:filterText} ).length > 0" >
-          <element-definition ng-repeat="elementDefinition in componentDefinitions | filter:{_type:filterText}"
-                              data-element-definition="elementDefinition"
-                              data-category="component"
-                              >
-              <!-- data-definition-type="{{elementDefinition.getType()}}" -->
-          </element-definition>
-    </accordion-group>
-
-  </accordion>
 
 
 </div>

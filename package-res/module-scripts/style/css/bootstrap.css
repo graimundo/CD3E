@@ -2381,7 +2381,8 @@ input[type="button"].btn-block {
 }
 .glyphicon {
   position: relative;
-  top: 1px;
+  top: 2px;
+  right: 2px;
   display: inline-block;
   font-family: 'Glyphicons Halflings';
   font-style: normal;

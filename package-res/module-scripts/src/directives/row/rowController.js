@@ -46,7 +46,6 @@ define(
                   );
                 
                   $scope.onRemoveButtonClick = function(element){
-                      console.log("removed row" + element.getName() );
                       $rootScope.dashboard.removeElement(element);
                   };
                   // endregion
