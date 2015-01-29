@@ -75,11 +75,11 @@ cd3e {
 
 /* grid visualization */
 
-.show-grid {
-  margin-bottom: 15px;
+.row-delimiter {
+  text-align: left;
 }
 
-.show-grid [class^=col-] {
+.show-grid .inner-column  {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #eee;
@@ -111,5 +111,8 @@ cd3e {
 }
 
 .row {
+  background-color: rgb(61,124,66);
+  background-color: rgba(61,124,66,0.25);
+  margin-bottom: 5px;
 
 }
