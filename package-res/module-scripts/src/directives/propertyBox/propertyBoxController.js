@@ -31,6 +31,13 @@ define(
                 // endregion
 
                 // region scope bindings
+                $scope.$watch( 'element', function ( element ) {
+                    if( !element ) {
+                        return;
+                    }
+
+                    $scope.properties = _.toArray( $scope.element.getProperties() );
+                } );
                 // endregion
 
                 // region controller init

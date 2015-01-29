@@ -27,7 +27,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr data-ng-repeat="property in element.getProperties() | filter:{ _name: filterText }">
+                <tr data-ng-repeat="property in properties | filter:{ _name: filterText }">
           <td class="property-label">{{ property.getName() }}</td>
           <td class="property-value col-xs-12">
             <input data-ng-model="property._value" class="col-xs-12">
