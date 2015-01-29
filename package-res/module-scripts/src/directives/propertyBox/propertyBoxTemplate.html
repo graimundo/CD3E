@@ -5,17 +5,18 @@
   <label for="propertyBoxFilterTextInput">Filter:</label>
   <input id="propertyBoxFilterTextInput" data-ng-model="filterText">
 
-  <ul>
-    <li data-ng-repeat="property in element.getProperties() | filter:{ _name: filterText }">
-        <div>
+  <div>
+      <div>{{element.getName()}}</div>
+    <div data-ng-repeat="property in element.getProperties() | filter:{ _name: filterText }">
+        <span>
             <label>{{ property.getType() }}</label>
             <input data-ng-model="property._value">
-        </div>
+        </span>
       <!--
         Maybe create a directive for properties?
         How shall we automatically choose the view according to the property type?
       -->
-    </li>
-  </ul>
+    </div>
+  </div>
 
 </div>

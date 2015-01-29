@@ -24,15 +24,19 @@ define(
         app.controller(
             'columnController',
             // dependencies
-            [ '$scope', '$timeout', 'dropService',
+            [ '$scope', '$timeout', 'dropService', '$rootScope',
               // controller
-              function ( $scope, timer, dropService ) {
+              function ( $scope, timer, dropService, $rootScope ) {
 
                   // region controller methods
                   $scope.$watch( 'column', function ( dashboard ) {
                       var x = 42;
                   });
 
+
+                  // endregion
+
+                  // region scope bindings
                   $scope.onDropCallback = dropService.getDropHandler(
                       function(element, category, droppedElementType){
                           if (category === 'layout'){
@@ -42,10 +46,10 @@ define(
                           }
                       }
                   );
-
-                  // endregion
-
-                  // region scope bindings
+                  $scope.onElementSelection = function(element){
+                      console.log('clicked on column' + element.getName() );
+                      $rootScope.selectedElement = element;
+                  };
                   // endregion
 
                   // region controller init

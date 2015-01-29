@@ -33,11 +33,6 @@ define(
                       var x = 42;
                   });
 
-                  $scope.$watch( 'selectedElement', function ( element ) {
-                      if(!element) return;
-                      console.log('dashboard: selectedEleemnt' + element.getName());
-                  });
-
                   var onDropCallback = dropService.getDropHandler(
                       function(element, category, droppedElementType){
                           if (category === 'layout'){

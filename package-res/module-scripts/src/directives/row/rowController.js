@@ -24,20 +24,14 @@ define(
         app.controller(
             'rowController',
             // dependencies
-            [ '$scope', '$timeout', 'dropService',
+            [ '$scope', '$timeout', 'dropService', '$rootScope',
               // controller
-              function ( $scope, timer, dropService) {
+              function ( $scope, timer, dropService, $rootScope) {
 
                   // region controller methods
                   $scope.$watch( 'row', function ( dashboard ) {
                       var x = 42;
                   });
-
-                  $scope.$watch( 'selectedElement', function ( element ) {
-                      if(!element) return;
-                      console.log('row: selectedEleemnt' + element.getName());
-                  });
-
 
                   var onDropCallback = dropService.getDropHandler(
                       function(element, category, droppedElementType){
@@ -49,7 +43,7 @@ define(
 
                   $scope.onElementSelection = function(element){
                       console.log('clicked on row' + element.getName() );
-                      $scope.selectedElement = element;
+                      $rootScope.selectedElement = element;
                   };
                   // endregion
 
