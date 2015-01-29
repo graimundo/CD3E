@@ -1,23 +1,29 @@
-<div class="propertyBox">
+<div class="propertyBox col-md-2 col-xs-6">
 
     <div class="cd3e-box">Property Box</div>
 
-    <label for="propertyBoxFilterTextInput">Filter:</label>
-    <input id="propertyBoxFilterTextInput" data-ng-model="filterText">
+    <!-- <label for="propertyBoxFilterTextInput">Filter:</label> -->
+    <!--<input id="propertyBoxFilterTextInput" data-ng-model="filterText" class="col-xs-12 form-control"> -->
+    <div class="input-group">
+        <span class="input-group-addon">Filter</span>
+        <input type="text" class="toolbox-filter form-control col-xs-12" placeholder="Search..." id="propertyBoxFilterTextInput" data-ng-model="filterText">
+    </div>
 
-    <div>
+
+
+    <div data-ng-show="element">
         <div class="component-properties">{{element.getName()}}</div>
         <table>
             <thead>
                 <tr>
                     <th class="property-label">Property</th>
-                    <th class="property-value">Value</th>
+                    <th class="property-value col-xs-12">Value</th>
                 </tr>
             </thead>
             <tbody>
                 <tr data-ng-repeat="property in element.getProperties() | filter:{ _name: filterText }">
                     <td class="property-label">{{ property.getType() }}</td>
-                    <td class="property-value"><input data-ng-model="property._value"></td>
+                    <td class="property-value col-xs-12"><input data-ng-model="property._value" class="col-xs-12"></td>
                     <!--
         Maybe create a directive for properties?
         How shall we automatically choose the view according to the property type?

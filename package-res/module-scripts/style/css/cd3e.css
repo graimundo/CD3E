@@ -38,12 +38,12 @@ html, body {
 .layoutBox {
   border-top: 1px solid #006080;
   border-bottom: 1px solid #006080;
-  width: 60%;
+  /* width: 60%; */
 }
 
 .propertyBox {
   border: 1px solid #006080;
-  width: 20%;
+  /* width: 20%; */
 }
 
 .property-value {
@@ -62,8 +62,7 @@ cd3e {
 .cd3e-box {
   font-size: 18px;
   color: #FFF;
-  height: 25px;
-  padding-top: 10px;
+  padding: 10px 0;
   text-align: center;
   font-weight: bold;
 }
@@ -106,16 +105,15 @@ cd3e {
 }
 
 .toolBox .input-group {
-  padding: 0px 5px;
-  height: 40px;
+  margin-bottom: 10px;
 }
 
 .toolBox .input-group * {
 }
 
 .toolBox .input-group input {
-    width: 80%;
-    margin-bottom: 0px;
+    /* width: 80%; */
+    /* margin-bottom: 0px; */
 }
 
 .row {
