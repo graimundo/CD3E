@@ -87,8 +87,8 @@ cd3e {
 }
 
 .show-grid .column  {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
   background-color: #eee;
   background-color: rgba(86,61,124,.15);
   /* border: 1px solid #ddd; */
@@ -129,9 +129,30 @@ cd3e {
     /* margin-bottom: 5px; */
 }
 
+.row-header, .column-header{
+  position: relative;
+}
+
+.column-header{
+  margin-right: -15px;
+}
+
+.row-header>button,
+.column-header>button{
+   position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .component{
   padding: 10px;
 }
+
+/* .row:hover, */
+/* .inner-column:hover, */
+/* .component:hover{ */
+/*   border-color: orange; */
+/* } */
 
 [data-is-selected="true"]{
   border: 1px solid red;
