@@ -1,15 +1,23 @@
 <div class="row show-grid"
-     data-drop="true"
-     data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
-     data-jqyoui-options="{greedy: true}"
-     data-stop-event="drop"
+    data-drop="true"
+    data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
+    data-jqyoui-options="{greedy: true}"
+    data-stop-event="drop"
     data-is-selected={{isSelected()}}
     >
-    <div class="row-delimiter col-xs-12"
-         ng-click="onElementSelection(row)"
-         data-stop-event="click"
-         >
-        Row: {{row.getName()}}
-    </div>
+  <div class="row-delimiter col-xs-12"
+      ng-click="onElementSelection(row)"
+      >
+    Row: {{row.getName()}}
+  </div>
+
+  <div style="float: right; position: absolute; right: 30px;">
+    <button type="button" class="remove btn btn-default" aria-label="Remove"
+        ng-click="onRemoveButtonClick(row)"
+        data-stop-event="click">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </div>
+
   <!-- <column data-ng-repeat="column in row.getChildren()" data-column="column"></column> -->
 </div>

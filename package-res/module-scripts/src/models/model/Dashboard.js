@@ -60,10 +60,24 @@ define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement'], fu
       });
       
       if( elementToRemoveIndex >= 0 ) {
-        this.setRootElements( rootElements.splice(elementToRemoveIndex, 1) );
+        rootElements.splice(elementToRemoveIndex, 1);
+        this.setRootElements( rootElements );
       }
       return this;
-    } 
+    },
+
+    removeElement: function( element ) {
+      var myself = this;
+      
+      _.each( this.getRootElements(), function( root ){
+        if( root.getId() == element.getId() ) {
+          myself.removeRootElement( element );
+          return;
+        } else {
+          root.removeElement(element);
+        }
+      });
+    }
     
   });
   

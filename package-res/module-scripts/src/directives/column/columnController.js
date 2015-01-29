@@ -52,6 +52,11 @@ define(
                   $scope.onElementSelection = selectElement;
 
                   $scope.isSelected = isSelected;
+
+                  $scope.onRemoveButtonClick = function(element){
+                    console.log("removed row" + element.getName() );
+                    $rootScope.dashboard.removeElement(element);
+                  };
                   // endregion
 
                   // region controller init

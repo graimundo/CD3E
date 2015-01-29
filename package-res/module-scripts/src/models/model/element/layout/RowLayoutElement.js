@@ -26,7 +26,7 @@ define(['../LayoutElement'], function(LayoutElement){
     addChild: function( child ){
       var added = this.base( child );
       if( added ) {
-        var size = Math.floor( (12 / this.getChildren().length) + 0.5 );
+        var size = Math.floor( 12 / this.getChildren().length );
         _.each( this.getChildren(), function( child ){
           child.setWidth( size );
         });

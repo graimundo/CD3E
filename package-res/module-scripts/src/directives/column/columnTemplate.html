@@ -1,18 +1,25 @@
 <div class="column col-xs-{{column.getWidth()}}"
-     data-drop="true"
-     data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
-     data-jqyoui-options="{greedy: true}"
-     data-stop-event="drop"
-     >
-    <div class="inner-column"
-         data-is-selected={{isSelected()}}
-         data-ng-click="onElementSelection(column)"
-         data-stop-event="click"
-         >
+    data-drop="true"
+    data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
+    data-jqyoui-options="{greedy: true}"
+    data-stop-event="drop"
+    >
 
-      Column: {{column.getName()}}
-      <component data-ng-if="column.getComponent()"
-                 data-component="column.getComponent()">
-      </component>
+  <div class="inner-column"
+      data-is-selected={{isSelected()}}
+      data-ng-click="onElementSelection(column)"
+      data-stop-event="click"
+      >
+    <div>Column: {{column.getName()}}</div>
+    <div style="float: right; position: absolute; right: 30px;">
+      <button type="button" class="remove btn btn-default" aria-label="Remove"
+          ng-click="onRemoveButtonClick(column)"
+          data-stop-event="click">
+        <span class="glyphicon glyphicon-remove"></span>
+      </button>
+    </div>
+    <component data-ng-if="column.getComponent()"
+        data-component="column.getComponent()">
+    </component>
   </div>
 </div>

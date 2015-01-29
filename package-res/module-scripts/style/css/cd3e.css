@@ -91,8 +91,8 @@ cd3e {
   padding-bottom: 10px;
   background-color: #eee;
   background-color: rgba(86,61,124,.15);
-  border: 1px solid #ddd;
-  border: 1px solid rgba(86,61,124,.2);
+  /* border: 1px solid #ddd; */
+  /* border: 1px solid rgba(86,61,124,.2); */
 }
 
 
@@ -121,13 +121,12 @@ cd3e {
   background-color: rgba(61,124,66,0.25);
   margin-bottom: 5px;
 
-  padding: 5px;
+  padding: 1px;
 }
 
 
 .column {
     /* margin-bottom: 5px; */
-
 }
 
 .component{
@@ -139,4 +138,9 @@ cd3e {
 }
 [data-is-selected="false"]{
   border: 1px solid gray;
+}
+
+button.remove.btn {
+    padding: 0px;
+    line-height: 1;
 }

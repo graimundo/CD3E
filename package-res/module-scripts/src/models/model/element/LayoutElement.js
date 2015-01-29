@@ -1,4 +1,4 @@
-define(['../Element'], function(Element){
+define(['../Element', 'common-ui/underscore'], function(Element, _){
   var LayoutElement;
 
   LayoutElement = Element.extend({
@@ -43,6 +43,17 @@ define(['../Element'], function(Element){
       
       return true;
     },
+
+    /**
+     * *
+     * @param childId
+     * @returns {*}
+     */
+    hasChild: function( childId ){
+      return _.any(this.getChildren(), function(child) {
+        return child.getId() == childId;
+      });
+    },
     
     /**
      * *
@@ -66,7 +77,36 @@ define(['../Element'], function(Element){
      * * 
      * @returns {boolean}
      */
-    canAddComponent: function() {}
+    canAddComponent: function() {},
+    
+
+    /**
+     * *
+     * @param RowLayoutElement rootElement
+     * @returns {LayoutElement}
+     */
+    removeElement: function( elementToRemove ) {
+      var elementToRemoveIndex = -1;
+
+      var elements = this.getChildren();
+      _.each( elements, function( element, index ){
+        if( elementToRemove.getId() == element.getId() ) {
+          elementToRemoveIndex = index;
+          return;
+        }
+      });
+
+      if( elementToRemoveIndex >= 0 ) {
+        elements.splice(elementToRemoveIndex, 1);
+        this.setChildren( elements );
+        return this;
+      } else {
+        _.each( elements, function( element ){
+          element.removeElement( elementToRemove );
+        });
+      }
+      return this;
+    }
   });
   
   return LayoutElement;
