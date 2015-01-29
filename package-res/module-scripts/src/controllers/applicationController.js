@@ -106,7 +106,7 @@ define(
                 // endregion
 
                 // region scope bindings
-                $scope.dashboard = createDummyDashboard( 3, 2, -1 );
+                $scope.dashboard = createDummyDashboard( 4, 2, -1 );
 
                 var x = {
                     getName: function() {

@@ -8,6 +8,10 @@
          data-ng-click="onElementSelection(column)"
          data-stop-event="click"
          >
-    Column: {{column.getName()}}
+
+      Column: {{column.getName()}}
+      <component data-ng-if="column.getComponent()"
+                data-component="column.getComponent()">
+      </component>
   </div>
 </div>
