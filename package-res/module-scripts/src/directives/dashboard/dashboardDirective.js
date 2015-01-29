@@ -25,11 +25,11 @@ define( [ 'cd3e' ],
           //isolate scope
           scope: {
             // define directive input / output here
-            dashboard: "="
+              dashboard: "=",
+              selectedElement: '='
           }
         };
       });
 
     }
 );
-

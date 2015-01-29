@@ -61,25 +61,25 @@ cd3e {
 }
 
 /* positioning */
-.cd3e-list li{
+.element-definition{
   list-style-type: none;
   padding: 5px 10px;
   margin: 2px 0;
 }
 
 /* style */
-.cd3e-list li{
+.element-definition{
   border: 1px solid black;
   border-radius: 8px;
 }
 
 /* grid visualization */
 
-.show-grid {
-  margin-bottom: 15px;
+.row-delimiter {
+  text-align: left;
 }
 
-.show-grid [class^=col-] {
+.show-grid .inner-column  {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #eee;
@@ -111,5 +111,8 @@ cd3e {
 }
 
 .row {
-  
+  background-color: rgb(61,124,66);
+  background-color: rgba(61,124,66,0.25);
+  margin-bottom: 5px;
+
 }

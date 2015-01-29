@@ -34,10 +34,10 @@ define(
                   });
 
                   $scope.onDropCallback = dropService.getDropHandler(
-                      function(element, droppedElement, droppedElementType){
-                          if (droppedElement === 'layout'){
+                      function(element, category, droppedElementType){
+                          if (category === 'layout'){
                               $scope.column.addChild( element );
-                          } else if (droppedElement === 'component'){
+                          } else if (category === 'component'){
                               $scope.column.setComponent( element );
                           }
                       }

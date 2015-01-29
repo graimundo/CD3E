@@ -19,7 +19,17 @@ define(['../ElementDefinition'], function (ElementDefinition) {
       this._defaultValue = defaultValue;
       return this;
     },
-    _defaultValue: undefined,
+      _defaultValue: undefined,
+
+      getValue: function () {
+          return this._value;
+      },
+      setValue: function (value) {
+          this._value = value;
+          return this;
+      },
+      _value: undefined,
+
 
     // endregion
     constructor: function (type, typeDescription, valueType, defaultValue) {

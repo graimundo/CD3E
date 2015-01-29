@@ -57,7 +57,7 @@ define(
                                 }
                             }
                             return row;
-                        })
+                        });
                 }
 
                 function createDummyColumn( depth, numChildren, probabilityOfComponent ) {
@@ -76,7 +76,7 @@ define(
                                 }
                             }
                             return column;
-                        })
+                        });
                 }
 
                 function createDummyComponent() {
@@ -84,8 +84,8 @@ define(
                         .then( function ( componentDefinitions ) {
                             var definitionsArray = _.toArray( componentDefinitions );
                             var componentDefinition = definitionsArray[_.random( definitionsArray.length )];
-                            return componentFactory.create( componentDefinition  )
-                    })
+                            return componentFactory.create( componentDefinition  );
+                        });
                 }
 
                 function insertComponent( layoutElement, probabilityOfComponent ) {
@@ -101,7 +101,22 @@ define(
 
                 // region scope bindings
                 $scope.dashboard = createDummyDashboard( 3, 2, -1 );
+
+                $scope.selectedElement = {
+                    properties:[
+                        {
+                            _name: "Prop",
+                            _value: 10,
+                            getName: function(){ return 'Prop';}
+                        }
+                    ]
+                };
+
+                createDummyComponent().then(function(component){
+                    //$scope.selectedElement = component;
+                });
                 // endregion
+
 
                 // region controller init
                 // endregion

@@ -11,7 +11,7 @@ define(
           [
             'Component', 'propertyFactory',
             function ( Component, propertyFactory ) {
-              
+
               /**
                * *
                * @param layoutDefinition
@@ -36,7 +36,7 @@ define(
 
               return {
                 create: createComponentElement
-              }
+              };
             }
           ]);
 

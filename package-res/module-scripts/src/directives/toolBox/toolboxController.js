@@ -67,7 +67,7 @@ define(
 
                 definitionsProvider.getComponentDefinitions().then( function( componentDefinitions ) {
                     $scope.componentDefinitions = _.toArray( componentDefinitions ) ;
-                })
+                });
 
                 // endregion
             }]

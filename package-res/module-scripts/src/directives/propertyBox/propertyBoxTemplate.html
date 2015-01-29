@@ -7,7 +7,10 @@
 
   <ul>
     <li data-ng-repeat="property in element.properties | filter:{ _name: filterText }">
-      <div>{{ property.getName() }}</div>
+        <div>
+            <label>{{ property.getName() }}</label>
+            <input data-ng-model="property._value">
+        </div>
       <!--
         Maybe create a directive for properties?
         How shall we automatically choose the view according to the property type?

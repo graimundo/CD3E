@@ -30,7 +30,7 @@ define( [ 'cd3e' ],
           link: function ( scope, element, attrs) {
             if ( scope.column.getChildren().length > 0 ) {
               var compiled = $compile('<row data-ng-repeat="row in column.getChildren()" data-row="row"></row>')(scope);
-              element.append( compiled );
+              element.find('.inner-column').append( compiled );
             }
           }
         };
