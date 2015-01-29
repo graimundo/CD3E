@@ -8,3 +8,4 @@ package-res/plugin.xml
 package-res/module-scripts/main.html
 package-res/module-scripts/main.js
 node_modules
+.idea/workspace.xml
