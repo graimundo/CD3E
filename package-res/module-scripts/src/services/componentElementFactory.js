@@ -19,17 +19,20 @@ define(
                */
               function createComponentElement( componentDefinition ) {
                 var componentType = componentDefinition.getType();
+                var propertyMap = _.object(
+                    _.map ( componentDefinition.getPropertyDefinitions(),
+                        function ( propertyDefinition, key ) {
+                          var property = propertyFactory.create( propertyDefinition );
+                          property.setName( key );
+                          return [ key, property ];
+                        }
+                    )
+                );
+
                 var component = new Component()
                     .setType( componentType )
+                    .setProperties( propertyMap )
                     .setName( _.uniqueId( componentType ) );
-
-                var properties = _.chain( componentDefinition.getPropertyDefinitions() )
-                    .filter ( function ( propertyDefinition ) { return propertyDefinition != null && propertyDefinition != undefined; })
-                    .map( function ( propertyDefinition ) {
-                      return propertyFactory.create( propertyDefinition );
-                    })
-                    .value();
-                component.setProperties( properties );
 
                 return component;
               }

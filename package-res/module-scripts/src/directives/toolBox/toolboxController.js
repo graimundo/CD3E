@@ -29,25 +29,6 @@ define(
             // controller
             function ( $scope, definitionsProvider ) {
 
-                // TODO: move dummy creation into service
-                var DummyFactory = Base.extend({
-                    constructor: function() {
-                        this._name = _.uniqueId("Factory");
-                    },
-
-                    _name: undefined,
-                    getName: function() {
-                        return this._name;
-                    }
-                });
-
-                // region controller methods
-                function createDummyFactories( numberOfFactories ) {
-                    return _.chain( _.range(numberOfFactories) )
-                        .map( function () { return new DummyFactory(); } )
-                        .value();
-                }
-
                 $scope.onStartDragItem = function(event, ui, data){
                     //console.log("Started dragging item #" + JSON.stringify(data));
                 };

@@ -26,16 +26,20 @@ define(
                 var elementConstructor = knownLayoutTypes[layoutDefinition.getType()];
                 if ( elementConstructor ) {
                   var elementType = layoutDefinition.getType();
+                  var propertyMap = _.object(
+                      _.map ( layoutDefinition.getPropertyDefinitions(),
+                          function ( layoutDefinition, key ) {
+                            var property = propertyFactory.create( layoutDefinition );
+                            property.setName( key );
+                            return [ key, property ];
+                          }
+                      )
+                  );
+
                   var element = new elementConstructor()
                       .setType( elementType )
+                      .setProperties( propertyMap )
                       .setName( _.uniqueId( elementType ) );
-
-                  var properties = _.map( layoutDefinition.getPropertyDefinitions(),
-                      function ( propertyDefinition ) {
-                        return propertyFactory.create( propertyDefinition );
-                      }
-                  );
-                  element.setProperties( properties );
 
                   return element;
                 }

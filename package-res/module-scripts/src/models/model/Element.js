@@ -58,8 +58,10 @@ define(['./Property','Base'], function(Property, Base){
      * * 
      * @returns {string}
      */
-    getName: function(){
-     return this._name;
+    getName: function() {
+      var propertyName = this.getProperties()["name"];
+      return propertyName ? propertyName.getValue() : undefined;
+      return this._name;
     },
 
     /**
@@ -67,7 +69,11 @@ define(['./Property','Base'], function(Property, Base){
      * @param name
      */
     setName: function(name){
-      this._name = name;
+      var propertyName = this.getProperties()["name"];
+      if ( propertyName ) {
+        propertyName.setValue( name );
+      }
+      //this._name = name;
       return this;
     },
 
