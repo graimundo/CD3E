@@ -1,6 +1,7 @@
 <div class="row show-grid"
      data-drop="true"
-     data-jqyoui-droppable="{onDrop:'onDropCallback', stack: false}"
+     data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
+     data-jqyoui-options="{greedy: true}"
      data-stop-event="drop"
      >
   <div class="row-delimiter col-xs-12">Row: {{row.getName()}}</div>
