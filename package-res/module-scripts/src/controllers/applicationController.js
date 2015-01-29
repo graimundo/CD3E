@@ -100,24 +100,32 @@ define(
 
                 // region controller methods
                 $scope.$watch( 'selectedElement', function ( element ) {
-                    console.log("Selected a element");
+                    if(!element) return;
+                    console.log("AppController: Selected an element" + (element.getName ? element.getName(): ''));
                 });
                 // endregion
 
                 // region scope bindings
                 $scope.dashboard = createDummyDashboard( 3, 2, -1 );
 
-                $scope.selectedElement = {}; var x = {
+                var x = {
+                    getName: function() {
+                        return "FakeElement";
+                    },
                     getProperties: function(){
                         return [
                             {
                                 _name: "Prop",
                                 _value: 10,
+                                getType: function() {
+                                    return 'Type';
+                                },
                                 getName: function(){ return 'Prop';}
                             }
                         ];
                     }
                 };
+                //$scope.selectedElement = {};
 
                 createDummyComponent().then(function(component){
                     //$scope.selectedElement = component;

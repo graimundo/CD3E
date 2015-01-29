@@ -29,6 +29,10 @@ define(
 
 
                               // region controller methods
+                              $scope.$watch( 'selectedElement', function ( element ) {
+                                  if(!element) return;
+                                  console.log('layoutBox: selectedEleemnt' + element.getName());
+                              });
                               // endregion
 
                               // region scope bindings

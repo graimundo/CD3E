@@ -26,7 +26,7 @@ define( [ 'cd3e' ],
           scope: {
             // define directive input / output here
               dashboard: "=",
-              selectedElement: '='
+              selectedElement: "="
           }
         };
       });

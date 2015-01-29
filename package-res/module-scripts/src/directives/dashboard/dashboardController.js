@@ -33,7 +33,12 @@ define(
                       var x = 42;
                   });
 
-                  $scope.onDropCallback = dropService.getDropHandler(
+                  $scope.$watch( 'selectedElement', function ( element ) {
+                      if(!element) return;
+                      console.log('dashboard: selectedEleemnt' + element.getName());
+                  });
+
+                  var onDropCallback = dropService.getDropHandler(
                       function(element, category, droppedElementType){
                           if (category === 'layout'){
                               $scope.dashboard.addRootElement( element );
@@ -44,6 +49,7 @@ define(
                   // endregion
 
                   // region scope bindings
+                  $scope.onDropCallback = onDropCallback;
                   // endregion
 
                   // region controller init

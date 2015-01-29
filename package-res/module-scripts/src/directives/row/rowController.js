@@ -33,6 +33,12 @@ define(
                       var x = 42;
                   });
 
+                  $scope.$watch( 'selectedElement', function ( element ) {
+                      if(!element) return;
+                      console.log('row: selectedEleemnt' + element.getName());
+                  });
+
+
                   var onDropCallback = dropService.getDropHandler(
                       function(element, category, droppedElementType){
                           if (category === 'layout'){
@@ -41,8 +47,8 @@ define(
                       }
                   );
 
-                  $scope.selectElement = function(element){
-                      console.log('clicked on row');
+                  $scope.onElementSelection = function(element){
+                      console.log('clicked on row' + element.getName() );
                       $scope.selectedElement = element;
                   };
                   // endregion

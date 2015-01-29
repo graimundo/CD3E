@@ -25,7 +25,8 @@ define( [ 'cd3e' ],
           //isolate scope
           scope: {
             // define directive input / output here
-            column: "="
+              column: "=",
+              selectedElement: "="
           },
           link: function ( scope, element, attrs) {
             var compiled = $compile('<row data-ng-repeat="row in column.getChildren()" data-row="row"></row>')(scope);
@@ -35,4 +36,3 @@ define( [ 'cd3e' ],
       }]);
     }
 );
-
