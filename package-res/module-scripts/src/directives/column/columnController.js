@@ -24,33 +24,24 @@ define(
         app.controller(
             'columnController',
             // dependencies
-            [ '$scope', 'definitionsProvider', 'layoutElementFactory', 'componentElementFactory',
+            [ '$scope', 'dropService',
               // controller
-              function ( $scope, definitionsProvider, layoutElementFactory, componentElementFactory ) {
+              function ( $scope, dropService ) {
 
                   // region controller methods
                   $scope.$watch( 'column', function ( dashboard ) {
                       var x = 42;
                   });
 
-                  $scope.onDropCallback = function(event, ui){
-                      var droppedElement =  ui.helper.attr('data-element');
-                      var droppedElementType =  ui.helper.attr('data-element-type');
-                      console.log("Dropped: " + droppedElementType);
-
-                      if (droppedElement === 'layout'){
-                          definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
-                              var element = layoutElementFactory.create( layoutDef[droppedElementType] );
+                  $scope.onDropCallback = dropService.getDropHandler(
+                      function(element, droppedElement, droppedElementType){
+                          if (droppedElement === 'layout'){
                               $scope.column.addChild( element );
-                          });
-                      } else if (droppedElement === 'component'){
-                          definitionsProvider.getComponentDefinitions().then(function(componentDef){
-                              var component = componentElementFactory.create( componentDef[droppedElementType] );
-                              $scope.column.setComponent( component );
-                          });
+                          } else if (droppedElement === 'component'){
+                              $scope.column.setComponent( element );
+                          }
                       }
-                  };
-
+                  );
 
                   // endregion
 

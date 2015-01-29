@@ -50,6 +50,7 @@ requirejs(
       './@js.source.dir@/services/componentElementFactory',
       './@js.source.dir@/services/layoutElementFactory',
       './@js.source.dir@/services/propertyFactory',
+      './@js.source.dir@/services/dropService',
 
       /*
       './@js.source.dir@/models/plugin',
