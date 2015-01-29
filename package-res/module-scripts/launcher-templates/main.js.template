@@ -41,6 +41,9 @@ requirejs(
       './@js.source.dir@/directives/column/columnController',
       './@js.source.dir@/directives/column/columnDirective',
 
+      './@js.source.dir@/directives/elementDefinition/elementDefinitionController',
+      './@js.source.dir@/directives/elementDefinition/elementDefinitionDirective',
+
       // endregion
 
 

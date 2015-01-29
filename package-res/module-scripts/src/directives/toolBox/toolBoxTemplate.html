@@ -6,40 +6,23 @@
   </div>
 
   <accordion close-others="oneAtATime">
-    <accordion-group heading="Layout"  ng-show="(layoutDefinitions | filter:{_type:filterText} ).length > 0" >
-      <ul class="cd3e-list" >
-          <li class="btn0"
-              data-ng-repeat="layoutDefinition in layoutDefinitions | filter:{_type:filterText}"
-              data-ng-model="layoutDefinition"
-              data-drag="true"
-              data-jqyoui-draggable="{onStart:'onStartDragItem(layoutDefinition)', placeholder:'keep'}"
-              data-jqyoui-options="{helper:'clone',cursor:'pointer'}"
-              data-element="layout"
-              data-element-type="{{layoutDefinition.getType()}}"
-              >
-          <div>{{ layoutDefinition.getTypeDescription() }} </div>
-          <!-- maybe create a directive for factories? Something like the following line
-            <factory data-factory="factory"></factory>
-          -->
-        </li>
-      </ul>
+      <accordion-group heading="Layout"  ng-show="(layoutDefinitions | filter:{_type:filterText} ).length > 0" >
+          <div>
+          <element-definition data-ng-repeat="elementDefinition in layoutDefinitions | filter:{_type:filterText}"
+                              data-element-definition="elementDefinition"
+                              data-category="layout"
+                              >
+               ugh {{elementDefinition.getType()}} ugh
+          </element-definition>
+          </div>
     </accordion-group>
     <accordion-group heading="Component"  ng-show="(componentDefinitions | filter:{_type:filterText} ).length > 0" >
-        <ul class="cd3e-list">
-          <li class="btn0"
-              data-ng-repeat="componentDefinition in componentDefinitions  | filter:{_type:filterText}"
-              data-drag="true"
-              data-jqyoui-draggable="{onStart:'onStartDragItem(componentDefinition)', placeholder:'keep'}"
-              data-jqyoui-options="{helper:'clone', cursor:'pointer'}"
-              data-element="component"
-              data-element-type="{{componentDefinition.getType()}}"
-              >
-          <div>{{ componentDefinition.getTypeDescription() }} </div>
-          <!-- maybe create a directive for factories? Something like the following line
-            <factory data-factory="factory"></factory>
-          -->
-        </li>
-      </ul>
+          <element-definition ng-repeat="elementDefinition in componentDefinitions | filter:{_type:filterText}"
+                              data-element-definition="elementDefinition"
+                              data-category="component"
+                              >
+              <!-- data-definition-type="{{elementDefinition.getType()}}" -->
+          </element-definition>
     </accordion-group>
 
   </accordion>

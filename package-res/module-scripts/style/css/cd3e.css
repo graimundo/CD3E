@@ -61,14 +61,14 @@ cd3e {
 }
 
 /* positioning */
-.cd3e-list li{
+.element-definition{
   list-style-type: none;
   padding: 5px 10px;
   margin: 2px 0;
 }
 
 /* style */
-.cd3e-list li{
+.element-definition{
   border: 1px solid black;
   border-radius: 8px;
 }
@@ -111,5 +111,5 @@ cd3e {
 }
 
 .row {
-  
+
 }
