@@ -24,9 +24,9 @@ define(
         app.controller(
             'columnController',
             // dependencies
-            [ '$scope', 'dropService',
+            [ '$scope', '$timeout', 'dropService',
               // controller
-              function ( $scope, dropService ) {
+              function ( $scope, timer, dropService ) {
 
                   // region controller methods
                   $scope.$watch( 'column', function ( dashboard ) {
@@ -37,7 +37,7 @@ define(
                       function(element, category, droppedElementType){
                           if (category === 'layout'){
                               $scope.column.addChild( element );
-                          } else if (category === 'component'){
+                          } else if (category === 'component') {
                               $scope.column.setComponent( element );
                           }
                       }

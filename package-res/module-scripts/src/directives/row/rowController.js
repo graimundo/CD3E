@@ -24,9 +24,9 @@ define(
         app.controller(
             'rowController',
             // dependencies
-            [ '$scope', 'dropService',
+            [ '$scope', '$timeout', 'dropService',
               // controller
-              function ( $scope, dropService) {
+              function ( $scope, timer, dropService) {
 
                   // region controller methods
                   $scope.$watch( 'row', function ( dashboard ) {

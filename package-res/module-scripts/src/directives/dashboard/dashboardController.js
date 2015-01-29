@@ -24,9 +24,9 @@ define(
         app.controller(
             'dashboardController',
             // dependencies
-            [ '$scope', 'dashboardService', 'dropService',
+            [ '$scope', '$timeout', 'dashboardService', 'dropService',
               // controller
-              function ( $scope, dashboardService, dropService) {
+              function ( $scope, timer, dashboardService, dropService) {
 
                   // region controller methods
                   $scope.$watch( 'dashboard', function ( dashboard ) {

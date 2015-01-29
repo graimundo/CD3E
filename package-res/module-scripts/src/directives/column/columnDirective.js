@@ -28,10 +28,8 @@ define( [ 'cd3e' ],
             column: "="
           },
           link: function ( scope, element, attrs) {
-            if ( scope.column.getChildren().length > 0 ) {
-              var compiled = $compile('<row data-ng-repeat="row in column.getChildren()" data-row="row"></row>')(scope);
-              element.find('.inner-column').append( compiled );
-            }
+            var compiled = $compile('<row data-ng-repeat="row in column.getChildren()" data-row="row"></row>')(scope);
+            element.find('.inner-column').append( compiled );
           }
         };
       }]);

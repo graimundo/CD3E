@@ -29,10 +29,8 @@ define( [ 'cd3e' ],
               selectedElement: "="
           },
           link: function ( scope, element, attrs) {
-            if ( scope.row.getChildren().length > 0 ) {
-             var compiled = $compile( '<column data-ng-repeat="column in row.getChildren()" data-column="column"></column>' )(scope);
-              element.append(compiled);
-            }
+            var compiled = $compile( '<column data-ng-repeat="column in row.getChildren()" data-column="column"></column>' )(scope);
+            element.append(compiled);
           }
         };
       }]);
