@@ -129,3 +129,14 @@ cd3e {
     /* margin-bottom: 5px; */
 
 }
+
+.component{
+  padding: 10px;
+}
+
+[data-is-selected="true"]{
+  border: 1px solid red;
+}
+[data-is-selected="false"]{
+  border: 1px solid gray;
+}

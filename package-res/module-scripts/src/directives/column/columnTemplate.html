@@ -3,9 +3,9 @@
      data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
      data-jqyoui-options="{greedy: true}"
      data-stop-event="drop"
-     data-is-selected={{isSelected()}}
      >
     <div class="inner-column"
+         data-is-selected={{isSelected()}}
          data-ng-click="onElementSelection(column)"
          data-stop-event="click"
          >
