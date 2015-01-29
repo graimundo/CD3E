@@ -21,7 +21,7 @@ define(
                               }
                               var category =  ui.helper.attr('data-category');
                               var droppedElementType =  ui.helper.attr('data-element-type');
-                              console.log("Dropped: " + droppedElementType);
+                              console.log("Dropped: " + droppedElementType + ' of category ' + category);
 
                               if (category === 'layout'){
                                   definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
