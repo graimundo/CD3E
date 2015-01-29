@@ -24,31 +24,22 @@ define(
         app.controller(
             'dashboardController',
             // dependencies
-            [ '$scope', 'dashboardService', 'layoutElementFactory', 'definitionsProvider',
+            [ '$scope', 'dashboardService', 'dropService',
               // controller
-              function ( $scope, dashboardService, layoutElementFactory, definitionsProvider ) {
+              function ( $scope, dashboardService, dropService) {
 
                   // region controller methods
                   $scope.$watch( 'dashboard', function ( dashboard ) {
                       var x = 42;
                   });
 
-                  $scope.onDropCallback = function(event, ui){
-                      var droppedElement =  ui.helper.attr('data-element');
-                      var droppedElementType =  ui.helper.attr('data-element-type');
-                      console.log("Dropped: " + droppedElementType);
-
-                      if (droppedElement === "layout") {
-                          definitionsProvider.getLayoutDefinitions().then(
-                              function(layoutDef){
-                                  //console.log( JSON.stringify( layoutDef[droppedElementType] ));
-                                  var element = layoutElementFactory.create( layoutDef[droppedElementType] );
-                                  $scope.dashboard.addRootElement( element );
-                              }
-                          );
+                  $scope.onDropCallback = dropService.getDropHandler(
+                      function(element, category, droppedElementType){
+                          if (category === 'layout'){
+                              $scope.dashboard.addRootElement( element );
+                          }
                       }
-                  };
-
+                  );
 
                   // endregion
 

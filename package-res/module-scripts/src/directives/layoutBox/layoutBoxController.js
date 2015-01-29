@@ -23,9 +23,9 @@ define(
 
         app.controller( 'layoutBoxController',
                         // dependencies
-                        [ '$scope', 'definitionsProvider', 'layoutElementFactory',
+                        [ '$scope',
                           // controller
-                          function ( $scope, definitionsProvider, layoutElementFactory) {
+                          function ( $scope) {
 
 
                               // region controller methods

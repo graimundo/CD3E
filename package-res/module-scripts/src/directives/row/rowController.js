@@ -34,8 +34,8 @@ define(
                   });
 
                   $scope.onDropCallback = dropService.getDropHandler(
-                      function(element, droppedElement, droppedElementType){
-                          if (droppedElement === 'layout'){
+                      function(element, category, droppedElementType){
+                          if (category === 'layout'){
                               $scope.row.addChild( element );
                           }
                       }

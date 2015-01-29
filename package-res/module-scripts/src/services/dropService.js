@@ -19,19 +19,19 @@ define(
                               if (!_.isFunction(callback)){
                                   return;
                               }
-                              var droppedElement =  ui.helper.attr('data-element');
+                              var category =  ui.helper.attr('data-category');
                               var droppedElementType =  ui.helper.attr('data-element-type');
                               console.log("Dropped: " + droppedElementType);
 
-                              if (droppedElement === 'layout'){
+                              if (category === 'layout'){
                                   definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
                                       var element = layoutElementFactory.create( layoutDef[droppedElementType] );
-                                      callback( element, droppedElement, droppedElementType);
+                                      callback( element, category, droppedElementType);
                                   });
-                              } else if (droppedElement === 'component'){
+                              } else if (category === 'component'){
                                   definitionsProvider.getComponentDefinitions().then(function(componentDef){
                                       var component = componentElementFactory.create( componentDef[droppedElementType] );
-                                      callback( component, droppedElement, droppedElementType);
+                                      callback( component, category, droppedElementType);
                                   });
                               }
 
