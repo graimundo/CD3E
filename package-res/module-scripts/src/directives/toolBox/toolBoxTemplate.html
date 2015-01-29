@@ -20,17 +20,15 @@
               data-element-definition="elementDefinition"
               data-category="layout"
               >
-            ugh {{elementDefinition.getType()}} ugh
           </element-definition>
         </div>
       </accordion-group>
-      <accordion-group heading="Component"  ng-show="(componentDefinitions | filter:{_type:filterText} ).length > 0" >
+      <accordion-group heading="Component"  data-ng-show="(componentDefinitions | filter:{_type:filterText} ).length > 0" >
         <div>
           <element-definition ng-repeat="elementDefinition in componentDefinitions | filter:{_type:filterText}"
               data-element-definition="elementDefinition"
               data-category="component"
               >
-            <!-- data-definition-type="{{elementDefinition.getType()}}" -->
           </element-definition>
         </div>
 

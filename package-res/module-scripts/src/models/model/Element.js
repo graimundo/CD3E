@@ -99,7 +99,7 @@ define(['./Property','Base'], function(Property, Base){
      * @returns {*}
      */
     getType: function() {
-      return this.getType();
+      return this._type;
     },
     
     setType: function(type){

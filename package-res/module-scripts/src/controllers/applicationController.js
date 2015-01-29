@@ -31,6 +31,7 @@ define(
                 // region controller methods
                 function createDummyDashboard( depth, numChildren, probabilityOfComponent ) {
                     var dashboard = new Dashboard();
+                    //return dashboard;
                     for( var i = 0; i < numChildren; i++ ) {
                         createDummyRow( depth - 1, numChildren, probabilityOfComponent )
                             .then ( function ( row ) {
@@ -106,7 +107,7 @@ define(
                 // endregion
 
                 // region scope bindings
-                $scope.dashboard = createDummyDashboard( 3, 2, -1 );
+                $scope.dashboard = createDummyDashboard( 2, 2, -1 );
                 $rootScope.dashboard = $scope.dashboard;
 
                 var x = {
@@ -128,9 +129,6 @@ define(
                 };
                 //$scope.selectedElement = {};
 
-                createDummyComponent().then(function(component){
-                    //$scope.selectedElement = component;
-                });
                 // endregion
 
 

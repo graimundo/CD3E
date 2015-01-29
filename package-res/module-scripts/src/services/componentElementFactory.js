@@ -32,7 +32,7 @@ define(
                 var component = new Component()
                     .setType( componentType )
                     .setProperties( propertyMap )
-                    .setName( _.uniqueId( componentType ) );
+                    .setName( _.uniqueId( "Component" ) );
 
                 return component;
               }
