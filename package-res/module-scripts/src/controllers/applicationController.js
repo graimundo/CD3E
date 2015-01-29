@@ -97,19 +97,26 @@ define(
                     }
                     return false;
                 }
+
+                // region controller methods
+                $scope.$watch( 'selectedElement', function ( element ) {
+                    console.log("Selected a element");
+                });
                 // endregion
 
                 // region scope bindings
                 $scope.dashboard = createDummyDashboard( 3, 2, -1 );
 
-                $scope.selectedElement = {
-                    properties:[
-                        {
-                            _name: "Prop",
-                            _value: 10,
-                            getName: function(){ return 'Prop';}
-                        }
-                    ]
+                $scope.selectedElement = {}; var x = {
+                    getProperties: function(){
+                        return [
+                            {
+                                _name: "Prop",
+                                _value: 10,
+                                getName: function(){ return 'Prop';}
+                            }
+                        ];
+                    }
                 };
 
                 createDummyComponent().then(function(component){

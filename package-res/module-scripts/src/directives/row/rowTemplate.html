@@ -4,6 +4,10 @@
      data-jqyoui-options="{greedy: true}"
      data-stop-event="drop"
      >
-  <div class="row-delimiter col-xs-12">Row: {{row.getName()}}</div>
+    <div class="row-delimiter col-xs-12"
+          ng-click="selectElement(row)"
+         >
+        Row: {{row.getName()}}
+    </div>
   <!-- <column data-ng-repeat="column in row.getChildren()" data-column="column"></column> -->
 </div>

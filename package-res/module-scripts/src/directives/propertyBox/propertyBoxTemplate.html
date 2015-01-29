@@ -6,9 +6,9 @@
   <input id="propertyBoxFilterTextInput" data-ng-model="filterText">
 
   <ul>
-    <li data-ng-repeat="property in element.properties | filter:{ _name: filterText }">
+    <li data-ng-repeat="property in element.getProperties() | filter:{ _name: filterText }">
         <div>
-            <label>{{ property.getName() }}</label>
+            <label>{{ property.getType() }}</label>
             <input data-ng-model="property._value">
         </div>
       <!--

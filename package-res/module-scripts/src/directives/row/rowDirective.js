@@ -25,7 +25,8 @@ define( [ 'cd3e' ],
           //isolate scope
           scope: {
             // define directive input / output here
-            row: "="
+              row: "=",
+              selectedElement: "="
           },
           link: function ( scope, element, attrs) {
             if ( scope.row.getChildren().length > 0 ) {
@@ -37,4 +38,3 @@ define( [ 'cd3e' ],
       }]);
     }
 );
-

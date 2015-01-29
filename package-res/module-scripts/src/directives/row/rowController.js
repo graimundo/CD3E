@@ -33,7 +33,7 @@ define(
                       var x = 42;
                   });
 
-                  $scope.onDropCallback = dropService.getDropHandler(
+                  var onDropCallback = dropService.getDropHandler(
                       function(element, category, droppedElementType){
                           if (category === 'layout'){
                               $scope.row.addChild( element );
@@ -41,9 +41,14 @@ define(
                       }
                   );
 
+                  $scope.selectElement = function(element){
+                      console.log('clicked on row');
+                      $scope.selectedElement = element;
+                  };
                   // endregion
 
                   // region scope bindings
+                  $scope.onDropCallback = onDropCallback;
                   // endregion
 
                   // region controller init
