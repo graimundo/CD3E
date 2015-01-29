@@ -79,7 +79,7 @@ cd3e {
   text-align: left;
 }
 
-.show-grid .inner-column  {
+.show-grid .column  {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #eee;
@@ -115,4 +115,11 @@ cd3e {
   background-color: rgba(61,124,66,0.25);
   margin-bottom: 5px;
 
+  padding: 5px;
+}
+
+
+.column {
+    /* margin-bottom: 5px; */
+  
 }

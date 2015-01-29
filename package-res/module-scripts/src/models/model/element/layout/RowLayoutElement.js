@@ -17,6 +17,25 @@ define(['../LayoutElement'], function(LayoutElement){
       return canAdd;
     },
 
+
+    /**
+     * *
+     * @param child
+     * @returns {boolean}
+     */
+    addChild: function( child ){
+      var added = this.base( child );
+      if( added ) {
+        var size = Math.floor( (12 / this.getChildren().length) + 0.5 );
+        _.each( this.getChildren(), function( child ){
+          child.setWidth( size );
+        });
+         
+      }
+
+      return added;
+    },
+    
     /**
      * *
      * @returns {boolean}

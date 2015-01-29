@@ -5,7 +5,7 @@ define(['../LayoutElement'], function (LayoutElement) {
     /**
      * Column width
      */
-    _width: 12,
+    _width: 6,
 
     /**
      * The component*
@@ -14,7 +14,7 @@ define(['../LayoutElement'], function (LayoutElement) {
 
     constructor: function (id, name, properties, parent, children, width, component) {
       this.base(id, name, properties, parent, children);
-      this._width = width;
+      this._width = width ? width : 6;
       this._component = component;
     },
 
@@ -45,7 +45,7 @@ define(['../LayoutElement'], function (LayoutElement) {
           && !(layoutElement instanceof ColumnLayoutElement);
       return canAdd;
     },
-
+    
     /**
      * *
      * @returns {null}
