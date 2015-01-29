@@ -5,7 +5,10 @@
      data-stop-event="drop"
      data-is-selected={{isSelected()}}
      >
-    <div class="column-header">
+    <div class="column-header"
+        ng-click="onElementSelection(column)"
+        data-stop-event="click"
+        >
         <div>{{column.getName()}}</div>
         <button type="button" class="remove btn btn-default" aria-label="Remove"
                 ng-click="onRemoveButtonClick(column)"
@@ -16,7 +19,7 @@
 
     <div class="inner-column"
          data-ng-click="onElementSelection(column)"
-        data-stop-event="click"
+         data-stop-event="click"
         >
         <component data-ng-if="column.getComponent()"
                    data-component="column.getComponent()">

@@ -4,10 +4,12 @@
     data-jqyoui-options="{greedy: true}"
     data-stop-event="drop"
      data-is-selected={{isSelected()}}
-     ng-click="onElementSelection(row)"
      >
 
-    <div class="row-header">
+    <div class="row-header"
+        ng-click="onElementSelection(row)"
+        data-stop-event="click"
+        >
         <div>{{row.getName()}}</div>
         <button type="button" class="remove btn btn-default" aria-label="Remove"
                 ng-click="onRemoveButtonClick(row)"
@@ -16,19 +18,4 @@
         </button>
     </div>
 
-    <!-- <div style="float: right; position: absolute; right: 30px;">
-  <div class="row-delimiter col-xs-12"
-      ng-click="onElementSelection(row)"
-      >
-    Row: {{row.getName()}}
-  </div>
-
-    <button type="button" class="remove btn btn-default" aria-label="Remove"
-        ng-click="onRemoveButtonClick(row)"
-        data-stop-event="click">
-      <span class="glyphicon glyphicon-remove"></span>
-    </button>
-  </div> -->
-
-  <!-- <column data-ng-repeat="column in row.getChildren()" data-column="column"></column> -->
 </div>
