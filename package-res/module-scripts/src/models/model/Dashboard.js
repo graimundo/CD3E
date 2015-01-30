@@ -1,4 +1,5 @@
-define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement'], function(Base, _, RowLayoutElement){
+define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement', './element/layout/ColumnLayoutElement'],
+    function(Base, _, RowLayoutElement, ColumnLayoutElement){
   var Dashboard;
   
   Dashboard = Base.extend({
@@ -77,6 +78,29 @@ define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement'], fu
           root.removeElement(element);
         }
       });
+    },
+    
+    removeComponent: function( component ) {
+      var myself = this;
+      var rootElements = this.getRootElements();
+      _.each( rootElements, function( element, index ) {
+        myself.removeComponentFromElement( element, component);
+      });
+    },
+    
+    removeComponentFromElement: function( element, component ) {
+      var myself = this;
+      if( element instanceof ColumnLayoutElement) {
+        var elementComponent = element.getComponent();
+        if( elementComponent && component.getId() == elementComponent.getId() ) {
+          element.clearComponent();
+        } 
+      }
+      _.each(element.getChildren(), function(element){
+        myself.removeComponentFromElement( element, component );
+      });
+
+      return;
     }
     
   });

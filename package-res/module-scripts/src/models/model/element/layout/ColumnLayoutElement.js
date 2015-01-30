@@ -71,7 +71,7 @@ define(['../LayoutElement'], function (LayoutElement) {
      * *
      * @private
      */
-    _clearComponent: function(){
+    clearComponent: function(){
       this.setComponent( undefined );
       return this;
     },

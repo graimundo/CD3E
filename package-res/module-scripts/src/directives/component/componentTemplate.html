@@ -2,9 +2,16 @@
     data-ng-click="onElementSelection(component)"
     data-stop-event="click"
     data-is-selected={{isSelected()}}
-     >
-
+    >
+  <div>
     <div class="component-type">{{component.getType()}}</div>
+    <button type="button" class="remove btn btn-default" aria-label="Remove"
+        ng-click="onRemoveButtonClick(component)"
+        data-stop-event="click">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </div>
 
-    <div>{{component.getName()}}</div>
+  <div class="component-name">{{component.getName()}}</div>
+
 </div>

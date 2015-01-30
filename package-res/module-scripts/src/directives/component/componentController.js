@@ -15,38 +15,44 @@
 
 define(
     [
-        'cd3e',
-        'common-ui/underscore'
+      'cd3e',
+      'common-ui/underscore'
     ],
 
-    function ( app, _ ) {
+    function (app, _) {
 
-        app.controller(
-            'componentController',
-            // dependencies
-            [ '$scope', '$rootScope',
-              // controller
-              function ( $scope, $rootScope ) {
+      app.controller(
+          'componentController',
+          // dependencies
+          ['$scope', '$rootScope',
+            // controller
+            function ($scope, $rootScope) {
 
-                  // region controller methods
-                  function selectElement( element ) {
-                      $rootScope.selectedElement = element;
-                  }
+              // region controller methods
+              function selectElement(element) {
+                $rootScope.selectedElement = element;
+              }
 
-                  function isSelected() {
-                      return $scope.component == $rootScope.selectedElement;
-                  }
-                  // endregion
+              function isSelected() {
+                return $scope.component == $rootScope.selectedElement;
+              }
 
-                  // region scope bindings
-                  $scope.onElementSelection = selectElement;
+              // endregion
 
-                  $scope.isSelected = isSelected;
-                  // endregion
+              // region scope bindings
+              $scope.onElementSelection = selectElement;
 
-                  // region controller init
-                  // endregion
-              }]
-        );
+              $scope.isSelected = isSelected;
+
+              $scope.onRemoveButtonClick = function (component) {
+                console.log("removed component" + component.getName());
+                $rootScope.dashboard.removeComponent(component);
+              };
+              // endregion
+
+              // region controller init
+              // endregion
+            }]
+      );
     }
 );

@@ -68,20 +68,11 @@ html, body {
   padding: 8px 20px;
   display: block;
   height: 60px;
-  background: #d8e4ed; /* Old browsers */
-  background: -moz-linear-gradient(top,  #d8e4ed 0%, #c3d5e4 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d8e4ed), color-stop(100%,#c3d5e4)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  #d8e4ed 0%,#c3d5e4 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  #d8e4ed 0%,#c3d5e4 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  #d8e4ed 0%,#c3d5e4 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  #d8e4ed 0%,#c3d5e4 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8e4ed', endColorstr='#c3d5e4',GradientType=0 ); /* IE6-9 */
   -webkit-box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.4);
   -moz-box-shadow:    0px 2px 3px rgba(50, 50, 50, 0.4);
   box-shadow:         0px 2px 3px rgba(50, 50, 50, 0.4);
   color: rgb(38, 53, 61);
-  font-size: 28px
-  
+  font-size: 28px;
 }
 
 .body {
@@ -149,7 +140,7 @@ cd3e {
 }
 
 /* positioning */
-.element-definition{
+.element-definition .ui-draggable {
   display: inline-block;
   padding: 4px 12px;
   margin-bottom: 0;
@@ -168,9 +159,9 @@ cd3e {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  transition: all 500ms;
+  /* transition: all 500ms; */
   -moz-transition: all 500ms;
-  -webkit-transition: all 500ms;
+  /* -webkit-transition: all 500ms; */
   width: 100%;
 }
 
@@ -184,6 +175,12 @@ cd3e {
   -webkit-transition: all 300ms;
   color: #698492;
   background-color: #dce7ed;
+}
+
+.element-definition .ui-draggable-dragging {
+  color: #698492;
+  background-color: #dce7ed;
+  width: inherit;
 }
 
 /* grid visualization */
@@ -280,14 +277,40 @@ cd3e {
 }
 
 button.remove.btn {
-    padding: 0px;
-    line-height: 1;
-    background: none;
-    border: none;
+  padding: 0px;
+  line-height: 1;
+  background: none;
+  border: none;
 }
 
 button.remove.btn .glyphicon-remove:before {
-    color: #1973bc;
+  color: #1973bc;
+}
+
+.component > div {
+  height: 18px;
+}
+
+.component .component-type {
+  font-weight: bold;
+  text-align: left;
+  display: inline-block;
+  float: left;
+}
+
+.component button.remove.btn {
+  right: 25px;
+  position: absolute;
+}
+
+.component button.remove.btn .glyphicon-remove:before {
+  color: white;
+}
+
+.component .component-name {
+  text-align: left;
+  margin-top: 10px;
+  padding-left: 10px;
 }
 
 .toolBox-body .input-group-addon,
