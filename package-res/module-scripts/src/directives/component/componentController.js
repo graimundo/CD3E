@@ -52,6 +52,20 @@ define(
               $scope.getSelectedType = function() {
                 return $scope.component.getType().replace(/component/i, "");
               };
+              
+              $scope.jqyouiOptions = { 
+                helper: function(event){
+                  var dragObject = $('<div/>');
+                  dragObject
+                      .addClass(event.currentTarget.classList[0])
+                      .addClass('dragging-object')
+                      .attr('data-draggable-options', event.currentTarget.attributes['data-draggable-options'].value)
+                      .attr('data-draggable-type', event.currentTarget.attributes['data-draggable-type'].value)
+                  
+                  return dragObject;
+                },
+                cursor: 'move'
+              };
               // endregion
 
               // region controller init

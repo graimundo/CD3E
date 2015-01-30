@@ -124,9 +124,15 @@ define(['Base', 'common-ui/underscore', './element/LayoutElement', './element/la
       
       if (targetElement) {
         return this._moveLayoutElement(element, targetElement);
-      } else {
-        this.removeElement(element);
-        this.addRootElement( element );
+      } /*else {
+        
+      }   */
+    },
+
+    moveToRoot: function( rootElement ) {
+      if( rootElement instanceof RowLayoutElement ) {
+        this.removeElement(rootElement);
+        this.addRootElement( rootElement );
       }
     },
 
@@ -141,7 +147,8 @@ define(['Base', 'common-ui/underscore', './element/LayoutElement', './element/la
     },
 
     _moveComponent: function ( component, target ) {
-      if ( !this._isComponentContainer( target ) ) {
+      if ( !this._isComponentContainer( target ) 
+        || !target.canAddComponent()) {
         return false;
       }
       this._removeComponent( component );

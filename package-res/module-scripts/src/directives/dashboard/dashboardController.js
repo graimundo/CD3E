@@ -31,25 +31,17 @@ define(
                 'component': elementDropCallback,
                 'column': elementDropCallback,
                 'row': elementDropCallback,
-                'layoutDefinition': layoutDefinitionDropCallback,
-                'componentDefinition': componentDefintionDropCallback
+                'layoutDefinition': layoutDefinitionDropCallback
               };
 
               function elementDropCallback (element, dest){
-                $rootScope.dashboard.moveElement(element, dest);
+                $rootScope.dashboard.moveToRoot(element);
               }
 
               function layoutDefinitionDropCallback(type){
                 definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
                   var element = layoutElementFactory.create( layoutDef[type] );
-                  $scope.column.addChild(element);
-                });
-              }
-
-              function componentDefintionDropCallback(type){
-                definitionsProvider.getComponentDefinitions().then(function(componentDef){
-                  var component = componentElementFactory.create( componentDef[type] );
-                  $scope.column.setComponent(component);
+                  $scope.dashboard.addRootElement(element);
                 });
               }
 

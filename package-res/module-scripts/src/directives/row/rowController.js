@@ -42,14 +42,14 @@ define(
               function layoutDefinitionDropCallback(type){
                 definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
                   var element = layoutElementFactory.create( layoutDef[type] );
-                  $scope.column.addChild(element);
+                  $scope.row.addChild(element);
                 });
               }
 
               function componentDefintionDropCallback(type){
                 definitionsProvider.getComponentDefinitions().then(function(componentDef){
                   var component = componentElementFactory.create( componentDef[type] );
-                  $scope.column.setComponent(component);
+                  $scope.row.setComponent(component);
                 });
               }
               
@@ -88,6 +88,21 @@ define(
               $scope.onElementSelection = selectElement;
               
               $scope.isSelected = isSelected;
+
+              $scope.jqyouiOptions = {
+                helper: function(event){
+                  var dragObject = $('<div/>');
+                  dragObject
+                      .addClass(event.currentTarget.classList[0])
+                      .addClass('dragging-object')
+                      .attr('data-draggable-options', event.currentTarget.attributes['data-draggable-options'].value)
+                      .attr('data-draggable-type', event.currentTarget.attributes['data-draggable-type'].value)
+
+                  return dragObject;
+                },
+                cursor: 'move',
+                greddy: 'true'
+              };
               // endregion
 
               // region controller init
