@@ -15,53 +15,87 @@
 
 define(
     [
-        'cd3e',
-        'common-ui/underscore'
+      'cd3e',
+      'common-ui/underscore'
     ],
 
-    function ( app, _ ) {
+    function (app, _) {
 
-        app.controller(
-            'columnController',
-            // dependencies
-            [ '$scope', '$timeout', 'dropService', '$rootScope',
-              // controller
-              function ( $scope, timer, dropService, $rootScope ) {
+      app.controller(
+          'columnController',
+          // dependencies
+          ['$scope', '$timeout', 'definitionsProvider', '$rootScope', 'layoutElementFactory', 'componentElementFactory',
+            // controller
+            function ($scope, timer, definitionsProvider, $rootScope, layoutElementFactory, componentElementFactory) {
+              var dropHandlers = {
+                'component': elementDropCallback,
+                'column': elementDropCallback,
+                'row': elementDropCallback,
+                'layoutDefinition': layoutDefinitionDropCallback,
+                'componentDefinition': componentDefintionDropCallback
+              };
+              
+              function elementDropCallback (element, dest){
+                $rootScope.dashboard.moveElement(element, dest);
+              }
 
-                  // region controller methods
-                  function selectElement( element ) {
-                      $rootScope.selectedElement = element;
-                  }
+              function layoutDefinitionDropCallback(type){
+                definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
+                  var element = layoutElementFactory.create( layoutDef[type] );
+                  $scope.column.addChild(element);
+                });
+              }
+              
+              function componentDefintionDropCallback(type){
+                definitionsProvider.getComponentDefinitions().then(function(componentDef){
+                  var component = componentElementFactory.create( componentDef[type] );
+                  $scope.column.setComponent(component);
+                });
+              }
+              
+              
+              // region controller methods
+              function selectElement(element) {
+                $rootScope.selectedElement = element;
+              }
 
-                  function isSelected() {
-                      return $scope.column == $rootScope.selectedElement;
-                  }
-                  // endregion
+              function isSelected() {
+                return $scope.column == $rootScope.selectedElement;
+              }
 
-                  // region scope bindings
-                  $scope.onDropCallback = dropService.getDropHandler(
-                      function(element, category, droppedElementType){
-                          if (category === 'layout'){
-                              $scope.column.addChild( element );
-                          } else if (category === 'component') {
-                              $scope.column.setComponent( element );
-                          }
-                      }
-                  );
+              // endregion
 
-                  $scope.onElementSelection = selectElement;
+              // region scope bindings
+              $scope.onDropCallback = function(event, ui) {
+                var draggableType = ui.helper.attr("data-draggable-type"),
+                    draggableOptions = JSON.parse(ui.helper.attr('data-draggable-options'));
+                
+                var targetDraggableType = event.target.attributes['data-draggable-type'].value,
+                    targetDraggableOptions = JSON.parse(event.target.attributes['data-draggable-options'].value);
 
-                  $scope.isSelected = isSelected;
+                var callback = dropHandlers[draggableType];
+                if( draggableType.indexOf('Definition') > 0 ) { //definition drop
+                  callback( draggableOptions.type );
+                } else {
+                  var element = $rootScope.dashboard.getDescendantElement(draggableOptions.id),
+                      destination = $rootScope.dashboard.getDescendantElement(targetDraggableOptions.id);
+                  callback(element, destination);
+                }
+              };
 
-                  $scope.onRemoveButtonClick = function(element){
-                    console.log("removed row" + element.getName() );
-                    $rootScope.dashboard.removeElement(element);
-                  };
-                  // endregion
+              $scope.onElementSelection = selectElement;
 
-                  // region controller init
-                  // endregion
-              }]
-        );
+              $scope.isSelected = isSelected;
+
+              $scope.onRemoveButtonClick = function (element) {
+                console.log("removed row" + element.getName());
+                $rootScope.dashboard.removeElement(element);
+              };
+              // endregion
+
+              // region controller init
+              // endregion
+            }]
+      );
     }
 );

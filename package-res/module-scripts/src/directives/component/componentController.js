@@ -48,6 +48,7 @@ define(
                 console.log("removed component" + component.getName());
                 $rootScope.dashboard.removeElement(component);
               };
+              
               // endregion
 
               // region controller init

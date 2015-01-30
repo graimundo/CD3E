@@ -1,9 +1,13 @@
 <div class="column col-xs-{{column.getWidth()}}"
      data-drop="true"
+     data-drag="true"
      data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
-     data-jqyoui-options="{greedy: true}"
+     data-jqyoui-draggable="{ onDrop:'onDragCallback', placeholder:'keep' }"
+     data-jqyoui-options="{ greedy: true, helper:'clone',cursor:'move' }"
      data-stop-event="drop"
      data-is-selected={{isSelected()}}
+     data-draggable-type="column"
+     data-draggable-options='{ "id":"{{column.getId()}}" }'
      >
     <div class="column-header"
         ng-click="onElementSelection(column)"

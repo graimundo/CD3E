@@ -15,52 +15,84 @@
 
 define(
     [
-        'cd3e',
-        'common-ui/underscore'
+      'cd3e',
+      'common-ui/underscore'
     ],
 
-    function ( app, _ ) {
+    function (app, _) {
 
-        app.controller(
-            'rowController',
-            // dependencies
-            [ '$scope', '$timeout', 'dropService', '$rootScope',
-              // controller
-              function ( $scope, timer, dropService, $rootScope) {
+      app.controller(
+          'rowController',
+          // dependencies
+          ['$scope', '$timeout', 'definitionsProvider', '$rootScope', 'layoutElementFactory', 'componentElementFactory',
+            // controller
+            function ($scope, timer, definitionsProvider, $rootScope, layoutElementFactory, componentElementFactory) {
+              var dropHandlers = {
+                'component': elementDropCallback,
+                'column': elementDropCallback,
+                'row': elementDropCallback,
+                'layoutDefinition': layoutDefinitionDropCallback,
+                'componentDefinition': componentDefintionDropCallback
+              };
 
-                  // region controller methods
-                  function selectElement( element ) {
-                      $rootScope.selectedElement = element;
-                  }
+              function elementDropCallback (element, dest){
+                $rootScope.dashboard.moveElement(element, dest);
+              }
 
-                  function isSelected() {
-                      return $scope.row == $rootScope.selectedElement;
-                  }
+              function layoutDefinitionDropCallback(type){
+                definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
+                  var element = layoutElementFactory.create( layoutDef[type] );
+                  $scope.column.addChild(element);
+                });
+              }
 
-                  var onDropCallback = dropService.getDropHandler(
-                      function(element, category, droppedElementType){
-                          if (category === 'layout'){
-                              $scope.row.addChild( element );
-                          }
-                      }
-                  );
-                
-                  $scope.onRemoveButtonClick = function(element){
-                      $rootScope.dashboard.removeElement(element);
-                  };
-                  // endregion
+              function componentDefintionDropCallback(type){
+                definitionsProvider.getComponentDefinitions().then(function(componentDef){
+                  var component = componentElementFactory.create( componentDef[type] );
+                  $scope.column.setComponent(component);
+                });
+              }
+              
+              // region controller methods
+              function selectElement(element) {
+                $rootScope.selectedElement = element;
+              }
 
-                  // region scope bindings
-                  $scope.onElementSelection = selectElement;
+              function isSelected() {
+                return $scope.row == $rootScope.selectedElement;
+              }
 
-                  $scope.onDropCallback = onDropCallback;
+              $scope.onDropCallback = function(event, ui) {
+                var draggableType = ui.helper.attr("data-draggable-type"),
+                    draggableOptions = JSON.parse(ui.helper.attr('data-draggable-options'));
 
-                  $scope.isSelected = isSelected;
-                  // endregion
+                var targetDraggableType = event.target.attributes['data-draggable-type'].value,
+                    targetDraggableOptions = JSON.parse(event.target.attributes['data-draggable-options'].value);
 
-                  // region controller init
-                  // endregion
-              }]
-        );
+                var callback = dropHandlers[draggableType];
+                if( draggableType.indexOf('Definition') > 0 ) { //definition drop
+                  callback( draggableOptions.type );
+                } else {
+                  var element = $rootScope.dashboard.getDescendantElement(draggableOptions.id),
+                      destination = $rootScope.dashboard.getDescendantElement(targetDraggableOptions.id);
+                  callback(element, destination);
+                }
+              };
+
+              $scope.onRemoveButtonClick = function (element) {
+                $rootScope.dashboard.removeElement(element);
+              };
+              // endregion
+
+              // region scope bindings
+              $scope.onElementSelection = selectElement;
+              
+              $scope.isSelected = isSelected;
+              // endregion
+
+              // region controller init
+              // endregion
+            }]
+      );
     }
 );

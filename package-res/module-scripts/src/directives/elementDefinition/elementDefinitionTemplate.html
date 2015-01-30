@@ -4,8 +4,8 @@
     data-jqyoui-draggable="{placeholder:'keep'}"
     data-jqyoui-options="{helper:'clone',cursor:'pointer'}"
     data-drag="true"
-    data-category="{{elementCategory}}"
-    data-element-type="{{elementDefinition.getType()}}"
+    data-draggable-type="{{elementCategory}}Definition"
+    data-draggable-options='{"type":"{{elementDefinition.getType()}}"}'
     >
     <div>{{ elementDefinition.getTypeDescription() }} </div>
     <!-- maybe create a directive for factories? Something like the following line

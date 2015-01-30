@@ -2,6 +2,11 @@
     data-ng-click="onElementSelection(component)"
     data-stop-event="click"
     data-is-selected={{isSelected()}}
+    data-drag="true"
+    data-jqyoui-draggable="{ onDrop:'onDragCallback', placeholder:'keep' }"
+    data-jqyoui-options="{ helper:'clone',cursor:'move'}"
+    data-draggable-type="component"
+    data-draggable-options='{ "id":"{{component.getId()}}" }'
     >
   <div>
     <div class="component-type">{{component.getType()}}</div>

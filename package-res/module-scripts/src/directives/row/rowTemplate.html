@@ -1,9 +1,13 @@
 <div class="row show-grid"
     data-drop="true"
+    data-drag="true"
     data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
-    data-jqyoui-options="{greedy: true}"
+    data-jqyoui-draggable="{ onDrop:'onDragCallback', placeholder:'keep' }"
+    data-jqyoui-options="{ greedy: true, helper:'clone',cursor:'move' }"
     data-stop-event="drop"
      data-is-selected={{isSelected()}}
+    data-draggable-type="row"
+    data-draggable-options='{ "id":"{{row.getId()}}" }'
      >
 
     <div class="row-header"
