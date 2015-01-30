@@ -3,6 +3,8 @@
      data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
      data-jqyoui-options="{greedy: true}"
      data-stop-event="drop"
+    data-draggable-type="column"
+    data-draggable-options='{}'
      >
   Drop Rows here...
     <row ng-repeat="row in dashboard.getRootElements()" data-row="row" />

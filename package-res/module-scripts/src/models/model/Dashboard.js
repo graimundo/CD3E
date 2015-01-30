@@ -36,11 +36,11 @@ define(['Base', 'common-ui/underscore', './element/LayoutElement', './element/la
     addRootElement: function( /*RowLayoutElement*/rootElement ) {
       if( rootElement instanceof RowLayoutElement ) {
         this._rootElements.push( rootElement );
+        return true;
       } else {
         console.log( "Adding element different than RowLayoutElement. Blocking");
+        return false;
       }
-      
-      return this;
     },
 
     removeElement: function ( element ) {
@@ -120,8 +120,13 @@ define(['Base', 'common-ui/underscore', './element/LayoutElement', './element/la
     moveElement: function( element, targetElement ) {
       if ( element instanceof ComponentElement ) {
         return this._moveComponent( element, targetElement );
+      }
+      
+      if (targetElement) {
+        return this._moveLayoutElement(element, targetElement);
       } else {
-        return this._moveLayoutElement( element, targetElement );
+        this.removeElement(element);
+        this.addRootElement( element );
       }
     },
 

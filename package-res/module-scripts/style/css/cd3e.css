@@ -187,6 +187,11 @@ cd3e {
   width: inherit;
 }
 
+.ui-draggable-dragging * {
+  witdth: 20px;
+  height: 20px;
+}
+
 /* grid visualization */
 
 .row-delimiter {

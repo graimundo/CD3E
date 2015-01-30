@@ -15,43 +15,72 @@
 
 define(
     [
-        'cd3e',
-        'common-ui/underscore'
+      'cd3e',
+      'common-ui/underscore'
     ],
 
-    function ( app, _ ) {
+    function (app, _) {
 
-        app.controller(
-            'dashboardController',
-            // dependencies
-            [ '$scope', '$timeout', 'dashboardService', 'dropService',
-              // controller
-              function ( $scope, timer, dashboardService, dropService) {
+      app.controller(
+          'dashboardController',
+          // dependencies
+          ['$scope', '$timeout', 'definitionsProvider', '$rootScope', 'layoutElementFactory', 'componentElementFactory',
+            // controller
+            function ($scope, timer, definitionsProvider, $rootScope, layoutElementFactory, componentElementFactory) {
+              var dropHandlers = {
+                'component': elementDropCallback,
+                'column': elementDropCallback,
+                'row': elementDropCallback,
+                'layoutDefinition': layoutDefinitionDropCallback,
+                'componentDefinition': componentDefintionDropCallback
+              };
 
-                  // region controller methods
-                  $scope.$watch( 'dashboard', function ( dashboard ) {
-                      var x = 42;
-                  });
+              function elementDropCallback (element, dest){
+                $rootScope.dashboard.moveElement(element, dest);
+              }
 
-                  var onDropCallback = dropService.getDropHandler(
-                      function(element, category, droppedElementType){
-                          if (category === 'layout'){
-                              $scope.dashboard.addRootElement( element );
-                          }
-                      }
-                  );
+              function layoutDefinitionDropCallback(type){
+                definitionsProvider.getLayoutDefinitions().then(function(layoutDef){
+                  var element = layoutElementFactory.create( layoutDef[type] );
+                  $scope.column.addChild(element);
+                });
+              }
 
-                  // endregion
+              function componentDefintionDropCallback(type){
+                definitionsProvider.getComponentDefinitions().then(function(componentDef){
+                  var component = componentElementFactory.create( componentDef[type] );
+                  $scope.column.setComponent(component);
+                });
+              }
 
-                  // region scope bindings
-                  $scope.onDropCallback = onDropCallback;
-                  // endregion
+              // region controller methods
+              $scope.$watch('dashboard', function (dashboard) {
+                var x = 42;
+              });
 
-                  // region controller init
-                  // region controller init
-                  //$scope.dashboard = dashboardService.create();
-                  // endregion
-              }]
-        );
+              $scope.onDropCallback = function (event, ui) {
+                var draggableType = ui.helper.attr("data-draggable-type"),
+                    draggableOptions = JSON.parse(ui.helper.attr('data-draggable-options'));
+
+                var callback = dropHandlers[draggableType];
+                if (draggableType.indexOf('Definition') > 0) { //definition drop
+                  callback(draggableOptions.type);
+                } else {
+                  var element = $rootScope.dashboard.getDescendantElement(draggableOptions.id);
+                  callback(element);
+                }
+              };
+
+              // endregion
+
+              // region scope bindings
+              // endregion
+
+              // region controller init
+              // region controller init
+              //$scope.dashboard = dashboardService.create();
+              // endregion
+            }]
+      );
     }
 );
