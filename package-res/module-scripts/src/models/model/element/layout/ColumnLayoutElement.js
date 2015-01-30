@@ -63,6 +63,9 @@ define(['../LayoutElement'], function (LayoutElement) {
       if ( !this.canAddComponent() ) {
         return false;
       }
+      if( component ) {
+        component.setHtmlObject( this.getName() );
+      }
       this._component = component;
       return true;
     },
