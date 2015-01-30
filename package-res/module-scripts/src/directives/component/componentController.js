@@ -50,7 +50,7 @@ define(
               };
 
               $scope.getSelectedType = function() {
-                return $scope.component.getType().replace(/component/i, "");
+                return $scope.component.getType().replace(/components/i, "");
               };
               
               $scope.jqyouiOptions = { 

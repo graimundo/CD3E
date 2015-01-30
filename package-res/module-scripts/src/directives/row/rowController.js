@@ -101,7 +101,7 @@ define(
                   return dragObject;
                 },
                 cursor: 'move',
-                greddy: 'true'
+                greedy: true
               };
               // endregion
 

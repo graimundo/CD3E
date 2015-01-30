@@ -1,4 +1,4 @@
-define(['./Property','Base'], function(Property, Base){
+define(['./Property', 'Base'], function (Property, Base) {
   var Element;
 
   Element = Base.extend({
@@ -6,11 +6,6 @@ define(['./Property','Base'], function(Property, Base){
      * Element ID
      */
     _id: "",
-
-    /**
-     * Element Name
-     */
-    _name: "",
 
     /**
      * List of Property
@@ -22,16 +17,33 @@ define(['./Property','Base'], function(Property, Base){
      * */
     _type: undefined,
 
-      /**
-       * Type Description of the element
-       * */
-      _typeDescription: undefined,
+    /**
+     * Type Description of the element
+     * */
+    _typeDescription: undefined,
 
-    constructor: function (id, name, properties, type){
+    constructor: function (id, name, properties, type) {
+      this.setId(id);
+      this.setName(name);
+      this.setProperties( properties);
+      this.setType( type);
+    },
+
+    /**
+     * *
+     * @returns {string}
+     */
+    getId: function () {
+      return this._id;
+    },
+
+    /**
+     * *
+     * @param id
+     */
+    setId: function (id) {
       this._id = !id ? generateGUID() : id;
-      this._name = name;
-      this._properties = properties ? properties : [];
-      this._type = type;
+      return this;
 
       function S4() {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
@@ -46,39 +58,22 @@ define(['./Property','Base'], function(Property, Base){
      * *
      * @returns {string}
      */
-    getId: function (){
-      return this._id;
-    },
-
-    /**
-     * *
-     * @param id
-     */
-    setId: function (id){
-      this._id = id;
-      return this;
-    },
-
-    /**
-     * *
-     * @returns {string}
-     */
-    getName: function() {
+    getName: function () {
       var propertyName = this.getProperties()["Name"];
+      propertyName = propertyName ? propertyName : this.getProperties()["name"];
       return propertyName ? propertyName.getValue() : undefined;
-      return this._name;
     },
 
     /**
      * *
      * @param name
      */
-    setName: function(name){
+    setName: function (name) {
       var propertyName = this.getProperties()["Name"];
-      if ( propertyName ) {
-        propertyName.setValue( name );
+      propertyName = propertyName ? propertyName : this.getProperties()["name"];
+      if (propertyName) {
+        propertyName.setValue(name);
       }
-      //this._name = name;
       return this;
     },
 
@@ -86,7 +81,7 @@ define(['./Property','Base'], function(Property, Base){
      * *
      * @returns {*}
      */
-    getProperties: function(){
+    getProperties: function () {
       return this._properties;
     },
 
@@ -94,8 +89,8 @@ define(['./Property','Base'], function(Property, Base){
      * *
      * @param property
      */
-    setProperties: function(property){
-      this._properties = property;
+    setProperties: function (properties) {
+      this._properties = properties ? properties : [];
       return this;
     },
 
@@ -103,22 +98,22 @@ define(['./Property','Base'], function(Property, Base){
      * *
      * @returns {*}
      */
-    getType: function() {
+    getType: function () {
       return this._type;
     },
 
-    setType: function(type){
+    setType: function (type) {
       this._type = type;
       return this;
     },
-      getTypeDescription: function() {
-          return this._typeDescription;
-      },
+    getTypeDescription: function () {
+      return this._typeDescription;
+    },
 
-      setTypeDescription: function(typeDescription){
-          this._typeDescription = typeDescription;
-          return this;
-      }
+    setTypeDescription: function (typeDescription) {
+      this._typeDescription = typeDescription;
+      return this;
+    }
   });
 
   return Element;

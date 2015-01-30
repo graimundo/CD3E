@@ -7,16 +7,21 @@ define(['../Element'], function(Element){
     },
 
     setHtmlObject: function( htmlObject ) {
-      this.getProperties()['HtmlObject'].setValue( htmlObject );
+      var htmlObjectProperty = this.getProperties()['HtmlObject'];
+      if ( htmlObjectProperty ){
+        htmlObjectProperty.setValue(htmlObject);
+      }
       return this;
     },
 
     getHtmlObject: function() {
-      return this.getProperties()['HtmlObject'].getValue();
+      var htmlObjectProperty = this.getProperties()['HtmlObject'];
+      if ( htmlObjectProperty ){
+        return htmlObjectProperty.getValue();
+      }
+      return;
     }
 
   });
-
-
   return ComponentElement;
 });
