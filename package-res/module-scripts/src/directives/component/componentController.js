@@ -48,7 +48,10 @@ define(
                 console.log("removed component" + component.getName());
                 $rootScope.dashboard.removeElement(component);
               };
-              
+
+              $scope.getSelectedType = function() {
+                return $scope.component.getType().replace(/component/i, "");
+              };
               // endregion
 
               // region controller init

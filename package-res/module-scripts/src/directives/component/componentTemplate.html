@@ -9,7 +9,7 @@
     data-draggable-options='{ "id":"{{component.getId()}}" }'
     >
   <div>
-    <div class="component-type">{{component.getType()}}</div>
+    <div class="component-type">{{getSelectedType()}}</div>
     <button type="button" class="remove btn btn-default" aria-label="Remove"
         ng-click="onRemoveButtonClick(component)"
         data-stop-event="click">
