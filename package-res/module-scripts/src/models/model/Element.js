@@ -6,12 +6,7 @@ define(['./Property','Base'], function(Property, Base){
      * Element ID
      */
     _id: "",
-    
-    /**
-     * Element Name
-     */
-    _name: "",
-    
+
     /**
      * List of Property
      */
@@ -59,9 +54,9 @@ define(['./Property','Base'], function(Property, Base){
      * @returns {string}
      */
     getName: function() {
-      var propertyName = this.getProperties()["name"];
+      var propertyName = this.getProperties()["Name"];
+      propertyName = propertyName ? propertyName : this.getProperties()["name"];
       return propertyName ? propertyName.getValue() : undefined;
-      return this._name;
     },
 
     /**
@@ -69,11 +64,11 @@ define(['./Property','Base'], function(Property, Base){
      * @param name
      */
     setName: function(name){
-      var propertyName = this.getProperties()["name"];
+      var propertyName = this.getProperties()["Name"];
+      propertyName = propertyName ? propertyName : this.getProperties()["name"];
       if ( propertyName ) {
         propertyName.setValue( name );
       }
-      //this._name = name;
       return this;
     },
 
