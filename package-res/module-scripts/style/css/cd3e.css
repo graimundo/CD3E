@@ -43,6 +43,13 @@
   url('../fonts/opensans-bold.svg#OpenSansBold') format('svg');
 }
 
+xpto{
+  position: fixed;
+  background: #F00;
+  height: 100%;
+  z-index: 1;
+}
+
 
 html, body {
   margin: 0px;

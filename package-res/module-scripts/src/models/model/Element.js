@@ -1,11 +1,16 @@
 define(['./Property','Base'], function(Property, Base){
   var Element;
-  
+
   Element = Base.extend({
     /**
      * Element ID
      */
     _id: "",
+
+    /**
+     * Element Name
+     */
+    _name: "",
 
     /**
      * List of Property
@@ -16,6 +21,11 @@ define(['./Property','Base'], function(Property, Base){
      * Type of the element
      * */
     _type: undefined,
+
+      /**
+       * Type Description of the element
+       * */
+      _typeDescription: undefined,
 
     constructor: function (id, name, properties, type){
       this._id = !id ? generateGUID() : id;
@@ -48,15 +58,15 @@ define(['./Property','Base'], function(Property, Base){
       this._id = id;
       return this;
     },
-    
+
     /**
-     * * 
+     * *
      * @returns {string}
      */
     getName: function() {
       var propertyName = this.getProperties()["Name"];
-      propertyName = propertyName ? propertyName : this.getProperties()["name"];
       return propertyName ? propertyName.getValue() : undefined;
+      return this._name;
     },
 
     /**
@@ -65,15 +75,15 @@ define(['./Property','Base'], function(Property, Base){
      */
     setName: function(name){
       var propertyName = this.getProperties()["Name"];
-      propertyName = propertyName ? propertyName : this.getProperties()["name"];
       if ( propertyName ) {
         propertyName.setValue( name );
       }
+      //this._name = name;
       return this;
     },
 
     /**
-     * * 
+     * *
      * @returns {*}
      */
     getProperties: function(){
@@ -90,18 +100,26 @@ define(['./Property','Base'], function(Property, Base){
     },
 
     /**
-     * * 
+     * *
      * @returns {*}
      */
     getType: function() {
       return this._type;
     },
-    
+
     setType: function(type){
       this._type = type;
       return this;
-    }
+    },
+      getTypeDescription: function() {
+          return this._typeDescription;
+      },
+
+      setTypeDescription: function(typeDescription){
+          this._typeDescription = typeDescription;
+          return this;
+      }
   });
-  
+
   return Element;
 });

@@ -31,8 +31,9 @@ define(
 
                 var component = new Component()
                     .setType( componentType )
-                    .setProperties( propertyMap )
-                    .setName( _.uniqueId( "Component" ) );
+                        .setTypeDescription( componentDefinition.getTypeDescription())
+                        .setProperties( propertyMap )
+                        .setName( _.uniqueId( "Component" ) );
 
                 return component;
               }

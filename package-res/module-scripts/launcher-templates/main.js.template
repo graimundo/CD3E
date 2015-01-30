@@ -60,6 +60,7 @@ requirejs(
       './@js.source.dir@/services/layoutElementFactory',
       './@js.source.dir@/services/propertyFactory',
       './@js.source.dir@/services/dropService',
+      './@js.source.dir@/services/importExportService',
 
       /*
       './@js.source.dir@/models/plugin',

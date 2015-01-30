@@ -11,7 +11,7 @@ define(
           [
             'Property',
             function ( Property ) {
-              
+
               /**
                * *
                * @param propertyDefinition
@@ -19,7 +19,7 @@ define(
                */
               function createProperty( propertyDefinition ) {
                 var property = new Property()
-                    .setType( propertyDefinition.getType() )
+                    .setType( propertyDefinition.getValueType() )
                     .setValue( propertyDefinition.getDefaultValue() );
 
                 return property;

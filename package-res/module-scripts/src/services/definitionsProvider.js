@@ -52,6 +52,7 @@ define(
                                  }
 
                                  var definitions = dtoMapper.toDefinitionBlocks( response.data );
+                                 window.definitions = definitions;
                                  return definitions;
                              }
                          );

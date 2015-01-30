@@ -37,7 +37,8 @@ define(
                   );
 
                   var element = new elementConstructor()
-                      .setType( elementType )
+                          .setType( elementType )
+                          .setTypeDescription( layoutDefinition.getTypeDescription())
                       .setProperties( propertyMap )
                       .setName( _.uniqueId( elementType ) );
 
