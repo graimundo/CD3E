@@ -121,7 +121,7 @@ define(
                                      var propName, propType;
                                      if (_.isString(p)){
                                          // Global property
-                                         propName = propDef[p].getTypeDescription() || p;
+                                         propName = p.name || p;//propDef[p].getTypeDescription() || p;
                                          propType = p;
                                      } else {
                                          if (p.owned){

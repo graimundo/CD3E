@@ -7,7 +7,7 @@ define(['../Element'], function(Element){
     },
 
     setHtmlObject: function( htmlObject ) {
-      var htmlObjectProperty = this.getProperties()['HtmlObject'];
+      var htmlObjectProperty = this.getProperties()['htmlObject'];
       if ( htmlObjectProperty ){
         htmlObjectProperty.setValue(htmlObject);
       }
@@ -15,7 +15,7 @@ define(['../Element'], function(Element){
     },
 
     getHtmlObject: function() {
-      var htmlObjectProperty = this.getProperties()['HtmlObject'];
+      var htmlObjectProperty = this.getProperties()['htmlObject'];
       if ( htmlObjectProperty ){
         return htmlObjectProperty.getValue();
       }
