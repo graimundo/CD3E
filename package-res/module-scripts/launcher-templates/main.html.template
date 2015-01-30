@@ -13,7 +13,6 @@
     </head>
 
     <body class="pentaho-page-background" >
-        <h1><span>All mighty CD</span><sup>3</sup>E</h1>
 
       <div class="wholeContainer">
         <div data-ng-view></div>
