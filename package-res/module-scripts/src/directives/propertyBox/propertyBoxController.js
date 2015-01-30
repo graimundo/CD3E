@@ -32,11 +32,11 @@ define(
 
                 // region scope bindings
                 $scope.$watch( 'element', function ( element ) {
-                    if( !element ) {
+                    if( !element || !element.getProperties ) {
                         return;
                     }
 
-                    $scope.properties = _.toArray( $scope.element.getProperties() );
+                    $scope.properties = _.toArray( element.getProperties() );
                 } );
                 // endregion
 
