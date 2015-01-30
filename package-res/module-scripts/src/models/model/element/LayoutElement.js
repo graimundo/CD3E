@@ -78,14 +78,13 @@ define(['../Element', 'common-ui/underscore'], function(Element, _){
      * @returns {boolean}
      */
     canAddComponent: function() {},
-    
 
     /**
-     * *
+     * * Removes element from descendants
      * @param RowLayoutElement rootElement
      * @returns {LayoutElement}
      */
-    removeElement: function( elementToRemove ) {
+    _removeLayoutElement: function( elementToRemove ) {
       var elementToRemoveIndex = -1;
 
       var elements = this.getChildren();
@@ -102,11 +101,31 @@ define(['../Element', 'common-ui/underscore'], function(Element, _){
         return this;
       } else {
         _.each( elements, function( element ){
-          element.removeElement( elementToRemove );
+          element._removeLayoutElement( elementToRemove );
         });
       }
       return this;
+    },
+
+    /**
+     * Gets all descendant elements (Layout and Component) of the current element
+     * @returns {Array.<T>|string}
+     */
+    getDescendantElements: function ( ) {
+      var children = this.getChildren();
+      return children.concat( _.flatten( _.map( children, function( child ) { return child.getDescendantElements() } ) ));
+    },
+
+    /**
+     * Get the element with the specified id
+     * @param elementId
+     * @returns {*}
+     */
+    getDescendantElement: function( elementId ) {
+      var descendants = this.getDescendantElements();
+      return _.find( descendants, function( element ) { return element.getId() == elementId; } );
     }
+
   });
   
   return LayoutElement;

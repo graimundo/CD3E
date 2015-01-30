@@ -1,5 +1,5 @@
-define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement', './element/layout/ColumnLayoutElement'],
-    function(Base, _, RowLayoutElement, ColumnLayoutElement){
+define(['Base', 'common-ui/underscore', './element/LayoutElement', './element/layout/RowLayoutElement', './element/layout/ColumnLayoutElement', './element/ComponentElement'],
+    function(Base, _, LayoutElement, RowLayoutElement, ColumnLayoutElement, ComponentElement ){
   var Dashboard;
   
   Dashboard = Base.extend({
@@ -18,7 +18,6 @@ define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement', './
      */
     getRootElements: function(){
       return this._rootElements;
-      //return this._rootElements.slice();
     },
 
     /**
@@ -44,12 +43,22 @@ define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement', './
       return this;
     },
 
+    removeElement: function ( element ) {
+      if ( element instanceof LayoutElement ) {
+        return this._removeLayoutElement( element );
+      } else if (element instanceof ComponentElement ) {
+        return this._removeComponent( element );
+      }
+
+      throw { message: "Unknown element type to remove.", element: element };
+    },
+
     /**
      * *
      * @param RowLayoutElement rootElement
      * @returns {Dashboard}
      */
-    removeRootElement: function( /*RowLayoutElement*/rootElement ) {
+    _removeRootElement: function( /*RowLayoutElement*/rootElement ) {
       var elementToRemoveIndex = -1;
       
       var rootElements = this.getRootElements();
@@ -67,28 +76,28 @@ define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement', './
       return this;
     },
 
-    removeElement: function( element ) {
+    _removeLayoutElement: function( element ) {
       var myself = this;
       
       _.each( this.getRootElements(), function( root ){
         if( root.getId() == element.getId() ) {
-          myself.removeRootElement( element );
+          myself._removeRootElement( element );
           return;
         } else {
-          root.removeElement(element);
+          root._removeLayoutElement(element);
         }
       });
     },
     
-    removeComponent: function( component ) {
+    _removeComponent: function( component ) {
       var myself = this;
       var rootElements = this.getRootElements();
       _.each( rootElements, function( element, index ) {
-        myself.removeComponentFromElement( element, component);
+        myself._removeComponentFromElement( element, component);
       });
     },
     
-    removeComponentFromElement: function( element, component ) {
+    _removeComponentFromElement: function( element, component ) {
       var myself = this;
       if( element instanceof ColumnLayoutElement) {
         var elementComponent = element.getComponent();
@@ -97,12 +106,61 @@ define(['Base', 'common-ui/underscore', './element/layout/RowLayoutElement', './
         } 
       }
       _.each(element.getChildren(), function(element){
-        myself.removeComponentFromElement( element, component );
+        myself._removeComponentFromElement( element, component );
       });
 
       return;
+    },
+
+    /***
+     * Moves an element from an element into another element
+     * @param element
+     * @param targetElement
+     */
+    moveElement: function( element, targetElement ) {
+      if ( element instanceof ComponentElement ) {
+        return this._moveComponent( element, targetElement );
+      } else {
+        return this._moveLayoutElement( element, targetElement );
+      }
+    },
+
+    _moveLayoutElement: function ( layoutElement, target ) {
+      if ( !this._isLayoutContainer( target )
+          || !target.canAddChild( layoutElement )) {
+        return false;
+      }
+
+      this._removeLayoutElement( layoutElement );
+      return target.addChild( layoutElement );
+    },
+
+    _moveComponent: function ( component, target ) {
+      if ( !this._isComponentContainer( target ) ) {
+        return false;
+      }
+      this._removeComponent( component );
+      target.setComponent( component );
+    },
+
+    getDescendantElements: function ( ) {
+      var children = this.getRootElements();
+      return children.concat( _.flatten( _.map( children, function( child ) { return child.getDescendantElements() } )));
+    },
+
+    getDescendantElement: function( elementId ) {
+      return _.find( this.getDescendantElements(), function( element ) { return element.getId() == elementId; } );
+    },
+
+    // TODO: change this to element?
+    _isLayoutContainer: function ( element ) {
+      return element instanceof LayoutElement;
+    },
+
+    _isComponentContainer: function ( element ) {
+      return element instanceof ColumnLayoutElement;
     }
-    
+
   });
   
   return Dashboard;

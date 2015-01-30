@@ -82,6 +82,14 @@ define(['../LayoutElement'], function (LayoutElement) {
      */
     canAddComponent: function() {
       return this.getChildren().length == 0;
+    },
+
+    getDescendantElements: function() {
+      if ( this.getComponent() ) {
+        return [ this.getComponent() ];
+      }
+
+      return this.base();
     }
   });
 

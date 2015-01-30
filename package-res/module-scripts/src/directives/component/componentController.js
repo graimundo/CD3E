@@ -46,7 +46,7 @@ define(
 
               $scope.onRemoveButtonClick = function (component) {
                 console.log("removed component" + component.getName());
-                $rootScope.dashboard.removeComponent(component);
+                $rootScope.dashboard.removeElement(component);
               };
               // endregion
 
