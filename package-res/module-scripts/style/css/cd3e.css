@@ -84,6 +84,7 @@ html, body {
 .toolBox {
   /* border: 1px solid #006080; */
   width: 20%;
+  min-width: 180px;
 }
 
 .toolBox .toolBox-header {
@@ -97,9 +98,7 @@ html, body {
 }
 
 .layoutBox {
-  /* border-top: 1px solid #006080; */
-  /* border-bottom: 1px solid #006080; */
-  /* width: 60%; */
+  min-width: 600px;
 }
 
 .layoutBox .layoutBox-body {
@@ -110,6 +109,7 @@ html, body {
 .propertyBox {
   /* border: 1px solid #006080; */
   width: 30%;
+  min-width: 180px;
 }
 
 .propertyBox .propertyBox-body {
@@ -121,6 +121,10 @@ html, body {
 .property-value {
   padding-left: 20px;
 }
+.property-value input{
+  padding-left: 3px;
+}
+
 .component-properties {
   padding: 10px 0;
 }

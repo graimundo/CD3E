@@ -94,7 +94,7 @@ define(
                              var propertyDefinitions = _.object(
                                  _.keys(definitions.properties),
                                  _.map(definitions.properties, function(propertyDef){
-                                     return new PropertyDefinition( propertyDef[0].type, propertyDef[0].description )
+                                     return new PropertyDefinition( propertyDef[0].type, propertyDef[0].stub.description )
                                          .setValueType( propertyDef[0].stub.type )
                                          .setDefaultValue( propertyDef[0].stub.value )
                                      ;
@@ -120,7 +120,7 @@ define(
                                      var propName, propType;
                                      if (_.isString(p)){
                                          // Global property
-                                         propName = p;
+                                         propName = propDef[p].getTypeDescription() || p;
                                          propType = p;
                                      } else {
                                          if (p.owned){
