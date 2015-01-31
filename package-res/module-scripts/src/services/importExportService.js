@@ -11,8 +11,8 @@ define(
         var service = app.factory(
             'importExportService',
             [
-                '$rootScope', '$http',
-                function ( $rootScope, $http ) {
+                '$rootScope', '$http', '$q',
+                function ( $rootScope, $http, $q ) {
 
                     function createContent( dashboard, filename){
 
@@ -70,7 +70,7 @@ define(
                                     var component = node.getComponent();
                                     if ( component ){
                                         //console.log('Found Component' + component.getName());
-                                        component._
+                                        //component._
                                         cdfStructure.components.rows.push( convertNode(component, 'UnIqEiD'));
 
                                     }
@@ -98,7 +98,8 @@ define(
                         console.log('Content dump:' + content.cdfstructure);
 
                         var saveDashboardUrl = CONTEXT_PATH + 'plugin/pentaho-cdf-dd/api/syncronizer/saveDashboard';
-                        var successFunction = function(result) {
+                        var successFunction = function(resultText){
+                            var result = JSON.parse(resultText);
                             if (result && result.status == "true") {
                                 console.log("Dashboard saved successfully");
                             } else {
@@ -106,24 +107,35 @@ define(
                             }
                         };
 
-                        function toFormData(content){
-                            var fd = new FormData();
-                            angular.forEach(content, function(el, key){
-                                fd.append(key, el);
-                            });
-                            return fd;
+
+                        function submitForm(url, content){
+                            var deferred = $q.defer();
+                            function toFormData(content){
+                                var fd = new FormData();
+                                angular.forEach(content, function(el, key){
+                                    fd.append(key, el);
+                                });
+                                return fd;
+                            }
+                            var xhr = new XMLHttpRequest();
+                            xhr.open( 'POST', url, true );
+                            xhr.onreadystatechange = function() {
+                                if (xhr.readyState==4){
+                                    if (xhr.status==200) {
+                                        deferred.resolve(xhr.responseText);
+                                    } else {
+                                        deferred.reject(xhr);
+                                    }
+                                }
+                            };
+                            xhr.send( toFormData( content ) );
+                            return deferred.promise;
                         }
 
-                        var xhr = new XMLHttpRequest();
-                        xhr.open( 'POST', saveDashboardUrl, true );
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState==4 && xhr.status==200) {
-                                successFunction( JSON.parse(xhr.responseText));
-                            }
-                        };
-                        xhr.send( toFormData( content ) );
+                        return submitForm(saveDashboardUrl, content).then( successFunction );
 
                     }
+
 
                     return {
                         save: save
