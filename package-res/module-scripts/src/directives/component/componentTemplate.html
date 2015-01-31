@@ -1,9 +1,9 @@
 <div class="component"
-    data-ng-click="onElementSelection(component)"
+    data-ng-click="selectSelf()"
     data-stop-event="click"
     data-is-selected={{isSelected()}}
     data-drag="true"
-    data-jqyoui-draggable="{ onDrop:'onDragCallback', placeholder:'keep' }"
+    data-jqyoui-draggable="{ onStart:'dragSelectSelf', onStop:'dragSelectSelf', placeholder:'keep' }"
     data-jqyoui-options="jqyouiOptions"
     data-draggable-type="component"
     data-draggable-options='{ "id":"{{component.getId()}}" }'

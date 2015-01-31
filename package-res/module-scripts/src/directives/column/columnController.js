@@ -83,7 +83,14 @@ define(
                 }
               };
 
-              $scope.onElementSelection = selectElement;
+              $scope.selectSelf = function () {
+                selectElement( $scope.column );
+              };
+
+              $scope.dragSelectSelf = function () {
+                selectElement( $scope.column );
+                $scope.$apply();
+              };
 
               $scope.isSelected = isSelected;
 
@@ -106,8 +113,8 @@ define(
                 cursor: 'move',
                 greedy: true,
                 containment: ".layoutBox-body",
-                opacity: 0.8,
-                cursorAt: { left: 0, top: 0 }
+                opacity: 1,
+                cursorAt: { left: 10, top: 10 }
 
               };
               // endregion

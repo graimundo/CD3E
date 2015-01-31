@@ -2,7 +2,7 @@
      data-drop="true"
      data-drag="true"
      data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
-     data-jqyoui-draggable="{ onDrop:'onDragCallback', placeholder:'keep' }"
+     data-jqyoui-draggable="{ onStart:'dragSelectSelf', onStop: 'dragSelectSelf', placeholder:'keep' }"
      data-jqyoui-options="jqyouiOptions"
      data-stop-event="drop"
      data-is-selected={{isSelected()}}
@@ -10,7 +10,7 @@
      data-draggable-options='{ "id":"{{column.getId()}}" }'
      >
     <div class="column-header"
-        ng-click="onElementSelection(column)"
+        ng-click="selectSelf()"
         data-stop-event="click"
         >
         <div>{{column.getName()}}</div>

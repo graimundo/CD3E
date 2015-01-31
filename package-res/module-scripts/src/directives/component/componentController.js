@@ -40,9 +40,17 @@ define(
               // endregion
 
               // region scope bindings
-              $scope.onElementSelection = selectElement;
-
               $scope.isSelected = isSelected;
+
+              $scope.dragSelectSelf = function() {
+                selectElement( $scope.component );
+                $scope.$apply();
+              };
+
+              $scope.selectSelf = function() {
+                selectElement( $scope.component );
+              };
+
 
               $scope.onRemoveButtonClick = function (component) {
                 console.log("removed component" + component.getName());
@@ -65,7 +73,9 @@ define(
                   return dragObject;
                 },
                 cursor: 'move',
-                containment: ".layoutBox-body"
+                greedy: true,
+                containment: ".layoutBox-body",
+                cursorAt: { top: 10, left: 10 }
               };
               // endregion
 

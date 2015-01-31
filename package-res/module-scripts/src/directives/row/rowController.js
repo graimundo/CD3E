@@ -62,6 +62,11 @@ define(
                 return $scope.row == $rootScope.selectedElement;
               }
 
+              $scope.onDragStartCallback = function() {
+                selectElement( $scope.row );
+                $scope.$apply();
+              };
+
               $scope.onDropCallback = function(event, ui) {
                 var draggableType = ui.helper.attr("data-draggable-type"),
                     draggableOptions = JSON.parse(ui.helper.attr('data-draggable-options'));
@@ -85,8 +90,15 @@ define(
               // endregion
 
               // region scope bindings
-              $scope.onElementSelection = selectElement;
-              
+              $scope.dragSelectSelf = function() {
+                selectElement( $scope.row );
+                $scope.$apply();
+              };
+
+              $scope.selectSelf = function() {
+                selectElement( $scope.row );
+              };
+
               $scope.isSelected = isSelected;
 
               $scope.jqyouiOptions = {
@@ -102,7 +114,8 @@ define(
                 },
                 cursor: 'move',
                 greedy: true,
-                containment: ".layoutBox-body"
+                containment: ".layoutBox-body",
+                cursorAt: { top: 10, left: 10 },
               };
               // endregion
 

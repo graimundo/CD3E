@@ -2,7 +2,7 @@
     data-drop="true"
     data-drag="true"
     data-jqyoui-droppable="{ onDrop:'onDropCallback' }"
-    data-jqyoui-draggable="{ onDrop:'onDragCallback', placeholder:'keep' }"
+    data-jqyoui-draggable="{ onStart:'dragSelectSelf', onStop:'dragSelectSelf', placeholder:'keep' }"
     data-jqyoui-options="jqyouiOptions"
     data-stop-event="drop"
      data-is-selected={{isSelected()}}
@@ -11,13 +11,12 @@
      >
 
     <div class="row-header"
-        ng-click="onElementSelection(row)"
+        ng-click="selectSelf()"
         data-stop-event="click"
         >
         <div class="row-header-name">{{row.getName()}}</div>
         <button type="button" class="remove btn btn-default" aria-label="Remove"
-                ng-click="onRemoveButtonClick(row)"
-                data-stop-event="click">
+                ng-click="onRemoveButtonClick(row)" \\\data-stop-event="click">
             <span class="glyphicon glyphicon-remove"></span>
         </button>
     </div>
