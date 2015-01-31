@@ -104,7 +104,11 @@ define(
                   return dragObject;
                 },
                 cursor: 'move',
-                greedy: true
+                greedy: true,
+                containment: ".layoutBox-body",
+                opacity: 0.8,
+                cursorAt: { left: 0, top: 0 }
+
               };
               // endregion
 

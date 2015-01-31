@@ -64,7 +64,8 @@ define(
                   
                   return dragObject;
                 },
-                cursor: 'move'
+                cursor: 'move',
+                containment: ".layoutBox-body"
               };
               // endregion
 
