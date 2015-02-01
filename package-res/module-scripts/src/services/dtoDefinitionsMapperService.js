@@ -38,6 +38,15 @@ define(
                         }
                     }
 
+                    function quoteProperty(line){
+                        var cleanLine = line;
+                        var propValue = cleanLine.split(': ');
+                        if (propValue.length > 1){
+                            cleanLine = '"'+ propValue[0] + '":' + propValue.slice(1).join(': ');
+                        }
+                        return cleanLine;
+                    }
+
                     function parseComponents (componentBlocks){
                         var components = _.map(componentBlocks, function(block){
                             return _.map(block.split('\n'), function(line){
@@ -48,11 +57,7 @@ define(
                                 //.split('\t').join('')
                                 ;
 
-                                var propValue = cleanLine.split(': ');
-                                if (propValue.length > 1){
-                                    cleanLine = '"'+ propValue[0] + '":' + propValue.slice(1).join(': ');
-                                }
-
+                                cleanLine = quoteProperty(cleanLine);
                                 cleanLine = cleanLine.replace(/\"\"/g, '"')
                                     .replace('"{name', '{"name')
                                     .replace(/ alias\:/, '"alias":')
@@ -76,15 +81,36 @@ define(
                                 //.split('\t').join('')
                                 ;
 
-                                var propValue = cleanLine.split(': ');
-                                if (propValue.length > 1){
-                                    cleanLine = '"'+ propValue[0] + '":' + propValue.slice(1).join(': ');
-                                }
+                                cleanLine = quoteProperty(cleanLine);
                                 return cleanLine;
 
                             }).join('');
                         });
                         return _.map(properties, blockToJson);
+                    }
+
+                    function parseEntries (blocks, regex){
+                        var parsedBlocks = _.map(blocks, function(block){
+                            return _.map(block.split('\n'), function(line){
+                                var cleanLine =  line.trim()
+                                        .replace(/^var.*/, '{')
+                                        .replace(/}$/, '')
+                                        .replace('});', '}')
+                                        .replace(/getStub: f.*/, '')
+                                        .replace(regex, '')
+
+                                //.split('\t').join('')
+                                ;
+                                if (cleanLine.indexOf('return') >= 0 && cleanLine.indexOf('Model.getStub') > 0){
+                                    cleanLine = '"_componentID":"' + cleanLine.replace(/Model.getStub.*/, '').replace(/\s*return /, '').trim()+'"';
+                                }
+
+                                cleanLine = quoteProperty(cleanLine);
+                                return cleanLine;
+
+                            }).join('');
+                        });
+                        return _.map(parsedBlocks, blockToJson);
                     }
 
                     function toDefinitionBlocks( definitionsDTO ) {
@@ -97,18 +123,34 @@ define(
                                 return 'components';
                             } else if ( block.split('PropertiesManager.register').length > 1 ){
                                 return 'properties';
+                            } else  if ( block.split('CDFDDComponentsArray.push').length > 1){
+                                return 'componentEntries';
+                            } else  if ( block.split('CDFDDDatasourcesArray.push').length > 1){
+                                return 'datasourceEntries';
+                            } else if ( block.split('SelectRenderer.extend({').length > 1){
+                                return 'propertyEnum';
                             } else {
                                 return 'unknown';
                             }
                         });
 
-                        var components = _.groupBy( parseComponents( blockGroups.components ), 'name');
-                        var properties = _.groupBy( parseProperties( blockGroups.properties ), 'type');
+                        var components = _.groupBy( _.filter( parseComponents(  blockGroups.components),  _.isObject), 'name');
+                        var properties = _.groupBy( _.filter( parseProperties(  blockGroups.properties),  _.isObject), 'type');
+                        var datasourceEntries = _.chain( parseEntries(  blockGroups.datasourceEntries, /CDFDDDatasourcesArray.push.*/) )
+                                .filter(_.isObject)
+                                .groupBy('_componentID')
+                                .value();
+                        var componentEntries = _.chain( parseEntries(  blockGroups.componentEntries, /CDFDDComponentsArray.push.*/) )
+                                .filter(_.isObject)
+                                .groupBy('_componentID')
+                                .value();
 
                         return {
-                            unprocessed: _.omit(blockGroups, 'components', 'properties'),
-                            components: components,
-                            properties: properties
+                            //raw: blocks,
+                            components: _.omit(components, _.keys(datasourceEntries)),
+                            datasources: _.omit(components, _.keys(componentEntries)),
+                            properties:  properties,
+                            unprocessed: _.omit(blockGroups, 'components', 'properties', 'datasources')
                         };
                     };
 
