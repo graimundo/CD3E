@@ -31,6 +31,7 @@ define(
 
                  var definitionsPromise = null;
                  var componentDefinitionsPromise = null;
+                 var datasourceDefinitionsPromise = null;
                  var propertyDefinitionsPromise = null;
                  var layoutDefinitionsPromise = null;
 
@@ -144,12 +145,51 @@ define(
                      return componentDefinitionsPromise;
                  }
 
+                 function getDatasourceDefinitions(){
+                     if ( datasourceDefinitionsPromise === null ) {
+                         datasourceDefinitionsPromise = $q.all( [getDefinitions(), getPropertyDefinitions()]).then(function (result){
+                             var definitions = result[0];
+                             var propDef = result[1];
+                             var datasourceDefinitions = {};
+                             _.each( definitions.datasources, function( definitionArray, key){
+                                 var definition = definitionArray[0];
+                                 var datasourceDefinitionRaw =  _.omit(definition, 'properties');
+                                 datasourceDefinitionRaw.properties = {};
+                                 _.each(definition.properties, function(p){
+                                     var propName, propType;
+                                     if (_.isString(p)){
+                                         // Global property
+                                         propName = p.name || p;
+                                         propType = p;
+                                     } else {
+                                         if (p.owned){
+                                             // Custom property
+                                             propName = p.name;
+                                             propType = datasourceDefinitionRaw.name + '_' + p.name;
+                                         } else {
+                                             // Renamed global property
+                                             propName = p.alias;
+                                             propType = p.name;
+                                         }
+                                     }
+                                     datasourceDefinitionRaw.properties[propName] = propDef[propType];
+                                 });
+                                 datasourceDefinitions[key] = new ComponentDefinition(key, datasourceDefinitionRaw.description,  datasourceDefinitionRaw.properties);
+                             });
+                             return datasourceDefinitions;
+                         });
+                     }
+                     return datasourceDefinitionsPromise;
+                 }
+
+
 
                  var ComponentTemplateProvider = Base.extend(
                      {
                          /// Specify service here
                          // The following methods return promises that yield maps:
                          getComponentDefinitions: getComponentDefinitions, // map { componentType: ComponentDefinition }
+                         getDatasourceDefinitions: getDatasourceDefinitions, // map { datasourceType: ComponentDefinition }
                          getPropertyDefinitions: getPropertyDefinitions, // map { propertyType: propertyDefinition }
                          getLayoutDefinitions: getLayoutDefinitions // map { layoutType: ComponentDefinition }
 
