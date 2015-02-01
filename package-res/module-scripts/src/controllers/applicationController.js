@@ -99,7 +99,7 @@ define(
                 }
 
                 function saveDashboard (){
-                    $importExport.save( $scope.dashboard, 'home/admin/carlos');
+                    $importExport.save( $scope.dashboard, $scope.filename);
                 }
 
                 // region controller methods
@@ -136,10 +136,10 @@ define(
                 $scope.selectNoneElement = function () {
                     $rootScope.selectedElement = {};
                 };
-                // endregion
+                  // endregion
 
-
-                // region controller init
+                  // region controller init
+                  $scope.filename = '/home/admin/cd3e_sample';
                 // endregion
             }]
         );

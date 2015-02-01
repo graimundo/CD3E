@@ -84,8 +84,8 @@ html, body {
 
 .body {
     margin-top: 8px;
-  
-  
+
+
 }
 
 .toolBox {
@@ -95,8 +95,13 @@ html, body {
 }
 
 .toolBox .toolBox-header {
-  
-  
+
+
+}
+
+.cd3e-save-filename.form-control{
+  max-width: 80%;
+  display: inline;
 }
 
 .toolBox .toolBox-body {
@@ -280,9 +285,9 @@ cd3e {
 /* } */
 
 [data-is-selected="true"]{
-  border-color: rgb(38, 53, 61);   
-  outline: 0;   
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(38, 53, 61, .9);   
+  border-color: rgb(38, 53, 61);
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(38, 53, 61, .9);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(38, 53, 61, .9);
 }
 [data-is-selected="false"]{
@@ -362,7 +367,3 @@ button.remove.btn .glyphicon-remove:before {
   -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-
-
-
-
