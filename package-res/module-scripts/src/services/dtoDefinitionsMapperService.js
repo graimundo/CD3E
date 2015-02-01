@@ -148,6 +148,7 @@ define(
                         return {
                             //raw: blocks,
                             components: _.omit(components, _.keys(datasourceEntries)),
+                            componentEntries: componentEntries,
                             datasources: _.omit(components, _.keys(componentEntries)),
                             properties:  properties,
                             unprocessed: _.omit(blockGroups, 'components', 'properties', 'datasources')

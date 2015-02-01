@@ -188,6 +188,7 @@ define(
                      {
                          /// Specify service here
                          // The following methods return promises that yield maps:
+                         _getDefinitions: getDefinitions,
                          getComponentDefinitions: getComponentDefinitions, // map { componentType: ComponentDefinition }
                          getDatasourceDefinitions: getDatasourceDefinitions, // map { datasourceType: ComponentDefinition }
                          getPropertyDefinitions: getPropertyDefinitions, // map { propertyType: propertyDefinition }
