@@ -110,8 +110,8 @@ define(
                 // endregion
 
                 // region scope bindings
-                  $scope.dashboard = createDummyDashboard( 4, 2, 30 );
-                  $rootScope.dashboard = $scope.dashboard;
+                  //$scope.dashboard = createDummyDashboard( 4, 2, 30 );
+                  $rootScope.dashboard = $scope.dashboard = new Dashboard();
                   $scope.saveDashboard = saveDashboard;
 
                 var x = {

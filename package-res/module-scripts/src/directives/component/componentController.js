@@ -24,9 +24,9 @@ define(
       app.controller(
           'componentController',
           // dependencies
-          ['$scope', '$rootScope',
+          ['$scope', '$rootScope', '$window',
             // controller
-            function ($scope, $rootScope) {
+            function ($scope, $rootScope, $window) {
 
               // region controller methods
               function selectElement(element) {
@@ -55,6 +55,7 @@ define(
               $scope.onRemoveButtonClick = function (component) {
                 console.log("removed component" + component.getName());
                 $rootScope.dashboard.removeElement(component);
+                window.cdfDashboard.removeComponent(component.getName());
               };
 
               $scope.getSelectedType = function() {

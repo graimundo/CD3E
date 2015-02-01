@@ -13,23 +13,30 @@
 
 'use strict';
 
-define( [ 'cd3e' ],
-    function ( app ) {
+define(['cd3e'],
+    function (app) {
 
-      app.directive('dashboard', function() {
-        return {
-          restrict: 'E', // 'A' must be used for IE8 compatibility
-          replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
-          templateUrl: 'src/directives/dashboard/dashboardTemplate.html',
-          controller: 'dashboardController',
-          //isolate scope
-          scope: {
-            // define directive input / output here
+      app.directive('dashboard', [
+        '$window', function ($window) {
+          return {
+            restrict: 'E', // 'A' must be used for IE8 compatibility
+            replace: true, //replaces the custom directive element with the corresponding expanded HTML, to be HTML-compliant.
+            templateUrl: 'src/directives/dashboard/dashboardTemplate.html',
+            controller: 'dashboardController',
+            //isolate scope
+            scope: {
+              // define directive input / output here
               dashboard: "="
               //selectedElement: "="
-          }
-        };
-      });
+            },
+            link: function (scope, element, attrs) {
+              require(['cdf/Dashboard.Bootstrap'], function (Dashboard) {
+                $window.cdfDashboard = new Dashboard();
+                $window.cdfDashboard.init();
+              });
+            }
+          };
+        }]);
 
     }
 );

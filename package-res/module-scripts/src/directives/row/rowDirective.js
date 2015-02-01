@@ -28,7 +28,7 @@ define( [ 'cd3e' ],
               row: "="
               //selectedElement: "="
           },
-          link: function ( scope, element, attrs) {
+          link: function ( scope, element, attrs ) {
             var compiled = $compile( '<column data-ng-repeat="column in row.getChildren()" data-column="column"></column>' )(scope);
             element.append(compiled);
           }
