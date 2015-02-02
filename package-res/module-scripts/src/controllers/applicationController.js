@@ -24,9 +24,9 @@ define(
 
         app.controller( 'applicationController',
             // dependencies
-                        [ '$scope', 'Dashboard', 'componentElementFactory', 'layoutElementFactory', 'definitionsProvider', '$rootScope', 'importExportService',
+                        [ '$scope', 'Dashboard', 'componentElementFactory', 'layoutElementFactory', 'definitionsProvider', '$rootScope', 'importExportService', 'dashboardService',
             // controller
-              function ( $scope, Dashboard, componentFactory, layoutFactory, definitionsProvider, $rootScope, $importExport) {
+              function ( $scope, Dashboard, componentFactory, layoutFactory, definitionsProvider, $rootScope, $importExport, dashboardService) {
 
                 // region controller methods
                 function createDummyDashboard( depth, numChildren, probabilityOfComponent ) {
@@ -111,7 +111,7 @@ define(
 
                 // region scope bindings
                   //$scope.dashboard = createDummyDashboard( 4, 2, 30 );
-                  $rootScope.dashboard = $scope.dashboard = new Dashboard();
+                  $rootScope.dashboard = $scope.dashboard = dashboardService.create();
                   $scope.saveDashboard = saveDashboard;
 
                 var x = {

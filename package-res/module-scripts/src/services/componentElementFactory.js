@@ -17,7 +17,7 @@ define(
                * @param layoutDefinition
                * @returns {ComponentElement}
                */
-              function createComponentElement( componentDefinition ) {
+              function createComponentElement( componentDefinition, dashboard ) {
                 var componentType = componentDefinition.getType();
                 var propertyMap = _.object(
                     _.map ( componentDefinition.getPropertyDefinitions(),
@@ -34,6 +34,8 @@ define(
                         .setTypeDescription( componentDefinition.getTypeDescription())
                         .setProperties( propertyMap )
                         .setName( _.uniqueId( "Component" ) );
+
+                component.createCdfComponent( dashboard.getCdfDashboard() );
 
                 return component;
               }

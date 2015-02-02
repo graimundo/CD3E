@@ -55,7 +55,6 @@ define(
               $scope.onRemoveButtonClick = function (component) {
                 console.log("removed component" + component.getName());
                 $rootScope.dashboard.removeElement(component);
-                window.cdfDashboard.removeComponent(component.getName());
               };
 
               $scope.getSelectedType = function() {
@@ -78,6 +77,23 @@ define(
                 containment: ".layoutBox-body",
                 cursorAt: { top: 10, left: 10 }
               };
+              
+              _.each( $scope.component.getProperties(), function( prop ){
+                $scope.$watch(
+                    function(){
+                      return prop.getValue();
+                    },
+                    function(){
+                      var cdfComponent = $scope.component.getCdfComponent();
+                      if ( cdfComponent ) {
+                        var propName = prop.getName();
+                        cdfComponent[propName] = prop.getValue();
+                        $rootScope.dashboard.getCdfDashboard().update(cdfComponent);
+                      }
+                    }
+                );
+                
+              });
               // endregion
 
               // region controller init

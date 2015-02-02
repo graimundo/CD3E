@@ -48,7 +48,7 @@ define(
               
               function componentDefintionDropCallback(type){
                 definitionsProvider.getComponentDefinitions().then(function(componentDef){
-                  var component = componentElementFactory.create( componentDef[type] );
+                  var component = componentElementFactory.create( componentDef[type], $rootScope.dashboard );
                   $scope.column.setComponent(component);
                 });
               }

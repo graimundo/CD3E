@@ -145,12 +145,25 @@ define(
                                 .groupBy('_componentID')
                                 .value();
 
+                        var visualComponents = {};
+                        var otherComponents = {};
+                        _.each( components, function(component, key) {
+                            if (component[0].properties && _.contains(component[0].properties, 'htmlObject')){
+                                visualComponents[key] = component[0];
+                            } else {
+                                otherComponents[key] = component[0];
+                            }
+                        });
+
                         return {
                             //raw: blocks,
-                            components: _.omit(components, _.keys(datasourceEntries)),
+                            components: _.omit(visualComponents, _.keys(datasourceEntries)),
+                            otherComponents: _.omit(otherComponents, _.keys(datasourceEntries)),
                             componentEntries: componentEntries,
-                            datasources: _.omit(components, _.keys(componentEntries)),
-                            properties:  properties,
+                            datasources: _.pick(otherComponents, _.keys(datasourceEntries)),
+                            properties:  _.object(_.map(properties, function(v, k) {
+                                return [k, v[0]];
+                            })),
                             unprocessed: _.omit(blockGroups, 'components', 'properties', 'datasources')
                         };
                     };

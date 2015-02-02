@@ -20,6 +20,7 @@ define(
               var row = layoutFactory.create(layoutsArray[0]);
               dashboard.addRootElement(row);
             });
+            dashboard.createCdfDashboard();
             return dashboard;
           }
 

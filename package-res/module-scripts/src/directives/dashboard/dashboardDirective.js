@@ -28,12 +28,6 @@ define(['cd3e'],
               // define directive input / output here
               dashboard: "="
               //selectedElement: "="
-            },
-            link: function (scope, element, attrs) {
-              require(['cdf/Dashboard.Bootstrap'], function (Dashboard) {
-                $window.cdfDashboard = new Dashboard();
-                $window.cdfDashboard.init();
-              });
             }
           };
         }]);

@@ -70,24 +70,20 @@ define(
                                     var component = node.getComponent();
                                     if ( component ){
                                         //console.log('Found Component' + component.getName());
-                                        //component._
-                                        //cdfStructure.components.rows.push( convertNode(component, 'UnIqEiD'));
                                         components.push( component );
 
                                     }
                                 }
                             });
-                            return _.flatten(components);
+                            return _.flatten( components );
                         }
 
                         function groupComponents( components, definitions) {
                             return _.object(
                                 _.map(components, function(component) {
-                                    return component.getType();
-                                }),
-                                _.map(components, function(component) {
-                                    var entry = definitions.componentEntries[component.getType()];
-                                    return (entry ? [entry[0], component] : undefined);
+                                    var key = component.getType();
+                                    var entry = definitions.componentEntries[key];
+                                    return [key, (entry ? [entry[0], component] : undefined)];
                                 })
                             );
                         }

@@ -26,23 +26,6 @@ define( [ 'cd3e' ],
           scope: {
             // define directive input / output here
               component: "="
-          },
-          link: function (scope, element, attrs) {
-            var opts = {};
-            opts['name'] = scope.component.getName();
-            _.each( scope.component.getProperties(), function(prop){
-              opts[prop.getName()] = prop.getValue();
-            });
-            opts['htmlObject'] = scope.component.getHtmlObject()+'Component';
-            
-            var compName = scope.component.getType().substring(10);
-            compName = compName.charAt(0).toUpperCase() + compName.slice(1);
-            
-            require(['cdf/components/'+compName], function (Component) {
-              var component = new Component($window.cdfDashboard, opts);
-              $window.cdfDashboard.addComponent(component);
-              $window.cdfDashboard.update(component);
-            });
           }
         };
       }]);

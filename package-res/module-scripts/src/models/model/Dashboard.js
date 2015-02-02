@@ -3,6 +3,23 @@ define(['Base', 'common-ui/underscore', './element/LayoutElement', './element/la
   var Dashboard;
   
   Dashboard = Base.extend({
+    
+    _cdfDashboard: undefined,
+    
+    getCdfDashboard: function(){
+      return this._cdfDashboard;
+    },
+    
+    createCdfDashboard: function(){
+      var myself = this;
+      
+      require(['cdf/Dashboard.Bootstrap'], function (Dashboard) {
+        myself._cdfDashboard = new Dashboard();
+        myself._cdfDashboard.init();
+      });
+      
+    },
+    
     /**
      * The root elements of the Dashboard
      */
@@ -103,6 +120,7 @@ define(['Base', 'common-ui/underscore', './element/LayoutElement', './element/la
         var elementComponent = element.getComponent();
         if( elementComponent && component.getId() == elementComponent.getId() ) {
           element.clearComponent();
+          myself.getCdfDashboard().removeComponent(component.getCdfComponent());
         } 
       }
       _.each(element.getChildren(), function(element){
