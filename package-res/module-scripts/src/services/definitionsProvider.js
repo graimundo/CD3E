@@ -94,11 +94,11 @@ define(
                      if (propertyDefinitionsPromise === null){
                          return getDefinitions().then(function (definitions){
                              var propertyDefinitions = _.object(
-                                 _.keys(definitions.properties),
-                                 _.map(definitions.properties, function(propertyDef){
-                                     return new PropertyDefinition( propertyDef[0].type, propertyDef[0].stub.description )
-                                         .setValueType( propertyDef[0].stub.type )
-                                         .setDefaultValue( propertyDef[0].stub.value )
+                                 _.map(definitions.properties, function(propertyDef, key){
+                                     return [key, new PropertyDefinition( propertyDef.type, propertyDef.stub.description )
+                                         .setValueType( propertyDef.stub.type )
+                                             .setDefaultValue( propertyDef.stub.value )
+                                            ]
                                      ;
                                  })
                              );
@@ -114,8 +114,7 @@ define(
                              var definitions = result[0];
                              var propDef = result[1];
                              var componentDefinitions = {};
-                             _.each( definitions.components, function( definitionArray, key){
-                                 var definition = definitionArray[0];
+                             _.each( definitions.components, function( definition, key){
                                  var componentDefinitionRaw =  _.omit(definition, 'properties');
                                  componentDefinitionRaw.properties = {};
                                  _.each(definition.properties, function(p){
@@ -123,6 +122,7 @@ define(
                                      if (_.isString(p)){
                                          // Global property
                                          propName = p.name || p;//propDef[p].getTypeDescription() || p;
+                                         //propName = propDef[p].getTypeDescription() || p;
                                          propType = p;
                                      } else {
                                          if (p.owned){
@@ -151,8 +151,7 @@ define(
                              var definitions = result[0];
                              var propDef = result[1];
                              var datasourceDefinitions = {};
-                             _.each( definitions.datasources, function( definitionArray, key){
-                                 var definition = definitionArray[0];
+                             _.each( definitions.datasources, function( definition, key){
                                  var datasourceDefinitionRaw =  _.omit(definition, 'properties');
                                  datasourceDefinitionRaw.properties = {};
                                  _.each(definition.properties, function(p){
