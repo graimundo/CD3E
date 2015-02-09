@@ -199,9 +199,27 @@ cd3e {
   width: inherit;
 }
 
-.dragging-object {
-  height: 10px;
-  width: 10px;
+.show-grid .component.dragging-object {
+  padding: 0;
+  height: 15px;
+  width: 15px;
+  background: #1973bc;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(38, 53, 61, .9);
+}
+.show-grid .row.dragging-object {
+  padding: 0;
+  height: 15px;
+  width: 15px;
+  background-color: rgb(191,220,229);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(38, 53, 61, .9);
+}
+
+.show-grid .column.dragging-object {
+  padding: 0;
+  height: 15px;
+  width: 15px;
+  background-color: rgb(242,206,23);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(38, 53, 61, .9);
 }
 
 /* grid visualization */
